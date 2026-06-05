@@ -182,6 +182,131 @@ const FALLBACK = {
   s: "Official NM sources — sos.nm.gov"
 };
 
+/* ============================================================
+   CivicSubstrate data layer — live county-level intelligence
+   ------------------------------------------------------------
+   PolitíCat is the public, plain-language face (an "Atrium") of
+   the CivicSubstrate data engine. These snapshot files are the
+   read-only JSON output of:
+       python cli.py politicat-nm <subcommand> --json
+   Each carries source, source_date, and confidence so every
+   number can be verified. PolitíCat NEVER invents figures: if a
+   snapshot's confidence is "no_data", we quietly fall back to
+   pointing at the official source instead of guessing.
+   ============================================================ */
+const CIVIC = { totals: null, counties: null, trend: null };
+
+async function loadCivicData() {
+  const files = {
+    totals:   'assets/data/voter_totals.json',
+    counties: 'assets/data/voter_counties.json',
+    trend:    'assets/data/voter_trend.json'
+  };
+  await Promise.all(Object.entries(files).map(async ([key, url]) => {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) CIVIC[key] = await res.json();
+    } catch (_) { /* file:// or offline — stay null, fall back to canned answers */ }
+  }));
+}
+
+/* NM has 33 counties. Most people say a city name, not a county —
+   so map the big ones back to their county. "Albuquerque" → Bernalillo. */
+const CITY_TO_COUNTY = {
+  'albuquerque': 'Bernalillo', 'abq': 'Bernalillo', 'rio rancho': 'Sandoval',
+  'las cruces': 'Doña Ana', 'santa fe': 'Santa Fe', 'roswell': 'Chaves',
+  'farmington': 'San Juan', 'hobbs': 'Lea', 'clovis': 'Curry',
+  'carlsbad': 'Eddy', 'gallup': 'McKinley', 'alamogordo': 'Otero',
+  'los lunas': 'Valencia', 'las vegas': 'San Miguel', 'deming': 'Luna',
+  'silver city': 'Grant', 'española': 'Rio Arriba', 'espanola': 'Rio Arriba',
+  'taos': 'Taos', 'socorro': 'Socorro', 'ruidoso': 'Lincoln',
+  'los alamos': 'Los Alamos', 'grants': 'Cibola', 'portales': 'Roosevelt'
+};
+const NM_COUNTIES = ['Bernalillo','Catron','Chaves','Cibola','Colfax','Curry','De Baca',
+  'Doña Ana','Eddy','Grant','Guadalupe','Harding','Hidalgo','Lea','Lincoln','Los Alamos',
+  'Luna','McKinley','Mora','Otero','Quay','Rio Arriba','Roosevelt','Sandoval','San Juan',
+  'San Miguel','Santa Fe','Sierra','Socorro','Taos','Torrance','Union','Valencia'];
+
+const fmtNum = n => Number(n || 0).toLocaleString('en-US');
+const pctOf = (n, total) => total ? (n / total * 100).toFixed(1) : '0.0';
+const dataReady = snap => !!(snap && snap.confidence && snap.confidence !== 'no_data');
+
+function findCountyName(t) {
+  for (const c of NM_COUNTIES) {
+    const name = c.toLowerCase();
+    if (t.includes(name) || t.includes(name.replace('ñ', 'n'))) return c;
+  }
+  for (const [city, county] of Object.entries(CITY_TO_COUNTY)) {
+    if (t.includes(city)) return county;
+  }
+  return null;
+}
+
+function countyRow(county) {
+  if (!dataReady(CIVIC.counties)) return null;
+  const rows = (CIVIC.counties.data && CIVIC.counties.data.counties) || [];
+  const target = county.toLowerCase().replace('ñ', 'n');
+  return rows.find(r => (r.county || '').toLowerCase().replace('ñ', 'n').includes(target)) || null;
+}
+
+function civicAns(a, snap) {
+  return { a, s: snap.source, source: snap.source, source_date: snap.source_date, confidence: snap.confidence };
+}
+
+function countyAnswer(row, snap) {
+  const total = row.total || (row.dem + row.rep + row.lib + row.no_party + row.other);
+  const a = `As of ${snap.source_date}, ${row.county} County had ${fmtNum(total)} registered voters: `
+    + `${fmtNum(row.dem)} Democrat (${pctOf(row.dem, total)}%), `
+    + `${fmtNum(row.rep)} Republican (${pctOf(row.rep, total)}%), `
+    + `${fmtNum(row.no_party)} Decline to State (${pctOf(row.no_party, total)}%), `
+    + `${fmtNum(row.lib)} Libertarian, and ${fmtNum(row.other)} Other.`;
+  return civicAns(a, snap);
+}
+
+function trendAnswer(snap) {
+  const snaps = (snap.data && snap.data.snapshots) || [];
+  if (snaps.length < 2) return civicAns(snap.answer || '', snap);
+  const first = snaps[0], last = snaps[snaps.length - 1];
+  const dir = n => n > 0 ? `up ${fmtNum(n)}` : n < 0 ? `down ${fmtNum(Math.abs(n))}` : 'unchanged';
+  const a = `Between ${first.year_month} and ${last.year_month}, New Mexico's total registered voters went `
+    + `${dir(last.total - first.total)} (from ${fmtNum(first.total)} to ${fmtNum(last.total)}). `
+    + `Over that span: Democrats ${dir(last.dem - first.dem)}, Republicans ${dir(last.rep - first.rep)}, `
+    + `and Decline-to-State ${dir(last.no_party - first.no_party)}.`;
+  return civicAns(a, snap);
+}
+
+/* Returns a live, source-cited answer object, or null to fall
+   through to the canned source-first answers. Only fires when a
+   real snapshot is loaded — so the demo degrades gracefully. */
+function matchCivicQuery(q) {
+  const t = q.toLowerCase();
+  const asksVoters = /(voter|registrat|registered|democrat|republican|independent|decline to state|party|how many)/.test(t);
+
+  // 1. A specific county or city — the killer feature
+  const county = findCountyName(t);
+  if (county) {
+    const row = countyRow(county);
+    if (row && (row.total || row.dem || row.rep)) return countyAnswer(row, CIVIC.counties);
+  }
+
+  // 2. County comparison / ranking
+  if (/(compare|which count|most voters|largest county|biggest county|rank|all counties|by county|county.*compar)/.test(t)) {
+    if (dataReady(CIVIC.counties)) return civicAns(CIVIC.counties.answer, CIVIC.counties);
+  }
+
+  // 3. Trend over time
+  if (asksVoters && /(trend|over time|increasing|decreasing|growing|shrinking|rising|falling|more people registering|year over year|changing|change over)/.test(t)) {
+    if (dataReady(CIVIC.trend)) return trendAnswer(CIVIC.trend);
+  }
+
+  // 4. Statewide totals / party breakdown
+  if (asksVoters && /(how many|total|statewide|new mexico|breakdown|democrat|republican|party)/.test(t)) {
+    if (dataReady(CIVIC.totals)) return civicAns(CIVIC.totals.answer, CIVIC.totals);
+  }
+
+  return null;
+}
+
 /* ---------- Keyword router (demo only) ----------
    Scores each answer by how specifically its keywords match
    the question; longer phrase matches win over short ones. */
@@ -233,6 +358,25 @@ function escapeHtml(s) {
   return s.replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 }
 
+/* Verify It Yourself block. When an answer carries structured
+   provenance (source table + snapshot date + confidence) we show
+   the full receipt; otherwise the simple source line. */
+function renderVerify(ans) {
+  if (ans.source_date || ans.confidence) {
+    const conf = (ans.confidence || '').replace('_', ' ');
+    const badge = ans.confidence
+      ? '<span class="conf conf-' + escapeHtml(ans.confidence) + '">' + escapeHtml(conf) + '</span>'
+      : '';
+    return '<div class="verify">'
+      + '<div class="verify-h">🐾 Verify it yourself</div>'
+      + '<div class="verify-row"><span>Source</span><b>' + escapeHtml(ans.source || ans.s) + '</b></div>'
+      + (ans.source_date ? '<div class="verify-row"><span>Snapshot date</span><b>' + escapeHtml(ans.source_date) + '</b></div>' : '')
+      + (ans.confidence ? '<div class="verify-row"><span>Confidence</span>' + badge + '</div>' : '')
+      + '</div>';
+  }
+  return '<div class="src">🐾 <b>Verify it yourself:</b> ' + escapeHtml(ans.s) + '</div>';
+}
+
 async function runDemo(q) {
   if (demoBusy) return;
   demoBusy = true;
@@ -262,8 +406,7 @@ async function runDemo(q) {
   t.remove();
   const c = document.createElement('div');
   c.className = 'bubble cat';
-  c.innerHTML = escapeHtml(ans.a) +
-    '<div class="src">🐾 <b>Verify it yourself:</b> ' + escapeHtml(ans.s) + '</div>';
+  c.innerHTML = escapeHtml(ans.a) + renderVerify(ans);
   body.appendChild(c);
   body.scrollTop = body.scrollHeight;
 
@@ -283,8 +426,12 @@ async function runDemo(q) {
    whole trust model — don't drop it.
    ============================================================ */
 async function getAnswer(q) {
-  // ---- DEMO (canned) ----
+  // ---- DEMO (canned) + LIVE CivicSubstrate snapshots ----
   await new Promise(r => setTimeout(r, 1100));
+  // Try the live data layer first (county/registration/trend questions).
+  // Returns null unless a real snapshot is loaded, so the demo never breaks.
+  const civic = matchCivicQuery(q);
+  if (civic) return civic;
   return matchAnswer(q);
 
   // ---- LIVE (uncomment, delete the two lines above) ----
@@ -298,3 +445,6 @@ async function getAnswer(q) {
   // }
   // return await res.json(); // expects { a: "...", s: "..." }
 }
+
+/* ---------- Startup: load CivicSubstrate snapshots ---------- */
+loadCivicData();

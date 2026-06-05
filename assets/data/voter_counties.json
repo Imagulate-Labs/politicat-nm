@@ -1,0 +1,12 @@
+{
+  "query_type": "voter_county_comparison",
+  "answer": "",
+  "data": {
+    "year_month": "",
+    "counties": []
+  },
+  "source": "nm_voter_reg_record (report_type=statewide)",
+  "source_date": "",
+  "confidence": "no_data",
+  "notes": "Snapshot scaffold awaiting CivicSubstrate export. Generate the real file with: python cli.py politicat-nm voter-counties --json > assets/data/voter_counties.json"
+}

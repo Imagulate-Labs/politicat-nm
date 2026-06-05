@@ -1,0 +1,11 @@
+{
+  "query_type": "voter_party_trend",
+  "answer": "",
+  "data": {
+    "snapshots": []
+  },
+  "source": "nm_voter_reg_record (report_type=statewide, district_name=TOTAL)",
+  "source_date": "",
+  "confidence": "no_data",
+  "notes": "Snapshot scaffold awaiting CivicSubstrate export. Generate the real file with: python cli.py politicat-nm voter-trend --months 12 --json > assets/data/voter_trend.json"
+}

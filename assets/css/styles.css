@@ -149,6 +149,15 @@ section.block{padding:78px 0}
 .bubble.cat{align-self:flex-start;background:var(--cream-soft);color:var(--ink);border-bottom-left-radius:4px}
 .bubble.cat .src{margin-top:10px;padding-top:10px;border-top:1px dashed #cbb;font-size:.78rem;color:var(--teal)}
 .bubble.cat .src b{color:var(--orange-deep)}
+.bubble.cat .verify{margin-top:12px;padding:11px 13px;border-radius:11px;background:rgba(15,61,62,.06);border:1px solid rgba(15,61,62,.14);font-size:.78rem}
+.bubble.cat .verify-h{font-weight:800;color:var(--teal-deep,#0f3d3e);margin-bottom:7px;letter-spacing:.02em}
+.bubble.cat .verify-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:3px 0}
+.bubble.cat .verify-row span{color:var(--teal);opacity:.85}
+.bubble.cat .verify-row b{color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.bubble.cat .conf{font-weight:800;text-transform:capitalize;padding:1px 9px;border-radius:999px;font-size:.72rem}
+.bubble.cat .conf-exact{background:#1d7a4d;color:#fff}
+.bubble.cat .conf-approximate{background:#c9821a;color:#fff}
+.bubble.cat .conf-no_data{background:#9aa;color:#fff}
 .demo-input{display:flex;gap:8px;padding:16px;background:rgba(0,0,0,.18)}
 .demo-input input{flex:1;border:none;border-radius:10px;padding:12px 14px;font-family:inherit;font-size:.95rem;outline:none}
 .demo-input button{background:var(--orange);border:none;color:#fff;border-radius:10px;padding:0 20px;font-weight:800;cursor:pointer}

@@ -1,0 +1,9 @@
+{
+  "query_type": "voter_totals_statewide",
+  "answer": "",
+  "data": {},
+  "source": "nm_voter_reg_record (report_type=statewide, district_name=TOTAL)",
+  "source_date": "",
+  "confidence": "no_data",
+  "notes": "Snapshot scaffold awaiting CivicSubstrate export. Generate the real file with: python cli.py politicat-nm voter-totals --json > assets/data/voter_totals.json"
+}
