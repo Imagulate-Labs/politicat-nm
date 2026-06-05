@@ -58,7 +58,7 @@ header.nav{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand img{height:46px;width:46px;border-radius:50%;object-fit:cover;border:2px solid var(--orange)}
+.brand img{height:52px;width:auto;border-radius:0;object-fit:contain;border:none}
 .brand-name{font-family:'Alfa Slab One',serif;color:var(--cream);font-size:1.35rem;letter-spacing:.5px}
 .brand-name .nm{color:var(--orange);font-size:.7em;vertical-align:super;margin-left:2px}
 .nav-links{display:flex;gap:28px;align-items:center}
@@ -101,7 +101,7 @@ header.nav{
 
 /* HERO CAT */
 .hero-cat{position:relative;display:flex;justify-content:center}
-.hero-cat img{width:min(420px,90%);filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));animation:float 6s ease-in-out infinite;border-radius:50%}
+.hero-cat img{width:min(420px,90%);filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .speech{position:absolute;top:8%;left:-8%;background:var(--cream-soft);color:var(--ink);padding:12px 18px;border-radius:16px 16px 16px 4px;
   font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1rem;box-shadow:0 8px 20px rgba(0,0,0,.3);max-width:200px;z-index:3;animation:float 6s ease-in-out infinite .5s}
