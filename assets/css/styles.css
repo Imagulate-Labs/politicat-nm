@@ -202,7 +202,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
 .foot-bottom .nonpartisan{color:var(--orange);opacity:1;font-weight:700}
 
 /* ---------- RESPONSIVE ---------- */
-@media(max-width:860px){
+@media(max-width:960px){
   .hero-grid,.about-grid{grid-template-columns:1fr}
   .hero-cat{order:-1}
   .hero-cat img{width:min(300px,70%)}
