@@ -254,12 +254,14 @@ function civicAns(a, snap) {
 }
 
 function countyAnswer(row, snap) {
-  const total = row.total || (row.dem + row.rep + row.lib + row.no_party + row.other);
+  const total = row.total || (row.dem + row.rep + (row.lib || 0) + row.no_party + row.other);
+  // NM SOS stopped breaking out Libertarian in 2026 (lib === null) — omit it then.
+  const libPart = (row.lib != null) ? `${fmtNum(row.lib)} Libertarian, and ` : '';
   const a = `As of ${snap.source_date}, ${row.county} County had ${fmtNum(total)} registered voters: `
     + `${fmtNum(row.dem)} Democrat (${pctOf(row.dem, total)}%), `
     + `${fmtNum(row.rep)} Republican (${pctOf(row.rep, total)}%), `
     + `${fmtNum(row.no_party)} Decline to State (${pctOf(row.no_party, total)}%), `
-    + `${fmtNum(row.lib)} Libertarian, and ${fmtNum(row.other)} Other.`;
+    + `${libPart}${fmtNum(row.other)} Other.`;
   return civicAns(a, snap);
 }
 

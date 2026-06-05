@@ -1,26 +1,8 @@
 {
   "query_type": "voter_party_trend",
-  "answer": "Statewide voter registration totals across 12 monthly snapshots from 2023-12 to 2024-11.",
+  "answer": "Statewide voter registration totals across 12 monthly snapshots from 2024-02 to 2026-05.",
   "data": {
     "snapshots": [
-      {
-        "year_month": "2023-12",
-        "dem": 578027,
-        "rep": 412258,
-        "lib": 14845,
-        "no_party": 308370,
-        "other": 12538,
-        "total": 1326038
-      },
-      {
-        "year_month": "2024-01",
-        "dem": 577707,
-        "rep": 413341,
-        "lib": 14890,
-        "no_party": 310134,
-        "other": 12521,
-        "total": 1328593
-      },
       {
         "year_month": "2024-02",
         "dem": 577353,
@@ -110,11 +92,29 @@
         "no_party": 329783,
         "other": 12717,
         "total": 1406281
+      },
+      {
+        "year_month": "2026-03",
+        "dem": 573554,
+        "rep": 443598,
+        "lib": null,
+        "no_party": 371380,
+        "other": 27916,
+        "total": 1416448
+      },
+      {
+        "year_month": "2026-05",
+        "dem": 573161,
+        "rep": 442802,
+        "lib": null,
+        "no_party": 380276,
+        "other": 27495,
+        "total": 1423734
       }
     ]
   },
   "source": "nm_voter_reg_record (report_type=statewide, district_name=TOTAL)",
-  "source_date": "2024-11",
+  "source_date": "2026-05",
   "confidence": "exact",
   "notes": ""
 }

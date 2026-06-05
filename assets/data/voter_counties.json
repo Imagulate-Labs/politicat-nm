@@ -1,310 +1,310 @@
 {
   "query_type": "voter_county_comparison",
-  "answer": "As of 2024-11, 33 NM counties reported voter registration data. Largest by total: Bernalillo (452,346), Dona Ana (141,166), Santa Fe (115,029), Sandoval (113,071), San Juan (80,026).",
+  "answer": "As of 2026-05, 33 NM counties reported voter registration data. Largest by total: Bernalillo (447,967), Dona Ana (146,761), Sandoval (116,985), Santa Fe (116,391), San Juan (84,598).",
   "data": {
-    "year_month": "2024-11",
+    "year_month": "2026-05",
     "counties": [
       {
         "county": "Bernalillo",
-        "dem": 207264,
-        "rep": 126773,
-        "lib": 5205,
-        "no_party": 109044,
-        "other": 4060,
-        "total": 452346
+        "dem": 197332,
+        "rep": 120569,
+        "lib": null,
+        "no_party": 121396,
+        "other": 8670,
+        "total": 447967
       },
       {
         "county": "Dona Ana",
-        "dem": 60287,
-        "rep": 38175,
-        "lib": 1684,
-        "no_party": 39933,
-        "other": 1087,
-        "total": 141166
-      },
-      {
-        "county": "Santa Fe",
-        "dem": 70328,
-        "rep": 18312,
-        "lib": 1007,
-        "no_party": 24507,
-        "other": 875,
-        "total": 115029
+        "dem": 59144,
+        "rep": 38562,
+        "lib": null,
+        "no_party": 46193,
+        "other": 2862,
+        "total": 146761
       },
       {
         "county": "Sandoval",
-        "dem": 45858,
-        "rep": 38273,
-        "lib": 1327,
-        "no_party": 26777,
-        "other": 836,
-        "total": 113071
+        "dem": 45336,
+        "rep": 38660,
+        "lib": null,
+        "no_party": 30884,
+        "other": 2105,
+        "total": 116985
+      },
+      {
+        "county": "Santa Fe",
+        "dem": 68516,
+        "rep": 18162,
+        "lib": null,
+        "no_party": 27874,
+        "other": 1839,
+        "total": 116391
       },
       {
         "county": "San Juan",
-        "dem": 20883,
-        "rep": 37216,
-        "lib": 920,
-        "no_party": 20177,
-        "other": 830,
-        "total": 80026
+        "dem": 20892,
+        "rep": 37646,
+        "lib": null,
+        "no_party": 24231,
+        "other": 1829,
+        "total": 84598
       },
       {
         "county": "Valencia",
-        "dem": 17852,
-        "rep": 19469,
-        "lib": 569,
-        "no_party": 10812,
-        "other": 527,
-        "total": 49229
+        "dem": 17248,
+        "rep": 19610,
+        "lib": null,
+        "no_party": 13209,
+        "other": 1120,
+        "total": 51187
       },
       {
         "county": "McKinley",
-        "dem": 26847,
-        "rep": 8329,
-        "lib": 350,
-        "no_party": 11278,
-        "other": 621,
-        "total": 47425
+        "dem": 25219,
+        "rep": 8236,
+        "lib": null,
+        "no_party": 12504,
+        "other": 995,
+        "total": 46954
       },
       {
         "county": "Otero",
-        "dem": 10276,
-        "rep": 18281,
-        "lib": 571,
-        "no_party": 10717,
-        "other": 396,
-        "total": 40241
+        "dem": 10024,
+        "rep": 17994,
+        "lib": null,
+        "no_party": 12881,
+        "other": 936,
+        "total": 41835
       },
       {
         "county": "Lea",
-        "dem": 7366,
-        "rep": 21078,
-        "lib": 355,
-        "no_party": 9490,
-        "other": 434,
-        "total": 38723
+        "dem": 6866,
+        "rep": 20366,
+        "lib": null,
+        "no_party": 11255,
+        "other": 744,
+        "total": 39231
       },
       {
         "county": "Eddy",
-        "dem": 8379,
-        "rep": 20809,
-        "lib": 368,
-        "no_party": 7202,
-        "other": 325,
-        "total": 37083
+        "dem": 7782,
+        "rep": 20296,
+        "lib": null,
+        "no_party": 8851,
+        "other": 696,
+        "total": 37625
       },
       {
         "county": "Chaves",
-        "dem": 8894,
-        "rep": 18666,
-        "lib": 399,
-        "no_party": 7952,
-        "other": 482,
-        "total": 36393
-      },
-      {
-        "county": "Curry",
-        "dem": 6463,
-        "rep": 13130,
-        "lib": 396,
-        "no_party": 7081,
-        "other": 236,
-        "total": 27306
-      },
-      {
-        "county": "Taos",
-        "dem": 17250,
-        "rep": 3795,
-        "lib": 215,
-        "no_party": 4663,
-        "other": 245,
-        "total": 26168
+        "dem": 8455,
+        "rep": 18362,
+        "lib": null,
+        "no_party": 9877,
+        "other": 853,
+        "total": 37547
       },
       {
         "county": "Rio Arriba",
-        "dem": 17393,
-        "rep": 4441,
-        "lib": 159,
-        "no_party": 3875,
-        "other": 267,
-        "total": 26135
+        "dem": 16544,
+        "rep": 4652,
+        "lib": null,
+        "no_party": 5225,
+        "other": 430,
+        "total": 26851
+      },
+      {
+        "county": "Taos",
+        "dem": 16609,
+        "rep": 3849,
+        "lib": null,
+        "no_party": 5690,
+        "other": 493,
+        "total": 26641
+      },
+      {
+        "county": "Curry",
+        "dem": 5792,
+        "rep": 12419,
+        "lib": null,
+        "no_party": 7679,
+        "other": 566,
+        "total": 26456
       },
       {
         "county": "Grant",
-        "dem": 10121,
-        "rep": 6263,
-        "lib": 198,
-        "no_party": 4352,
-        "other": 201,
-        "total": 21135
+        "dem": 9795,
+        "rep": 6333,
+        "lib": null,
+        "no_party": 5116,
+        "other": 408,
+        "total": 21652
       },
       {
         "county": "San Miguel",
-        "dem": 12298,
-        "rep": 3489,
-        "lib": 106,
-        "no_party": 3123,
-        "other": 217,
-        "total": 19233
-      },
-      {
-        "county": "Los Alamos",
-        "dem": 6724,
-        "rep": 4558,
-        "lib": 287,
-        "no_party": 4711,
-        "other": 84,
-        "total": 16364
+        "dem": 11008,
+        "rep": 3323,
+        "lib": null,
+        "no_party": 3495,
+        "other": 290,
+        "total": 18116
       },
       {
         "county": "Cibola",
-        "dem": 8009,
-        "rep": 4034,
-        "lib": 150,
-        "no_party": 3268,
-        "other": 182,
-        "total": 15643
+        "dem": 7905,
+        "rep": 4156,
+        "lib": null,
+        "no_party": 4209,
+        "other": 353,
+        "total": 16623
+      },
+      {
+        "county": "Los Alamos",
+        "dem": 6583,
+        "rep": 4386,
+        "lib": null,
+        "no_party": 5075,
+        "other": 330,
+        "total": 16374
       },
       {
         "county": "Lincoln",
-        "dem": 3059,
-        "rep": 8581,
-        "lib": 184,
-        "no_party": 3100,
-        "other": 84,
-        "total": 15008
+        "dem": 2816,
+        "rep": 8219,
+        "lib": null,
+        "no_party": 3390,
+        "other": 268,
+        "total": 14693
       },
       {
         "county": "Luna",
-        "dem": 5267,
-        "rep": 4978,
-        "lib": 151,
-        "no_party": 3516,
-        "other": 142,
-        "total": 14054
+        "dem": 4897,
+        "rep": 4826,
+        "lib": null,
+        "no_party": 4244,
+        "other": 291,
+        "total": 14258
       },
       {
         "county": "Roosevelt",
-        "dem": 2542,
-        "rep": 6113,
-        "lib": 180,
-        "no_party": 2785,
-        "other": 102,
-        "total": 11722
-      },
-      {
-        "county": "Socorro",
-        "dem": 5150,
-        "rep": 3914,
-        "lib": 103,
-        "no_party": 2049,
-        "other": 108,
-        "total": 11324
+        "dem": 2338,
+        "rep": 5923,
+        "lib": null,
+        "no_party": 3138,
+        "other": 274,
+        "total": 11673
       },
       {
         "county": "Torrance",
-        "dem": 2817,
-        "rep": 5362,
-        "lib": 160,
-        "no_party": 2238,
-        "other": 100,
-        "total": 10677
+        "dem": 2760,
+        "rep": 5477,
+        "lib": null,
+        "no_party": 2795,
+        "other": 284,
+        "total": 11316
       },
       {
-        "county": "Colfax",
-        "dem": 3488,
-        "rep": 3218,
-        "lib": 106,
-        "no_party": 1923,
-        "other": 70,
-        "total": 8805
+        "county": "Socorro",
+        "dem": 4724,
+        "rep": 3759,
+        "lib": null,
+        "no_party": 2545,
+        "other": 209,
+        "total": 11237
       },
       {
         "county": "Sierra",
-        "dem": 2553,
-        "rep": 4048,
-        "lib": 104,
-        "no_party": 1978,
-        "other": 74,
-        "total": 8757
+        "dem": 2301,
+        "rep": 3881,
+        "lib": null,
+        "no_party": 2255,
+        "other": 175,
+        "total": 8612
+      },
+      {
+        "county": "Colfax",
+        "dem": 3114,
+        "rep": 3145,
+        "lib": null,
+        "no_party": 2123,
+        "other": 157,
+        "total": 8539
       },
       {
         "county": "Quay",
-        "dem": 1682,
-        "rep": 2857,
-        "lib": 55,
-        "no_party": 1029,
-        "other": 33,
-        "total": 5656
+        "dem": 1595,
+        "rep": 2906,
+        "lib": null,
+        "no_party": 1383,
+        "other": 83,
+        "total": 5967
       },
       {
         "county": "Mora",
-        "dem": 2624,
-        "rep": 796,
-        "lib": 13,
-        "no_party": 327,
-        "other": 30,
-        "total": 3790
+        "dem": 2568,
+        "rep": 809,
+        "lib": null,
+        "no_party": 449,
+        "other": 47,
+        "total": 3873
       },
       {
         "county": "Catron",
-        "dem": 577,
-        "rep": 2059,
-        "lib": 36,
-        "no_party": 577,
-        "other": 18,
-        "total": 3267
+        "dem": 526,
+        "rep": 2058,
+        "lib": null,
+        "no_party": 677,
+        "other": 52,
+        "total": 3313
       },
       {
         "county": "Guadalupe",
-        "dem": 2252,
-        "rep": 640,
-        "lib": 16,
-        "no_party": 337,
-        "other": 10,
-        "total": 3255
+        "dem": 1971,
+        "rep": 627,
+        "lib": null,
+        "no_party": 423,
+        "other": 30,
+        "total": 3051
       },
       {
         "county": "Hidalgo",
-        "dem": 1434,
-        "rep": 1019,
-        "lib": 24,
-        "no_party": 339,
-        "other": 20,
-        "total": 2836
+        "dem": 1357,
+        "rep": 1126,
+        "lib": null,
+        "no_party": 458,
+        "other": 47,
+        "total": 2988
       },
       {
         "county": "Union",
-        "dem": 690,
-        "rep": 1446,
-        "lib": 19,
-        "no_party": 383,
-        "other": 14,
-        "total": 2552
+        "dem": 632,
+        "rep": 1413,
+        "lib": null,
+        "no_party": 450,
+        "other": 37,
+        "total": 2532
       },
       {
         "county": "De Baca",
-        "dem": 416,
-        "rep": 653,
-        "lib": 10,
-        "no_party": 185,
-        "other": 7,
-        "total": 1271
+        "dem": 376,
+        "rep": 687,
+        "lib": null,
+        "no_party": 236,
+        "other": 19,
+        "total": 1318
       },
       {
         "county": "Harding",
-        "dem": 165,
-        "rep": 370,
-        "lib": 1,
-        "no_party": 55,
-        "other": 0,
-        "total": 591
+        "dem": 136,
+        "rep": 365,
+        "lib": null,
+        "no_party": 66,
+        "other": 3,
+        "total": 570
       }
     ]
   },
   "source": "nm_voter_reg_record (report_type=statewide)",
-  "source_date": "2024-11",
+  "source_date": "2026-05",
   "confidence": "exact",
   "notes": ""
 }
