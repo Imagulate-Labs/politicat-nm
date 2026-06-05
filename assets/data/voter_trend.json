@@ -1,97 +1,88 @@
 {
   "query_type": "voter_party_trend",
-  "answer": "Statewide voter registration totals across 12 monthly snapshots from 2024-02 to 2026-05.",
+  "answer": "Statewide voter registration totals across 12 monthly snapshots from 2025-06 to 2026-05.",
   "data": {
     "snapshots": [
       {
-        "year_month": "2024-02",
-        "dem": 577353,
-        "rep": 413951,
-        "lib": 14934,
-        "no_party": 311573,
-        "other": 12492,
-        "total": 1330303
+        "year_month": "2025-06",
+        "dem": 570211,
+        "rep": 435374,
+        "lib": null,
+        "no_party": 314017,
+        "other": 26647,
+        "total": 1346249
       },
       {
-        "year_month": "2024-03",
-        "dem": 577473,
-        "rep": 414785,
-        "lib": 14974,
-        "no_party": 313628,
-        "other": 12463,
-        "total": 1333323
+        "year_month": "2025-07",
+        "dem": 570873,
+        "rep": 436647,
+        "lib": null,
+        "no_party": 320988,
+        "other": 26864,
+        "total": 1355372
       },
       {
-        "year_month": "2024-04",
-        "dem": 577692,
-        "rep": 415653,
-        "lib": 15036,
-        "no_party": 315390,
-        "other": 12407,
-        "total": 1336178
+        "year_month": "2025-08",
+        "dem": 571435,
+        "rep": 437703,
+        "lib": null,
+        "no_party": 327658,
+        "other": 27064,
+        "total": 1363860
       },
       {
-        "year_month": "2024-05",
-        "dem": 578567,
-        "rep": 416615,
-        "lib": 15092,
-        "no_party": 314390,
-        "other": 12348,
-        "total": 1337012
+        "year_month": "2025-09",
+        "dem": 571447,
+        "rep": 439130,
+        "lib": null,
+        "no_party": 335282,
+        "other": 27233,
+        "total": 1373092
       },
       {
-        "year_month": "2024-06",
-        "dem": 581477,
-        "rep": 420420,
-        "lib": 15232,
-        "no_party": 313912,
-        "other": 12187,
-        "total": 1343228
+        "year_month": "2025-10",
+        "dem": 571366,
+        "rep": 439459,
+        "lib": null,
+        "no_party": 337775,
+        "other": 27301,
+        "total": 1375901
       },
       {
-        "year_month": "2024-07",
-        "dem": 582067,
-        "rep": 421653,
-        "lib": 15258,
-        "no_party": 315772,
-        "other": 12191,
-        "total": 1346941
+        "year_month": "2025-11",
+        "dem": 572683,
+        "rep": 441247,
+        "lib": null,
+        "no_party": 345360,
+        "other": 27448,
+        "total": 1386738
       },
       {
-        "year_month": "2024-08",
-        "dem": 583129,
-        "rep": 423222,
-        "lib": 15242,
-        "no_party": 317249,
-        "other": 12300,
-        "total": 1351142
+        "year_month": "2025-12",
+        "dem": 573543,
+        "rep": 442407,
+        "lib": null,
+        "no_party": 352897,
+        "other": 27633,
+        "total": 1396480
       },
       {
-        "year_month": "2024-09",
-        "dem": 585974,
-        "rep": 427585,
-        "lib": 15211,
-        "no_party": 319966,
-        "other": 12389,
-        "total": 1361125
+        "year_month": "2026-01",
+        "dem": 574129,
+        "rep": 443233,
+        "lib": null,
+        "no_party": 358848,
+        "other": 27751,
+        "total": 1403961
       },
       {
-        "year_month": "2024-10",
-        "dem": 590301,
-        "rep": 435362,
-        "lib": 15299,
-        "no_party": 323653,
-        "other": 12470,
-        "total": 1377085
-      },
-      {
-        "year_month": "2024-11",
-        "dem": 597208,
-        "rep": 451145,
-        "lib": 15428,
-        "no_party": 329783,
-        "other": 12717,
-        "total": 1406281
+        "year_month": "2026-02",
+        "dem": 574019,
+        "rep": 443493,
+        "lib": null,
+        "no_party": 364394,
+        "other": 27812,
+        "total": 1409718
       },
       {
         "year_month": "2026-03",
@@ -101,6 +92,15 @@
         "no_party": 371380,
         "other": 27916,
         "total": 1416448
+      },
+      {
+        "year_month": "2026-04",
+        "dem": 573297,
+        "rep": 443220,
+        "lib": null,
+        "no_party": 378089,
+        "other": 27938,
+        "total": 1422544
       },
       {
         "year_month": "2026-05",
