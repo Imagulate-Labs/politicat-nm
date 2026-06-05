@@ -1,11 +1,120 @@
 {
   "query_type": "voter_party_trend",
-  "answer": "",
+  "answer": "Statewide voter registration totals across 12 monthly snapshots from 2023-12 to 2024-11.",
   "data": {
-    "snapshots": []
+    "snapshots": [
+      {
+        "year_month": "2023-12",
+        "dem": 578027,
+        "rep": 412258,
+        "lib": 14845,
+        "no_party": 308370,
+        "other": 12538,
+        "total": 1326038
+      },
+      {
+        "year_month": "2024-01",
+        "dem": 577707,
+        "rep": 413341,
+        "lib": 14890,
+        "no_party": 310134,
+        "other": 12521,
+        "total": 1328593
+      },
+      {
+        "year_month": "2024-02",
+        "dem": 577353,
+        "rep": 413951,
+        "lib": 14934,
+        "no_party": 311573,
+        "other": 12492,
+        "total": 1330303
+      },
+      {
+        "year_month": "2024-03",
+        "dem": 577473,
+        "rep": 414785,
+        "lib": 14974,
+        "no_party": 313628,
+        "other": 12463,
+        "total": 1333323
+      },
+      {
+        "year_month": "2024-04",
+        "dem": 577692,
+        "rep": 415653,
+        "lib": 15036,
+        "no_party": 315390,
+        "other": 12407,
+        "total": 1336178
+      },
+      {
+        "year_month": "2024-05",
+        "dem": 578567,
+        "rep": 416615,
+        "lib": 15092,
+        "no_party": 314390,
+        "other": 12348,
+        "total": 1337012
+      },
+      {
+        "year_month": "2024-06",
+        "dem": 581477,
+        "rep": 420420,
+        "lib": 15232,
+        "no_party": 313912,
+        "other": 12187,
+        "total": 1343228
+      },
+      {
+        "year_month": "2024-07",
+        "dem": 582067,
+        "rep": 421653,
+        "lib": 15258,
+        "no_party": 315772,
+        "other": 12191,
+        "total": 1346941
+      },
+      {
+        "year_month": "2024-08",
+        "dem": 583129,
+        "rep": 423222,
+        "lib": 15242,
+        "no_party": 317249,
+        "other": 12300,
+        "total": 1351142
+      },
+      {
+        "year_month": "2024-09",
+        "dem": 585974,
+        "rep": 427585,
+        "lib": 15211,
+        "no_party": 319966,
+        "other": 12389,
+        "total": 1361125
+      },
+      {
+        "year_month": "2024-10",
+        "dem": 590301,
+        "rep": 435362,
+        "lib": 15299,
+        "no_party": 323653,
+        "other": 12470,
+        "total": 1377085
+      },
+      {
+        "year_month": "2024-11",
+        "dem": 597208,
+        "rep": 451145,
+        "lib": 15428,
+        "no_party": 329783,
+        "other": 12717,
+        "total": 1406281
+      }
+    ]
   },
   "source": "nm_voter_reg_record (report_type=statewide, district_name=TOTAL)",
-  "source_date": "",
-  "confidence": "no_data",
-  "notes": "Snapshot scaffold awaiting CivicSubstrate export. Generate the real file with: python cli.py politicat-nm voter-trend --months 12 --json > assets/data/voter_trend.json"
+  "source_date": "2024-11",
+  "confidence": "exact",
+  "notes": ""
 }
