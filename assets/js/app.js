@@ -137,11 +137,48 @@ const ANSWERS = [
     k: ["zia", "curiosity", "why a cat", "what is politicat", "who is don gato"],
     a: "PolitíCat is built on one idea: Curiosity > Politics. Don Gato Cívico is a curious New Mexico cat — a little skeptical, allergic to spin — who explains how government actually works in plain language, then points you to the official source so you can decide for yourself. The Zia sun in the logo is New Mexico's state symbol of unity and belonging.",
     s: "About PolitíCat — politicatnm.org"
+  },
+
+  /* ---- Civic Substrate–backed topics (data layer) ----
+     These questions are about live NM data (registration counts,
+     party totals, turnout, county figures). The DEMO answers are
+     deliberately source-first and state NO unverified numbers.
+     In production, PolitíCat reads the figure + report date from
+     the Civic Substrate API and fills it in here. */
+  {
+    k: ["registered voters", "how many registered", "total voters", "voter registration totals", "how many people are registered", "voters in new mexico", "registered in new mexico"],
+    a: "New Mexico publishes official statewide voter registration totals every single month through the Secretary of State. The exact current count — and how it breaks down by party and county — comes straight from those monthly reports. (In the live version I read the latest figure from our Civic Substrate data layer and show it here with the report's date so you can verify it.)",
+    s: "NM Voter Registration Statistics — sos.nm.gov"
+  },
+  {
+    k: ["how many democrats", "how many republicans", "how many independents", "party affiliation", "democrat", "republican", "independent", "dts", "declined to state", "registered democrat", "registered republican", "major party"],
+    a: "In New Mexico you can register as a Democrat, Republican, Libertarian, another party, or with no party at all — often shown as 'DTS,' meaning Declined To State. The Secretary of State publishes the exact totals for each, statewide and county-by-county, in a report every month. (Live PolitíCat pulls the latest numbers from Civic Substrate and cites the report date — it never guesses.)",
+    s: "Party registration totals — sos.nm.gov"
+  },
+  {
+    k: ["my county", "bernalillo", "albuquerque", "doña ana", "dona ana", "las cruces", "santa fe", "sandoval", "rio rancho", "san juan", "farmington", "county compare", "in my county", "county turnout", "compare to the rest"],
+    a: "Most of what people care about is local. New Mexico breaks voter registration down across all 33 counties — so you can see the numbers for Bernalillo (Albuquerque), Doña Ana (Las Cruces), Santa Fe, Sandoval (Rio Rancho), San Juan (Farmington), and everywhere else. (Live PolitíCat reads your county's latest figures from Civic Substrate and explains how it stacks up against the rest of the state.)",
+    s: "County registration data — sos.nm.gov"
+  },
+  {
+    k: ["turnout", "how many voted", "how many people voted", "voter turnout", "did people vote", "participation", "highest turnout", "lowest turnout"],
+    a: "Turnout is the share of registered voters who actually cast a ballot. New Mexico posts official turnout and past results — down to the precinct, going back to the year 2000 — in its online election data tool. (Live PolitíCat reads turnout from Civic Substrate so it can tell you how your county compares and whether participation is rising or falling.)",
+    s: "NM election results & turnout — electionstats.sos.nm.gov"
+  },
+  {
+    k: ["more people registering", "changing party", "changed party", "party trends", "switching parties", "young voters participating", "registration trends", "are young voters", "registering more"],
+    a: "Whether more people are registering with one party, or changing their affiliation, is something you can actually measure — by comparing the Secretary of State's monthly registration reports over time. (Live PolitíCat reads that month-over-month history from Civic Substrate and explains the trend in plain language, always with the source dates attached.)",
+    s: "Monthly registration reports — sos.nm.gov"
+  },
+  {
+    k: ["offices on", "on my ballot", "what offices", "who is on the ballot", "what's on the ballot", "whats on the ballot", "sample ballot", "races on"],
+    a: "What's on your ballot depends on where you live and which election it is. In 2026, New Mexico voters can decide races from U.S. Congress and statewide offices all the way down to the state Legislature, county offices, and judges. The fastest way to see YOUR exact ballot is to enter your address for a personalized sample ballot at NMVote.org.",
+    s: "Your sample ballot — NMVote.org"
   }
 ];
 
 const FALLBACK = {
-  a: "Good question — that's exactly the kind of thing I'm built to explain. In the live version, I'd break this down in plain language and point you to the official New Mexico source so you can verify it yourself. (This is a demo: try voting, registration, early voting, absentee ballots, the Legislature, how a bill becomes law, your rights, or how young people can get involved.)",
+  a: "Good question — that's exactly the kind of thing I'm built to explain. In the live version, I'd break this down in plain language and point you to the official New Mexico source so you can verify it yourself. (This is a demo: try voting, registration, early voting, absentee ballots, the Legislature, how a bill becomes law, your rights, voter registration numbers, your county's data, or how young people can get involved.)",
   s: "Official NM sources — sos.nm.gov"
 };
 
