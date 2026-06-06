@@ -129,6 +129,139 @@ section.block{padding:78px 0}
 .sec-desc{margin-top:14px;color:#4a5a55;font-size:1.05rem}
 .sec-desc--cream{color:#cddbd6}
 
+/* ---------- EVIDENCE MODEL ---------- */
+.evidence{background:var(--sand)}
+.evidence .sec-head{margin-bottom:28px}
+.evidence .sec-title{font-size:2.15rem}
+.evidence-rule{
+  max-width:840px;
+  margin:0 auto 24px;
+  padding:26px 28px;
+  background:var(--teal-deep);
+  color:var(--cream);
+  border-left:6px solid var(--orange);
+  box-shadow:0 16px 34px -18px rgba(15,61,62,.55);
+}
+.evidence-rule p{
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.1rem,2vw,1.45rem);
+  line-height:1.35;
+}
+.evidence-rule p+p{margin-top:8px;color:#d7e4dd}
+.evidence-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.evidence-card{
+  background:#fff;
+  border:1px solid rgba(15,61,62,.12);
+  border-radius:8px;
+  padding:22px;
+  box-shadow:0 4px 16px var(--shadow);
+}
+.evidence-type{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 10px;
+  margin-bottom:13px;
+  border-radius:999px;
+  background:rgba(240,138,36,.14);
+  color:var(--orange-deep);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.evidence-card h3{
+  font-family:'Alfa Slab One',serif;
+  color:var(--teal-deep);
+  font-size:1.05rem;
+  line-height:1.15;
+  margin-bottom:9px;
+}
+.evidence-card p{
+  color:#4a5a55;
+  font-size:.92rem;
+  line-height:1.48;
+}
+.evidence-principles{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+.evidence-principles span{
+  border:1px solid rgba(15,61,62,.18);
+  background:rgba(255,255,255,.54);
+  color:var(--teal-deep);
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:.84rem;
+  font-weight:800;
+}
+.trail-preview{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+  align-items:stretch;
+  margin:26px auto 0;
+  max-width:940px;
+  padding:20px;
+  background:#fff;
+  border:1px solid rgba(15,61,62,.14);
+  border-radius:8px;
+  box-shadow:0 10px 26px -18px rgba(15,61,62,.55);
+}
+.trail-copy{padding:4px 6px}
+.trail-kicker{
+  color:var(--orange-deep);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.trail-copy h3{
+  font-family:'Alfa Slab One',serif;
+  color:var(--teal-deep);
+  font-size:1.45rem;
+  line-height:1.1;
+  margin-bottom:9px;
+}
+.trail-copy p{
+  color:#4a5a55;
+  font-size:.94rem;
+  line-height:1.5;
+}
+.trail-metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.trail-metrics div{
+  padding:14px;
+  background:rgba(239,227,200,.58);
+  border:1px solid rgba(15,61,62,.12);
+  border-radius:8px;
+}
+.trail-metrics dt{
+  color:#4a5a55;
+  font-size:.72rem;
+  font-weight:800;
+  line-height:1.25;
+  text-transform:uppercase;
+}
+.trail-metrics dd{
+  color:var(--teal-deep);
+  font-family:'Alfa Slab One',serif;
+  font-size:1.55rem;
+  line-height:1;
+  margin-top:8px;
+}
+
 /* ---------- POPULAR QUESTIONS ---------- */
 .q-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 .q-card{background:#fff;border-radius:16px;padding:26px 22px;border:1px solid var(--sand);box-shadow:0 4px 16px var(--shadow);
@@ -348,6 +481,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:960px){
   .hero-grid,.about-grid{grid-template-columns:1fr}
+  .trail-preview{grid-template-columns:1fr}
   .hero{aspect-ratio:auto;background-position:66% center;background-size:100% 100%,100% 100%,auto 100%;min-height:720px}
   .hero-title{font-size:2.35rem}
   .hero-cat{order:-1}
@@ -366,6 +500,9 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
   .hero{min-height:760px;padding:54px 0 58px}
   .hero-title{font-size:2.08rem;line-height:1.02}
   .hero-sub{font-size:1rem}
+  .evidence .sec-title{font-size:1.7rem}
+  .evidence-rule{padding:22px 20px}
+  .evidence-rule p{font-size:1.05rem}
   .ask-bar{flex-direction:column}
   .ask-btn{height:46px;justify-content:center}
 }

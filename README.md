@@ -5,6 +5,45 @@ New Mexico's curious civic cat. *Curiosity > Politics.*
 A nonpartisan civic-education homepage built around **Ask PolitíCat** — the
 product — with **PolitíCat NM** as the brand and **Don Gato Cívico** as host.
 
+## Charter
+
+PolitíCat does not tell people what to think.
+
+PolitíCat shows what records exist, what they say, and what is still unknown.
+
+The product posture is records first, interpretation disciplined, uncertainty
+visible. PolitíCat should answer according to the kind of question asked, not
+flatten every civic question into the same generic response.
+
+## Evidence response model
+
+The durable response shape is:
+
+```text
+question_type
+answer
+evidence[]
+source_date
+limits
+records_reviewed
+official_sources
+contradicting_records_found
+open_questions
+verify_urls[]
+next_records_to_check[]
+```
+
+The public surface should measure the trail, not overstate the claim. Prefer
+"Records Reviewed: 3" and "Open Questions: 2" over a broad label like
+"Confidence: High" when the answer depends on incomplete or evolving records.
+
+Question types:
+
+- **FACT:** answer directly from structured public records.
+- **TREND:** answer with a dated series, comparison, or change over time.
+- **INVESTIGATION:** show the trail so far, what is still unknown, and the next records to check.
+- **ACCOUNTABILITY:** separate the fact layer from the explanation layer.
+
 ---
 
 ## Run it
