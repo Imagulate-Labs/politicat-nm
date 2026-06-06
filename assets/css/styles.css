@@ -74,7 +74,7 @@ header.nav{
   background:
     linear-gradient(90deg,rgba(7,31,32,.9) 0%,rgba(7,31,32,.72) 34%,rgba(7,31,32,.28) 66%,rgba(7,31,32,.12) 100%),
     linear-gradient(0deg,rgba(7,31,32,.18),rgba(7,31,32,.18)),
-    url('../img/politicat-hero-background.png') center center/cover no-repeat;
+    url('../img/politicat-hero-background.png?v=20260606-hero2') center center/cover no-repeat;
 }
 .zia-bg{display:none}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative;z-index:2}
