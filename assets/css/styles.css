@@ -343,7 +343,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:960px){
   .hero-grid,.about-grid{grid-template-columns:1fr}
-  .hero{background-position:center center;min-height:720px}
+  .hero{background-position:66% center;min-height:720px}
   .hero-title{font-size:2.35rem}
   .hero-cat{order:-1}
   .hero-cat img{width:min(300px,70%)}
