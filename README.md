@@ -125,4 +125,11 @@ Do **not** drop the `s` (source) field — it's the trust mechanic.
 - [ ] Add real Discord / TikTok / X links (placeholders are `href="#"`).
 - [ ] Accessibility pass: focus states, reduced-motion, alt text review.
 - [ ] Add `politicatnm.org` analytics + a privacy-respecting setup.
+
+## Deployment
+
+DNS and Cloudflare setup notes live in:
+
+```text
+DEPLOYMENT.md
 ```
