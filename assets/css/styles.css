@@ -71,10 +71,15 @@ header.nav{
 /* ---------- HERO ---------- */
 .hero{
   position:relative;color:var(--cream);padding:64px 0 80px;overflow:hidden;min-height:660px;display:flex;align-items:center;
-  background:
+  aspect-ratio:1792/1024;
+  background-color:#071f20;
+  background-image:
     linear-gradient(90deg,rgba(7,31,32,.9) 0%,rgba(7,31,32,.72) 34%,rgba(7,31,32,.28) 66%,rgba(7,31,32,.12) 100%),
     linear-gradient(0deg,rgba(7,31,32,.18),rgba(7,31,32,.18)),
-    url('../img/politicat-hero-background.png?v=20260606-hero2') center center/cover no-repeat;
+    url('../img/politicat-hero-background.png?v=20260606-hero3');
+  background-position:center center;
+  background-size:100% 100%,100% 100%,100% auto;
+  background-repeat:no-repeat;
 }
 .zia-bg{display:none}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative;z-index:2}
@@ -343,7 +348,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:960px){
   .hero-grid,.about-grid{grid-template-columns:1fr}
-  .hero{background-position:66% center;min-height:720px}
+  .hero{aspect-ratio:auto;background-position:66% center;background-size:100% 100%,100% 100%,auto 100%;min-height:720px}
   .hero-title{font-size:2.35rem}
   .hero-cat{order:-1}
   .hero-cat img{width:min(300px,70%)}
