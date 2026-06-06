@@ -70,12 +70,13 @@ header.nav{
 
 /* ---------- HERO ---------- */
 .hero{
-  position:relative;color:var(--cream);padding:64px 0 80px;overflow:hidden;
+  position:relative;color:var(--cream);padding:64px 0 80px;overflow:hidden;min-height:660px;display:flex;align-items:center;
   background:
-    radial-gradient(circle at 80% 20%, rgba(29,122,124,.45), transparent 55%),
-    linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 60%,#0c3132 100%);
+    linear-gradient(90deg,rgba(7,31,32,.9) 0%,rgba(7,31,32,.72) 34%,rgba(7,31,32,.28) 66%,rgba(7,31,32,.12) 100%),
+    linear-gradient(0deg,rgba(7,31,32,.18),rgba(7,31,32,.18)),
+    url('../img/politicat-hero-background.png') center center/cover no-repeat;
 }
-.zia-bg{position:absolute;opacity:.06;right:-80px;top:40px;width:520px;height:520px}
+.zia-bg{display:none}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative;z-index:2}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(230,215,184,.12);border:1px solid rgba(230,215,184,.25);
   padding:6px 14px;border-radius:30px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px}
@@ -100,7 +101,7 @@ header.nav{
 .chip:hover{background:var(--teal);color:var(--cream)}
 
 /* HERO CAT */
-.hero-cat{position:relative;display:flex;justify-content:center}
+.hero-cat{position:relative;display:none;justify-content:center}
 .hero-cat img{width:min(420px,90%);filter:drop-shadow(0 20px 40px rgba(0,0,0,.5));animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .speech{position:absolute;top:8%;left:-8%;background:var(--cream-soft);color:var(--ink);padding:12px 18px;border-radius:16px 16px 16px 4px;
@@ -342,6 +343,8 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:960px){
   .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero{background-position:center center;min-height:720px}
+  .hero-title{font-size:2.35rem}
   .hero-cat{order:-1}
   .hero-cat img{width:min(300px,70%)}
   .foot-grid{grid-template-columns:1fr;gap:28px}
@@ -351,4 +354,13 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
   .speech{display:none}
   .operator-grid{grid-template-columns:1fr}
   .operator-shell{padding:24px}
+}
+
+@media(max-width:520px){
+  .wrap{padding:0 18px}
+  .hero{min-height:760px;padding:54px 0 58px}
+  .hero-title{font-size:2.08rem;line-height:1.02}
+  .hero-sub{font-size:1rem}
+  .ask-bar{flex-direction:column}
+  .ask-btn{height:46px;justify-content:center}
 }
