@@ -80,7 +80,7 @@ const ANSWERS = [
   },
   {
     k: ["when is the election", "election date", "2026 election", "next election"],
-    a: "New Mexico's 2026 Primary Election is Tuesday, June 2, 2026, and the General Election is Tuesday, November 3, 2026. Registration deadlines, early voting windows, and your personalized sample ballot are all on NMVote.org. Mark the dates — every level of government from city council to Congress can be on the ballot.",
+    a: "New Mexico's 2026 Primary Election was Tuesday, June 2, 2026. The next statewide election is the General Election on Tuesday, November 3, 2026. Registration deadlines, early voting windows, absentee deadlines, and your personalized sample ballot should be checked through NMVote.org or the Secretary of State before you act.",
     s: "2026 election dates — sos.nm.gov"
   },
   {

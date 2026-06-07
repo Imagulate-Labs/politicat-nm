@@ -107,121 +107,62 @@
   </div>
 </div>
 
-<!-- ============ CIVIC TOOLS ============ -->
+<!-- ============ GET READY TO VOTE ============ -->
 <section class="block tools" id="tools">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Voter Readiness</div>
-      <h2 class="sec-title">Need to Vote? Start Here.</h2>
-      <p class="sec-desc">PolitíCat explains the steps. Official New Mexico sources confirm the details.</p>
+      <div class="sec-tag">Get Ready, New Mexico</div>
+      <h2 class="sec-title">Be Ready to Vote in Every Election</h2>
+      <p class="sec-desc">Pick your county and Don Gato points you to the official place to do each thing. Every button goes to New Mexico's own portal or your county clerk — never a middleman.</p>
     </div>
 
-    <div class="tool-feature">
-      <div class="tool-copy">
-        <div class="tool-kicker">Most Useful First</div>
-        <h3>Find My Voting Location</h3>
-        <p>Use New Mexico's official voter portal to look up voting locations, registration details, sample ballots, absentee status, and county clerk information.</p>
-        <div class="tool-actions">
-          <a class="tool-btn" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">Open NMVote.org →</a>
-          <button class="tool-ghost" onclick="askDemo('How do I find my polling place?')">Ask PolitíCat</button>
-        </div>
+    <div class="ready-panel">
+      <div class="ready-highlights" aria-label="Readiness highlights">
+        <div><span>🗳️</span>See what's on your ballot</div>
+        <div><span>📍</span>Find where &amp; how to vote</div>
+        <div><span>⏱️</span>Check registration deadlines</div>
       </div>
-      <div class="tool-card tool-card--hero">
-        <div class="tool-icon">📍</div>
-        <h4>Voting Location</h4>
-        <p>Find locations, hours, and voter information through official NM sources.</p>
-        <span>Official source: sos.nm.gov</span>
-      </div>
-    </div>
 
-    <div class="readiness-flow" aria-label="Voter readiness checklist">
-      <a class="readiness-step" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
-        <span class="step-num">1</span>
-        <div>
-          <h4>Check registration</h4>
-          <p>Confirm your voter record before deadlines get close.</p>
-        </div>
-      </a>
-      <a class="readiness-step" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
-        <span class="step-num">2</span>
-        <div>
-          <h4>See your ballot</h4>
-          <p>Use official tools to view sample ballot information for your address.</p>
-        </div>
-      </a>
-      <a class="readiness-step" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal/absentee-and-early-voting/" target="_blank" rel="noopener noreferrer">
-        <span class="step-num">3</span>
-        <div>
-          <h4>Choose how to vote</h4>
-          <p>Review absentee, early voting, and in-person options.</p>
-        </div>
-      </a>
-      <a class="readiness-step" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer">
-        <span class="step-num">4</span>
-        <div>
-          <h4>Contact your clerk</h4>
-          <p>County clerks handle many local election questions.</p>
-        </div>
-      </a>
-    </div>
+      <label class="county-picker" for="countySelect">
+        <span>Your county</span>
+        <small>We use county, not your home address — your business stays yours.</small>
+        <select id="countySelect">
+          <option value="">Select your New Mexico county...</option>
+          <option>Bernalillo</option><option>Catron</option><option>Chaves</option><option>Cibola</option><option>Colfax</option><option>Curry</option><option>De Baca</option><option>Doña Ana</option><option>Eddy</option><option>Grant</option><option>Guadalupe</option><option>Harding</option><option>Hidalgo</option><option>Lea</option><option>Lincoln</option><option>Los Alamos</option><option>Luna</option><option>McKinley</option><option>Mora</option><option>Otero</option><option>Quay</option><option>Rio Arriba</option><option>Roosevelt</option><option>Sandoval</option><option>San Juan</option><option>San Miguel</option><option>Santa Fe</option><option>Sierra</option><option>Socorro</option><option>Taos</option><option>Torrance</option><option>Union</option><option>Valencia</option>
+        </select>
+      </label>
 
-    <div class="tool-grid">
-      <a class="tool-card" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
-        <div class="tool-icon">✅</div>
-        <h4>Check Registration</h4>
-        <p>Verify your voter registration through the official voter portal.</p>
-        <span>NMVote.org</span>
-      </a>
-      <a class="tool-card" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal/absentee-and-early-voting/" target="_blank" rel="noopener noreferrer">
-        <div class="tool-icon">✉️</div>
-        <h4>Absentee &amp; Early Voting</h4>
-        <p>Review official absentee and early voting information.</p>
-        <span>sos.nm.gov</span>
-      </a>
-      <a class="tool-card" href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/voter-registration/" target="_blank" rel="noopener noreferrer">
-        <div class="tool-icon">📝</div>
-        <h4>Register to Vote</h4>
-        <p>Learn registration options, eligibility basics, and update paths.</p>
-        <span>sos.nm.gov</span>
-      </a>
-      <a class="tool-card" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer">
-        <div class="tool-icon">📋</div>
-        <h4>County Clerk Lookup</h4>
-        <p>Find the local office for county-specific election questions.</p>
-        <span>sos.nm.gov</span>
-      </a>
-      <a class="tool-card" href="https://www.nmlegis.gov/" target="_blank" rel="noopener noreferrer">
-        <div class="tool-icon">🏛️</div>
-        <h4>Track a Bill</h4>
-        <p>Look up bills, legislators, committees, and sessions.</p>
-        <span>nmlegis.gov</span>
-      </a>
-    </div>
+      <div class="ready-columns">
+        <div class="ready-col">
+          <h3>Am I Registered?</h3>
+          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/voter-registration/" target="_blank" rel="noopener noreferrer">
+            <span>Register to Vote</span><small>Official NM online registration</small><b>→</b>
+          </a>
+          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
+            <span>Check My Registration</span><small>Confirm you're good to vote</small><b>→</b>
+          </a>
+          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/same-day-voter-registration-faq/" target="_blank" rel="noopener noreferrer">
+            <span>Under 18 / New Voter</span><small>Pre-register &amp; same-day rules</small><b>→</b>
+          </a>
+        </div>
 
-    <div class="clerk-tool" aria-label="Find your county clerk">
-      <div class="clerk-copy">
-        <div class="tool-kicker">Local Election Help</div>
-        <h3>Find Your County Clerk</h3>
-        <p>Your county clerk is the local election office for many practical questions: voting locations, absentee ballot help, local election details, election workers, and county-specific voting instructions.</p>
-        <div class="clerk-actions">
-          <a class="tool-btn" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer">Open Clerk Lookup →</a>
-          <button class="tool-ghost tool-ghost--light" onclick="askDemo('What does a County Clerk do?')">Ask PolitíCat</button>
+        <div class="ready-col">
+          <h3>Get Ready to Vote</h3>
+          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal/absentee-and-early-voting/" target="_blank" rel="noopener noreferrer">
+            <span>Request an Absentee Ballot</span><small>Vote by mail — no excuse needed</small><b>→</b>
+          </a>
+          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
+            <span>Track My Ballot</span><small>See where your mail ballot is</small><b>→</b>
+          </a>
+          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
+            <span>See What's on My Ballot</span><small>Your personal sample ballot</small><b>→</b>
+          </a>
         </div>
       </div>
-      <div class="clerk-list">
-        <div>
-          <span>Use your clerk for</span>
-          <strong>Local election questions</strong>
-        </div>
-        <div>
-          <span>Verify through</span>
-          <strong>NM Secretary of State</strong>
-        </div>
-        <div>
-          <span>PolitíCat boundary</span>
-          <strong>We explain. Officials confirm.</strong>
-        </div>
-      </div>
+
+      <a class="clerk-wide" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer">Find my County Clerk's office &amp; local deadlines →</a>
+
+      <p class="ready-boundary">PolitíCat shows you the official requirements and links — it doesn't track your personal status or store your information. Deadlines and dates live on the state portal, which is always the final word. Next statewide election: <b>General Election, Tuesday, November 3, 2026.</b></p>
     </div>
   </div>
 </section>
