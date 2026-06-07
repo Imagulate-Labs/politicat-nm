@@ -295,6 +295,68 @@ section.block{padding:78px 0}
   font-size:.78rem;
   font-weight:800;
 }
+.clerk-tool{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+  align-items:stretch;
+  padding:24px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#fff,var(--sand));
+  border:1px solid rgba(20,89,90,.14);
+  box-shadow:0 12px 30px -16px var(--shadow);
+}
+.clerk-copy h3{
+  font-family:'Alfa Slab One',serif;
+  color:var(--teal-deep);
+  font-size:clamp(1.35rem,2.5vw,2rem);
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.clerk-copy p{
+  color:#3f4f4a;
+  max-width:720px;
+}
+.clerk-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.tool-ghost--light{
+  color:var(--teal-deep);
+  background:rgba(20,89,90,.06);
+  border-color:rgba(20,89,90,.2);
+}
+.tool-ghost--light:hover{
+  color:var(--orange-deep);
+  border-color:var(--orange);
+}
+.clerk-list{
+  display:grid;
+  gap:10px;
+}
+.clerk-list div{
+  padding:14px;
+  border-radius:14px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(20,89,90,.1);
+}
+.clerk-list span{
+  display:block;
+  color:var(--orange-deep);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.clerk-list strong{
+  display:block;
+  color:var(--teal-deep);
+  line-height:1.25;
+}
 
 /* ---------- EVIDENCE MODEL ---------- */
 .evidence{background:var(--sand)}
@@ -650,6 +712,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
   .hero-grid,.about-grid{grid-template-columns:1fr}
   .tool-feature{grid-template-columns:1fr}
   .readiness-flow{grid-template-columns:repeat(2,1fr)}
+  .clerk-tool{grid-template-columns:1fr}
   .trail-preview{grid-template-columns:1fr}
   .hero{aspect-ratio:auto;background-position:66% center;background-size:100% 100%,100% 100%,auto 100%;min-height:720px}
   .hero-title{font-size:2.35rem}
@@ -673,6 +736,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
   .evidence-rule{padding:22px 20px}
   .evidence-rule p{font-size:1.05rem}
   .readiness-flow{grid-template-columns:1fr}
+  .clerk-tool{padding:20px}
   .ask-bar{flex-direction:column}
   .ask-btn{height:46px;justify-content:center}
 }
