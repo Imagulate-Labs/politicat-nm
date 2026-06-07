@@ -133,3 +133,11 @@ DNS and Cloudflare setup notes live in:
 ```text
 DEPLOYMENT.md
 ```
+
+## Civic Substrate contracts
+
+County snapshot data contract:
+
+```text
+docs/CIVIC_SUBSTRATE_COUNTY_SNAPSHOT_API.md
+```
