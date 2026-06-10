@@ -124,7 +124,7 @@ Do **not** drop the `s` (source) field — it's the trust mechanic.
 - [ ] Add a dedicated **media-literacy** section featuring the Noise Twins.
 - [ ] Add real Discord / TikTok / X links (placeholders are `href="#"`).
 - [ ] Accessibility pass: focus states, reduced-motion, alt text review.
-- [ ] Add `politicatnm.org` analytics + a privacy-respecting setup.
+- [ ] Post-launch: review GoatCounter event names and topic buckets after real traffic.
 
 ## Deployment
 

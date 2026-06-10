@@ -250,7 +250,7 @@ function countyRow(county) {
 }
 
 function civicAns(a, snap) {
-  return { a, s: snap.source, source: snap.source, source_date: snap.source_date, confidence: snap.confidence };
+  return adaptAnswer({ a, s: snap.source, source: snap.source, source_date: snap.source_date, confidence: snap.confidence });
 }
 
 function countyAnswer(row, snap) {
@@ -331,21 +331,24 @@ function matchAnswer(q) {
 
 /* ---------- UI wiring ---------- */
 function quick(el) {
-  document.getElementById('heroInput').value = el.textContent;
-  askFromHero();
+  const label = el.textContent.trim();
+  document.getElementById('heroInput').value = label;
+  trackEvent('ask-chip', { label });
+  askFromHero('chip');
 }
-function askFromHero() {
+function askFromHero(source = 'hero') {
   const v = document.getElementById('heroInput').value.trim();
   if (!v) return;
-  askDemo(v);
+  askDemo(v, { source });
 }
 let demoBusy = false;
 
-function askDemo(q) {
+function askDemo(q, meta = {}) {
   if (demoBusy) return;
+  trackEvent('ask-submitted', { source: meta.source || 'hero' });
   document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
   document.getElementById('demoInput').value = '';
-  setTimeout(() => runDemo(q), 450);
+  setTimeout(() => runDemo(q, meta), 450);
 }
 function sendDemo() {
   if (demoBusy) return;
@@ -353,33 +356,178 @@ function sendDemo() {
   const v = i.value.trim();
   if (!v) return;
   i.value = '';
-  runDemo(v);
+  trackEvent('ask-submitted', { source: 'demo' });
+  runDemo(v, { source: 'demo' });
 }
 
 function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  return String(s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function asTextList(value) {
+  if (!value) return [];
+  const values = Array.isArray(value) ? value : [value];
+  return values.map(v => String(v || '').trim()).filter(Boolean);
+}
+
+function sourceKey(value) {
+  return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function uniqueTextList(values) {
+  const seen = new Set();
+  return asTextList(values).filter(value => {
+    const key = sourceKey(value);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/* Normalize live backend responses into the original UI contract.
+   QueryResult snapshots may return source/source_date/confidence, while
+   EvidenceResponse returns answer/official_sources/verify_urls and related
+   receipt fields. The renderer keeps supporting the legacy a/s aliases. */
+function adaptAnswer(raw) {
+  const ans = { ...(raw || {}) };
+  const source = ans.source || ans.s;
+
+  if (!ans.a && ans.answer) ans.a = ans.answer;
+  if (!ans.answer && ans.a) ans.answer = ans.a;
+  if (!ans.s && source) ans.s = source;
+  if (!ans.source && source) ans.source = source;
+
+  if (!ans.official_sources && source) ans.official_sources = [source];
+  if (ans.official_sources) ans.official_sources = uniqueTextList(ans.official_sources);
+  if (ans.verify_urls) ans.verify_urls = uniqueTextList(ans.verify_urls);
+  if (ans.open_questions) ans.open_questions = uniqueTextList(ans.open_questions);
+  if (ans.next_records_to_check) ans.next_records_to_check = uniqueTextList(ans.next_records_to_check);
+
+  return ans;
+}
+
+function renderListBlock(label, items) {
+  const list = uniqueTextList(items);
+  if (!list.length) return '';
+  return '<div class="verify-list"><div class="verify-list-h">' + escapeHtml(label) + '</div><ul>'
+    + list.map(item => '<li>' + escapeHtml(item) + '</li>').join('')
+    + '</ul></div>';
+}
+
+function renderVerifyLinks(urls) {
+  const links = uniqueTextList(urls);
+  if (!links.length) return '';
+  return '<div class="verify-list verify-links"><div class="verify-list-h">Verify Links</div><ul>'
+    + links.map(url => '<li><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(url) + '</a></li>').join('')
+    + '</ul></div>';
+}
+
+function eventPart(value) {
+  return String(value || 'unknown')
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 64) || 'unknown';
+}
+
+function trackEvent(name, detail = {}) {
+  if (!window.goatcounter || typeof window.goatcounter.count !== 'function') return;
+
+  const pathParts = ['/event', eventPart(name)];
+  const allowedDetailKeys = new Set(['source', 'label', 'target', 'topic', 'confidence']);
+  for (const [key, value] of Object.entries(detail)) {
+    if (!allowedDetailKeys.has(key)) continue;
+    if (value == null || value === '') continue;
+    pathParts.push(eventPart(key), eventPart(value));
+  }
+
+  window.goatcounter.count({
+    path: pathParts.join('/'),
+    title: 'PolitíCat ' + name,
+    event: true
+  });
+}
+
+function answerTopic(ans) {
+  if (ans.query_type) return ans.query_type;
+  if (ans.question_type) return ans.question_type;
+  const source = ans.source || ans.s || '';
+  if (/voter|registration|county|election/i.test(source)) return 'elections';
+  if (/legis/i.test(source)) return 'legislature';
+  if (/ipra|record|nmag/i.test(source)) return 'public-records';
+  if (/governor/i.test(source)) return 'governor';
+  if (/politicat/i.test(source)) return 'about';
+  return 'general';
+}
+
+function trackAnswer(meta, ans) {
+  trackEvent('ask-answered', {
+    source: meta.source || 'unknown',
+    topic: answerTopic(ans),
+    confidence: ans.confidence || 'none'
+  });
+}
+
+function initAnalyticsEvents() {
+  document.querySelectorAll('[data-link]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('outbound-link', { target: link.dataset.link });
+    });
+  });
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('contact-link', { target: 'email' });
+    });
+  });
+
+  const operator = document.querySelector('.operator-entry');
+  if (operator) {
+    operator.addEventListener('click', () => {
+      trackEvent('operator-entry', { target: 'admin' });
+    });
+  }
 }
 
 /* Verify It Yourself block. When an answer carries structured
    provenance (source table + snapshot date + confidence) we show
    the full receipt; otherwise the simple source line. */
 function renderVerify(ans) {
-  if (ans.source_date || ans.confidence) {
+  const source = ans.source || ans.s || '';
+  const hasStructuredReceipt = !!(
+    ans.question_type || ans.source_date || ans.confidence || ans.records_reviewed ||
+    ans.official_sources || ans.verify_urls || ans.open_questions ||
+    ans.next_records_to_check || ans.contradicting_records_found != null
+  );
+
+  if (hasStructuredReceipt) {
     const conf = (ans.confidence || '').replace('_', ' ');
     const badge = ans.confidence
       ? '<span class="conf conf-' + escapeHtml(ans.confidence) + '">' + escapeHtml(conf) + '</span>'
       : '';
+    const receiptSourceKey = sourceKey(source);
+    const officialSources = uniqueTextList(ans.official_sources)
+      .filter(item => sourceKey(item) !== receiptSourceKey);
+
     return '<div class="verify">'
       + '<div class="verify-h">🐾 Verify it yourself</div>'
-      + '<div class="verify-row"><span>Source</span><b>' + escapeHtml(ans.source || ans.s) + '</b></div>'
+      + (source ? '<div class="verify-row"><span>Source</span><b>' + escapeHtml(source) + '</b></div>' : '')
       + (ans.source_date ? '<div class="verify-row"><span>Snapshot date</span><b>' + escapeHtml(ans.source_date) + '</b></div>' : '')
+      + (ans.records_reviewed != null ? '<div class="verify-row"><span>Records reviewed</span><b>' + escapeHtml(ans.records_reviewed) + '</b></div>' : '')
+      + (ans.contradicting_records_found != null ? '<div class="verify-row"><span>Contradicting records</span><b>' + escapeHtml(ans.contradicting_records_found ? 'Found' : 'None found') + '</b></div>' : '')
       + (ans.confidence ? '<div class="verify-row"><span>Confidence</span>' + badge + '</div>' : '')
+      + renderListBlock('Official Sources', officialSources)
+      + renderVerifyLinks(ans.verify_urls)
+      + renderListBlock('Open Questions', ans.open_questions)
+      + renderListBlock('Next Records To Check', ans.next_records_to_check)
       + '</div>';
   }
-  return '<div class="src">🐾 <b>Verify it yourself:</b> ' + escapeHtml(ans.s) + '</div>';
+  return '<div class="src">🐾 <b>Verify it yourself:</b> ' + escapeHtml(source) + '</div>';
 }
 
-async function runDemo(q) {
+async function runDemo(q, meta = {}) {
   if (demoBusy) return;
   demoBusy = true;
 
@@ -403,7 +551,8 @@ async function runDemo(q) {
   body.appendChild(t);
   body.scrollTop = body.scrollHeight;
 
-  const ans = await getAnswer(q);
+  const ans = adaptAnswer(await getAnswer(q));
+  trackAnswer(meta, ans);
 
   t.remove();
   const c = document.createElement('div');
@@ -450,3 +599,4 @@ async function getAnswer(q) {
 
 /* ---------- Startup: load CivicSubstrate snapshots ---------- */
 loadCivicData();
+initAnalyticsEvents();
