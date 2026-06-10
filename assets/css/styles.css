@@ -91,6 +91,12 @@ header.nav{
 .kicker{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.5rem);color:var(--orange);margin-bottom:20px;font-weight:600}
 .kicker .gt{font-family:'Alfa Slab One';font-style:normal;font-size:.85em}
 .hero-sub{font-size:1.08rem;max-width:480px;opacity:.92;margin-bottom:30px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}
+.explorer-btn,.ask-link{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900;text-decoration:none}
+.explorer-btn{background:var(--orange);color:#fff;padding:0 22px;box-shadow:0 12px 28px -18px #000}
+.explorer-btn:hover{background:var(--orange-deep)}
+.ask-link{color:var(--cream);border:1px solid rgba(230,215,184,.35);padding:0 16px;background:rgba(15,61,62,.36)}
+.ask-link:hover{border-color:var(--orange);color:#fff}
 
 /* ASK CARD */
 .ask-card{background:var(--cream-soft);border-radius:18px;padding:10px;box-shadow:0 18px 40px -12px rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.5)}
@@ -389,6 +395,37 @@ section.block{padding:78px 0}
   font-size:.9rem;
   line-height:1.5;
 }
+.snapshot-intro{margin-top:10px}
+.county-actions{display:grid;gap:9px;margin-top:16px}
+.county-actions a,
+.county-action{
+  width:100%;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:1px 10px;
+  align-items:center;
+  border:1px solid rgba(15,61,62,.12);
+  border-radius:10px;
+  background:#fff;
+  color:var(--ink);
+  cursor:pointer;
+  font:inherit;
+  min-height:58px;
+  padding:10px 12px;
+  text-align:left;
+  text-decoration:none;
+}
+.county-actions a:hover,
+.county-action:hover,
+.county-actions a:focus-visible,
+.county-action:focus-visible{
+  outline:none;
+  border-color:var(--orange);
+  box-shadow:0 8px 18px -16px var(--shadow);
+}
+.county-actions span{grid-row:1 / span 2;font-size:1.1rem}
+.county-actions b{color:var(--teal-deep);font-size:.88rem;line-height:1.1}
+.county-actions small{color:#5e6b66;font-size:.74rem;font-weight:700;line-height:1.2}
 .snapshot-total{
   margin:16px 0;
   padding:16px;
@@ -439,19 +476,6 @@ section.block{padding:78px 0}
   height:100%;
   border-radius:inherit;
 }
-.snapshot-ask{
-  border:0;
-  border-radius:10px;
-  background:var(--orange);
-  color:#fff;
-  cursor:pointer;
-  font:inherit;
-  font-weight:900;
-  margin-top:16px;
-  min-height:44px;
-  padding:0 16px;
-}
-.snapshot-ask:hover{background:var(--orange-deep)}
 .snapshot-source{
   border-top:1px dashed rgba(15,61,62,.2);
   font-size:.76rem!important;

@@ -548,8 +548,17 @@ function renderCountySnapshot(row) {
 
   const total = row.total || (row.dem + row.rep + (row.lib || 0) + row.no_party + row.other);
   const rows = partyRows(row);
+  const countyName = countyDisplayName(row);
   panel.innerHTML = '<span class="snapshot-kicker">County snapshot</span>'
-    + '<h3>' + escapeHtml(countyDisplayName(row)) + ' County</h3>'
+    + '<h3>Welcome to ' + escapeHtml(countyName) + ' County</h3>'
+    + '<p class="snapshot-intro">This is the Level 2 dashboard: local context first, then voting, officials, meetings, history, and Ask Don Gato.</p>'
+    + '<div class="county-actions" aria-label="' + escapeHtml(countyName) + ' County actions">'
+    + '<a href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer"><span>🏛️</span><b>Meet your county clerk</b><small>Official county clerk directory</small></a>'
+    + '<a href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer"><span>🗳️</span><b>Get ready to vote</b><small>Registration, ballot, polling place</small></a>'
+    + '<button class="county-action" type="button" data-action="local-government"><span>🏫</span><b>Learn local government</b><small>County, city, schools, boards</small></button>'
+    + '<button class="county-action" type="button" data-action="treasures"><span>🗺️</span><b>Explore hidden treasures</b><small>History, landmarks, local identity</small></button>'
+    + '<button class="county-action" type="button" data-action="ask"><span>🐱</span><b>Ask Don Gato</b><small>Ask in county context</small></button>'
+    + '</div>'
     + '<div class="snapshot-total"><span>Registered voters</span><b>' + escapeHtml(fmtNum(total)) + '</b></div>'
     + '<div class="party-bars">'
     + rows.map(item => '<div class="party-row">'
@@ -557,16 +566,21 @@ function renderCountySnapshot(row) {
       + '<div class="party-track"><i style="width:' + escapeHtml(item.pct) + '%;background:' + escapeHtml(item.color) + '"></i></div>'
       + '</div>').join('')
     + '</div>'
-    + '<button class="snapshot-ask" type="button">Ask Don Gato about this county</button>'
     + '<p class="snapshot-source">Source: ' + escapeHtml(CIVIC.counties.source || 'NM voter registration record')
     + ' · Snapshot date: ' + escapeHtml(CIVIC.counties.source_date || 'unknown') + '</p>';
 
-  const askButton = panel.querySelector('.snapshot-ask');
-  if (askButton) {
-    askButton.addEventListener('click', () => {
-      askDemo('What does voter registration look like in ' + countyDisplayName(row) + ' County?', { source: 'map' });
+  panel.querySelectorAll('.county-action').forEach(button => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.action;
+      if (action === 'local-government') {
+        askDemo('How does local government work in ' + countyName + ' County?', { source: 'map' });
+      } else if (action === 'treasures') {
+        askDemo('What should I know about the history and landmarks of ' + countyName + ' County?', { source: 'map' });
+      } else {
+        askDemo('What does voter registration look like in ' + countyName + ' County?', { source: 'map' });
+      }
     });
-  }
+  });
 }
 
 function selectCounty(name, source = 'map') {

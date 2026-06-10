@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/styles.css?v=20260610-map1">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260610-explorer1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -49,7 +49,7 @@
     <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <nav class="nav-links" id="navlinks">
       <a href="#ask">Ask PolitíCat</a>
-      <a href="#tools">Civic Tools</a>
+      <a href="#tools">Explore NM</a>
       <a href="#popular">Popular Questions</a>
       <a href="#modes">Why PolitíCat</a>
       <a href="#community">Community</a>
@@ -71,9 +71,14 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow"><span class="dot"></span>New Mexico's Curious Civic Cat</span>
-      <h1 class="hero-title">Politics,<br>explained <span class="accent">simply.</span></h1>
+      <h1 class="hero-title">Find your county.<br>Find your way.</h1>
       <p class="kicker">Curiosity <span class="gt">&gt;</span> Politics</p>
-      <p class="hero-sub">Understand government, elections, public records, and your rights — one question at a time. No spin. No party. Just clear answers for everyday New Mexicans.</p>
+      <p class="hero-sub">PolitíCat starts where New Mexicans start: where you live. Pick your county, meet the local civic trail, and let Don Gato guide you to voting, officials, public records, lessons, and answers.</p>
+
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="explorer-btn" href="#tools">Enter the New Mexico Explorer</a>
+        <a class="ask-link" href="#ask">Ask Don Gato</a>
+      </div>
 
       <div class="ask-card" id="ask">
         <div class="ask-label">🔍 Ask PolitíCat</div>
@@ -128,20 +133,20 @@
   </div>
 </section>
 
-<!-- ============ GET READY TO VOTE ============ -->
+<!-- ============ NEW MEXICO EXPLORER ============ -->
 <section class="block tools" id="tools">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Get Ready, New Mexico</div>
-      <h2 class="sec-title">Be Ready to Vote in Every Election</h2>
-      <p class="sec-desc">Pick your county and Don Gato points you to the official place to do each thing. Every button goes to New Mexico's own portal or your county clerk — never a middleman.</p>
+      <div class="sec-tag">New Mexico Explorer</div>
+      <h2 class="sec-title">Start With Where You Live.</h2>
+      <p class="sec-desc">Most civic sites organize information by departments. PolitíCat organizes it by county. Click where you live and Don Gato turns that county into your local dashboard.</p>
     </div>
 
     <div class="ready-panel">
-      <div class="ready-highlights" aria-label="Readiness highlights">
-        <div><span>🗳️</span>See what's on your ballot</div>
-        <div><span>📍</span>Find where &amp; how to vote</div>
-        <div><span>⏱️</span>Check registration deadlines</div>
+      <div class="ready-highlights" aria-label="Explorer highlights">
+        <div><span>🗺️</span>Explore NM by county</div>
+        <div><span>🏛️</span>Find local civic tools</div>
+        <div><span>🐱</span>Ask Don Gato in context</div>
       </div>
 
       <label class="county-picker" for="countySelect">
@@ -157,8 +162,8 @@
         <div class="county-map-card">
           <div class="county-map-head">
             <div>
-              <span class="map-kicker">County Snapshot Map</span>
-              <h3>Where Civic Data Gets Local</h3>
+              <span class="map-kicker">Level 1 Navigation</span>
+              <h3>New Mexico as the Front Door</h3>
             </div>
             <span class="map-date" id="mapSourceDate">Loading data...</span>
           </div>
@@ -171,9 +176,9 @@
         </div>
 
         <aside class="county-snapshot" id="countySnapshot" aria-live="polite">
-          <span class="snapshot-kicker">Select a county</span>
-          <h3>Choose any county on the map.</h3>
-          <p>PolitíCat will show the latest voter-registration snapshot we have, with the record date and source attached.</p>
+          <span class="snapshot-kicker">County dashboard</span>
+          <h3>Choose your county.</h3>
+          <p>Every county becomes its own civic starting point: voting, officials, meetings, history, local resources, and Ask Don Gato.</p>
         </aside>
       </div>
 
@@ -444,6 +449,6 @@
   <span aria-hidden="true">.</span>
 </a>
 
-<script src="assets/js/app.js?v=20260610-map2"></script>
+<script src="assets/js/app.js?v=20260610-explorer1"></script>
 </body>
 </html>
