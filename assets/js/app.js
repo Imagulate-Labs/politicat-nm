@@ -195,6 +195,49 @@ const FALLBACK = {
    pointing at the official source instead of guessing.
    ============================================================ */
 const CIVIC = { totals: null, counties: null, trend: null };
+const FALLBACK_COUNTY_SNAPSHOT = {
+  query_type: 'voter_county_comparison',
+  answer: 'As of 2026-05, 33 NM counties reported voter registration data. Largest by total: Bernalillo (447,967), Dona Ana (146,761), Sandoval (116,985), Santa Fe (116,391), San Juan (84,598).',
+  data: { year_month: '2026-05', counties: [
+    { county:'Bernalillo', dem:197332, rep:120569, lib:null, no_party:121396, other:8670, total:447967 },
+    { county:'Dona Ana', dem:59144, rep:38562, lib:null, no_party:46193, other:2862, total:146761 },
+    { county:'Sandoval', dem:45336, rep:38660, lib:null, no_party:30884, other:2105, total:116985 },
+    { county:'Santa Fe', dem:68516, rep:18162, lib:null, no_party:27874, other:1839, total:116391 },
+    { county:'San Juan', dem:20892, rep:37646, lib:null, no_party:24231, other:1829, total:84598 },
+    { county:'Valencia', dem:17248, rep:19610, lib:null, no_party:13209, other:1120, total:51187 },
+    { county:'McKinley', dem:25219, rep:8236, lib:null, no_party:12504, other:995, total:46954 },
+    { county:'Otero', dem:10024, rep:17994, lib:null, no_party:12881, other:936, total:41835 },
+    { county:'Lea', dem:6866, rep:20366, lib:null, no_party:11255, other:744, total:39231 },
+    { county:'Eddy', dem:7782, rep:20296, lib:null, no_party:8851, other:696, total:37625 },
+    { county:'Chaves', dem:8455, rep:18362, lib:null, no_party:9877, other:853, total:37547 },
+    { county:'Rio Arriba', dem:16544, rep:4652, lib:null, no_party:5225, other:430, total:26851 },
+    { county:'Taos', dem:16609, rep:3849, lib:null, no_party:5690, other:493, total:26641 },
+    { county:'Curry', dem:5792, rep:12419, lib:null, no_party:7679, other:566, total:26456 },
+    { county:'Grant', dem:9795, rep:6333, lib:null, no_party:5116, other:408, total:21652 },
+    { county:'San Miguel', dem:11008, rep:3323, lib:null, no_party:3495, other:290, total:18116 },
+    { county:'Cibola', dem:7905, rep:4156, lib:null, no_party:4209, other:353, total:16623 },
+    { county:'Los Alamos', dem:6583, rep:4386, lib:null, no_party:5075, other:330, total:16374 },
+    { county:'Lincoln', dem:2816, rep:8219, lib:null, no_party:3390, other:268, total:14693 },
+    { county:'Luna', dem:4897, rep:4826, lib:null, no_party:4244, other:291, total:14258 },
+    { county:'Roosevelt', dem:2338, rep:5923, lib:null, no_party:3138, other:274, total:11673 },
+    { county:'Torrance', dem:2760, rep:5477, lib:null, no_party:2795, other:284, total:11316 },
+    { county:'Socorro', dem:4724, rep:3759, lib:null, no_party:2545, other:209, total:11237 },
+    { county:'Sierra', dem:2301, rep:3881, lib:null, no_party:2255, other:175, total:8612 },
+    { county:'Colfax', dem:3114, rep:3145, lib:null, no_party:2123, other:157, total:8539 },
+    { county:'Quay', dem:1595, rep:2906, lib:null, no_party:1383, other:83, total:5967 },
+    { county:'Mora', dem:2568, rep:809, lib:null, no_party:449, other:47, total:3873 },
+    { county:'Catron', dem:526, rep:2058, lib:null, no_party:677, other:52, total:3313 },
+    { county:'Guadalupe', dem:1971, rep:627, lib:null, no_party:423, other:30, total:3051 },
+    { county:'Hidalgo', dem:1357, rep:1126, lib:null, no_party:458, other:47, total:2988 },
+    { county:'Union', dem:632, rep:1413, lib:null, no_party:450, other:37, total:2532 },
+    { county:'De Baca', dem:376, rep:687, lib:null, no_party:236, other:19, total:1318 },
+    { county:'Harding', dem:136, rep:365, lib:null, no_party:66, other:3, total:570 }
+  ] },
+  source: 'nm_voter_reg_record (report_type=statewide)',
+  source_date: '2026-05',
+  confidence: 'exact',
+  notes: 'Bundled fallback used when the county snapshot JSON cannot be fetched.'
+};
 
 async function loadCivicData() {
   const files = {
@@ -208,6 +251,7 @@ async function loadCivicData() {
       if (res.ok) CIVIC[key] = await res.json();
     } catch (_) { /* file:// or offline — stay null, fall back to canned answers */ }
   }));
+  if (!dataReady(CIVIC.counties)) CIVIC.counties = FALLBACK_COUNTY_SNAPSHOT;
 }
 
 /* NM has 33 counties. Most people say a city name, not a county —
@@ -226,6 +270,15 @@ const NM_COUNTIES = ['Bernalillo','Catron','Chaves','Cibola','Colfax','Curry','D
   'Doña Ana','Eddy','Grant','Guadalupe','Harding','Hidalgo','Lea','Lincoln','Los Alamos',
   'Luna','McKinley','Mora','Otero','Quay','Rio Arriba','Roosevelt','Sandoval','San Juan',
   'San Miguel','Santa Fe','Sierra','Socorro','Taos','Torrance','Union','Valencia'];
+const COUNTY_MAP_POSITIONS = [
+  ['San Juan',1,1], ['Rio Arriba',3,1], ['Taos',4,1], ['Colfax',5,1], ['Union',7,1],
+  ['McKinley',1,2], ['Sandoval',2,2], ['Los Alamos',3,2], ['Santa Fe',4,2], ['Mora',5,2], ['Harding',6,2],
+  ['Cibola',1,3], ['Bernalillo',2,3], ['Torrance',3,3], ['San Miguel',4,3], ['Quay',6,3],
+  ['Valencia',2,4], ['Socorro',3,4], ['Guadalupe',4,4], ['Curry',7,4],
+  ['Catron',1,5], ['Sierra',3,5], ['Lincoln',4,5], ['De Baca',5,5], ['Roosevelt',7,5],
+  ['Grant',1,6], ['Luna',2,6], ['Otero',4,6], ['Chaves',5,6],
+  ['Hidalgo',1,7], ['Doña Ana',3,7], ['Eddy',5,7], ['Lea',6,7]
+];
 
 const fmtNum = n => Number(n || 0).toLocaleString('en-US');
 const pctOf = (n, total) => total ? (n / total * 100).toFixed(1) : '0.0';
@@ -245,8 +298,17 @@ function findCountyName(t) {
 function countyRow(county) {
   if (!dataReady(CIVIC.counties)) return null;
   const rows = (CIVIC.counties.data && CIVIC.counties.data.counties) || [];
-  const target = county.toLowerCase().replace('ñ', 'n');
-  return rows.find(r => (r.county || '').toLowerCase().replace('ñ', 'n').includes(target)) || null;
+  const target = countySlug(county);
+  return rows.find(r => countySlug(r.county).includes(target)) || null;
+}
+
+function countyDisplayName(rowOrName) {
+  const name = typeof rowOrName === 'string' ? rowOrName : rowOrName.county;
+  return name === 'Dona Ana' ? 'Doña Ana' : name;
+}
+
+function countySlug(name) {
+  return String(name || '').toLowerCase().replace('ñ', 'n').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
 function civicAns(a, snap) {
@@ -470,6 +532,97 @@ function trackAnswer(meta, ans) {
   });
 }
 
+function partyRows(row) {
+  const total = row.total || (row.dem + row.rep + (row.lib || 0) + row.no_party + row.other);
+  return [
+    ['Democrat', row.dem, '#14595a'],
+    ['Republican', row.rep, '#f08a24'],
+    ['Decline to State', row.no_party, '#5a3a1b'],
+    ['Other', row.other, '#8aa39b']
+  ].map(([label, value, color]) => ({ label, value: value || 0, color, pct: pctOf(value || 0, total) }));
+}
+
+function renderCountySnapshot(row) {
+  const panel = document.getElementById('countySnapshot');
+  if (!panel || !row) return;
+
+  const total = row.total || (row.dem + row.rep + (row.lib || 0) + row.no_party + row.other);
+  const rows = partyRows(row);
+  panel.innerHTML = '<span class="snapshot-kicker">County snapshot</span>'
+    + '<h3>' + escapeHtml(countyDisplayName(row)) + ' County</h3>'
+    + '<div class="snapshot-total"><span>Registered voters</span><b>' + escapeHtml(fmtNum(total)) + '</b></div>'
+    + '<div class="party-bars">'
+    + rows.map(item => '<div class="party-row">'
+      + '<div class="party-label"><span>' + escapeHtml(item.label) + '</span><b>' + escapeHtml(fmtNum(item.value)) + ' · ' + escapeHtml(item.pct) + '%</b></div>'
+      + '<div class="party-track"><i style="width:' + escapeHtml(item.pct) + '%;background:' + escapeHtml(item.color) + '"></i></div>'
+      + '</div>').join('')
+    + '</div>'
+    + '<button class="snapshot-ask" type="button">Ask Don Gato about this county</button>'
+    + '<p class="snapshot-source">Source: ' + escapeHtml(CIVIC.counties.source || 'NM voter registration record')
+    + ' · Snapshot date: ' + escapeHtml(CIVIC.counties.source_date || 'unknown') + '</p>';
+
+  const askButton = panel.querySelector('.snapshot-ask');
+  if (askButton) {
+    askButton.addEventListener('click', () => {
+      askDemo('What does voter registration look like in ' + countyDisplayName(row) + ' County?', { source: 'map' });
+    });
+  }
+}
+
+function selectCounty(name, source = 'map') {
+  const row = countyRow(name);
+  if (!row) return;
+
+  const display = countyDisplayName(row);
+  document.querySelectorAll('.county-tile').forEach(tile => {
+    tile.classList.toggle('is-selected', tile.dataset.county === countySlug(display));
+  });
+
+  const select = document.getElementById('countySelect');
+  if (select) select.value = display;
+  renderCountySnapshot(row);
+  trackEvent('map-county-selected', { source, target: countySlug(display) });
+}
+
+function initCountyExplorer() {
+  const map = document.getElementById('countyMap');
+  const select = document.getElementById('countySelect');
+  const date = document.getElementById('mapSourceDate');
+  if (!map || !select || !dataReady(CIVIC.counties)) return;
+
+  const rows = (CIVIC.counties.data && CIVIC.counties.data.counties) || [];
+  const totals = rows.map(row => row.total || 0);
+  const max = Math.max(...totals, 1);
+  if (date) date.textContent = 'SOS snapshot · ' + (CIVIC.counties.source_date || 'unknown');
+
+  map.innerHTML = COUNTY_MAP_POSITIONS.map(([name, col, row]) => {
+    const data = countyRow(name);
+    const total = data ? data.total || 0 : 0;
+    const level = Math.max(1, Math.ceil((total / max) * 4));
+    const display = countyDisplayName(name);
+    return '<button class="county-tile county-tile--' + level + '" type="button" role="listitem"'
+      + ' style="grid-column:' + col + ';grid-row:' + row + '"'
+      + ' data-county="' + escapeHtml(countySlug(display)) + '"'
+      + ' aria-label="' + escapeHtml(display) + ' County, ' + escapeHtml(fmtNum(total)) + ' registered voters"'
+      + '>'
+      + '<span>' + escapeHtml(display.replace('Rio Arriba', 'Rio Arr.').replace('Los Alamos', 'Los Al.').replace('San Miguel', 'San Mig.')) + '</span>'
+      + '<b>' + escapeHtml(fmtNum(total)) + '</b>'
+      + '</button>';
+  }).join('');
+
+  map.addEventListener('click', event => {
+    const tile = event.target.closest('.county-tile');
+    if (!tile) return;
+    selectCounty(tile.dataset.county, 'map');
+  });
+
+  select.addEventListener('change', () => {
+    if (select.value) selectCounty(select.value, 'dropdown');
+  });
+
+  selectCounty('Bernalillo', 'default');
+}
+
 function initAnalyticsEvents() {
   document.querySelectorAll('[data-link]').forEach(link => {
     link.addEventListener('click', () => {
@@ -598,5 +751,5 @@ async function getAnswer(q) {
 }
 
 /* ---------- Startup: load CivicSubstrate snapshots ---------- */
-loadCivicData();
+loadCivicData().then(initCountyExplorer);
 initAnalyticsEvents();

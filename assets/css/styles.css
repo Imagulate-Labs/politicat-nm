@@ -271,6 +271,194 @@ section.block{padding:78px 0}
   border-color:var(--orange);
   box-shadow:0 0 0 3px rgba(240,138,36,.18);
 }
+.county-explorer{
+  display:grid;
+  grid-template-columns:1.35fr .85fr;
+  gap:18px;
+  align-items:stretch;
+  margin:10px 0 24px;
+}
+.county-map-card,
+.county-snapshot{
+  border:1px solid rgba(20,89,90,.14);
+  border-radius:16px;
+  background:linear-gradient(180deg,#fff,var(--cream-soft));
+}
+.county-map-card{padding:18px}
+.county-map-head{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+.map-kicker,
+.snapshot-kicker{
+  display:block;
+  color:var(--orange-deep);
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.county-map-head h3,
+.county-snapshot h3{
+  color:var(--teal-deep);
+  font-family:'Alfa Slab One',serif;
+  font-size:1.25rem;
+  line-height:1.1;
+}
+.map-date{
+  flex:0 0 auto;
+  color:#4a5a55;
+  font-size:.78rem;
+  font-weight:800;
+  text-align:right;
+}
+.county-map{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  grid-template-rows:repeat(7,56px);
+  gap:7px;
+}
+.county-tile{
+  min-width:0;
+  min-height:0;
+  border:1px solid rgba(15,61,62,.18);
+  border-radius:8px;
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:7px;
+  text-align:left;
+  transition:transform .15s,box-shadow .15s,border-color .15s;
+}
+.county-tile:hover,
+.county-tile:focus-visible{
+  outline:none;
+  transform:translateY(-2px);
+  border-color:var(--orange);
+  box-shadow:0 10px 22px -14px var(--shadow);
+}
+.county-tile.is-selected{
+  border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(240,138,36,.25),0 14px 24px -18px var(--shadow);
+}
+.county-tile span{
+  font-size:.66rem;
+  font-weight:900;
+  line-height:1.05;
+}
+.county-tile b{
+  font-size:.72rem;
+  font-weight:900;
+  font-variant-numeric:tabular-nums;
+}
+.county-tile--1{background:#8aa39b}
+.county-tile--2{background:#5f8f89}
+.county-tile--3{background:#2f7270}
+.county-tile--4{background:var(--teal-deep)}
+.map-scale{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#4a5a55;
+  font-size:.72rem;
+  font-weight:800;
+  margin-top:12px;
+}
+.map-scale i{
+  width:22px;
+  height:10px;
+  border-radius:999px;
+}
+.map-scale i:nth-of-type(1){background:#8aa39b}
+.map-scale i:nth-of-type(2){background:#5f8f89}
+.map-scale i:nth-of-type(3){background:#2f7270}
+.map-scale i:nth-of-type(4){background:var(--teal-deep)}
+.county-snapshot{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+}
+.county-snapshot p{
+  color:#4a5a55;
+  font-size:.9rem;
+  line-height:1.5;
+}
+.snapshot-total{
+  margin:16px 0;
+  padding:16px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid var(--sand);
+}
+.snapshot-total span{
+  display:block;
+  color:#4a5a55;
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+}
+.snapshot-total b{
+  display:block;
+  color:var(--teal-deep);
+  font-family:'Alfa Slab One',serif;
+  font-size:2rem;
+  line-height:1;
+  margin-top:7px;
+}
+.party-bars{display:grid;gap:11px}
+.party-label{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--ink);
+  font-size:.78rem;
+  font-weight:900;
+}
+.party-label b{
+  color:#4a5a55;
+  font-weight:800;
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+.party-track{
+  height:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(15,61,62,.1);
+  margin-top:4px;
+}
+.party-track i{
+  display:block;
+  height:100%;
+  border-radius:inherit;
+}
+.snapshot-ask{
+  border:0;
+  border-radius:10px;
+  background:var(--orange);
+  color:#fff;
+  cursor:pointer;
+  font:inherit;
+  font-weight:900;
+  margin-top:16px;
+  min-height:44px;
+  padding:0 16px;
+}
+.snapshot-ask:hover{background:var(--orange-deep)}
+.snapshot-source{
+  border-top:1px dashed rgba(15,61,62,.2);
+  font-size:.76rem!important;
+  font-weight:700;
+  margin-top:16px;
+  padding-top:12px;
+}
 .ready-columns{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -790,6 +978,11 @@ section.block{padding:78px 0}
 .bubble.cat .verify-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:3px 0}
 .bubble.cat .verify-row span{color:var(--teal);opacity:.85}
 .bubble.cat .verify-row b{color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.bubble.cat .verify-list{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(15,61,62,.22)}
+.bubble.cat .verify-list-h{font-weight:800;color:var(--teal);margin-bottom:4px}
+.bubble.cat .verify-list ul{margin:0;padding-left:17px}
+.bubble.cat .verify-list li{margin:2px 0;color:var(--ink)}
+.bubble.cat .verify-links a{color:var(--teal-deep,#0f3d3e);font-weight:700;overflow-wrap:anywhere}
 .bubble.cat .conf{font-weight:800;text-transform:capitalize;padding:1px 9px;border-radius:999px;font-size:.72rem}
 .bubble.cat .conf-exact{background:#1d7a4d;color:#fff}
 .bubble.cat .conf-approximate{background:#c9821a;color:#fff}
@@ -982,6 +1175,7 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
   .intro-cat{display:flex;justify-content:center}
   .intro-copy p{margin-left:auto;margin-right:auto}
   .ready-highlights{grid-template-columns:1fr}
+  .county-explorer{grid-template-columns:1fr}
   .ready-columns{grid-template-columns:1fr}
   .tool-feature{grid-template-columns:1fr}
   .readiness-flow{grid-template-columns:repeat(2,1fr)}
@@ -1004,6 +1198,14 @@ footer{background:#0a2829;color:var(--cream);padding:54px 0 30px}
 @media(max-width:520px){
   .wrap{padding:0 18px}
   .ready-panel{padding:20px}
+  .county-map-card{padding:14px}
+  .county-map-head{display:block}
+  .map-date{display:block;text-align:left;margin-top:8px}
+  .county-map{grid-template-rows:repeat(7,48px);gap:5px}
+  .county-tile{padding:5px}
+  .county-tile span{font-size:.56rem}
+  .county-tile b{font-size:.61rem}
+  .map-scale{align-items:flex-start;flex-wrap:wrap}
   .hero{min-height:760px;padding:54px 0 58px}
   .hero-title{font-size:2.08rem;line-height:1.02}
   .hero-sub{font-size:1rem}
