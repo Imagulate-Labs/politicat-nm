@@ -194,7 +194,7 @@ const FALLBACK = {
    snapshot's confidence is "no_data", we quietly fall back to
    pointing at the official source instead of guessing.
    ============================================================ */
-const CIVIC = { totals: null, counties: null, trend: null };
+const CIVIC = { totals: null, counties: null, trend: null, county_trend: null };
 const FALLBACK_COUNTY_SNAPSHOT = {
   query_type: 'voter_county_comparison',
   answer: 'As of 2026-05, 33 NM counties reported voter registration data. Largest by total: Bernalillo (447,967), Dona Ana (146,761), Sandoval (116,985), Santa Fe (116,391), San Juan (84,598).',
@@ -241,9 +241,10 @@ const FALLBACK_COUNTY_SNAPSHOT = {
 
 async function loadCivicData() {
   const files = {
-    totals:   'assets/data/voter_totals.json',
-    counties: 'assets/data/voter_counties.json',
-    trend:    'assets/data/voter_trend.json'
+    totals:       'assets/data/voter_totals.json',
+    counties:     'assets/data/voter_counties.json',
+    trend:        'assets/data/voter_trend.json',
+    county_trend: 'assets/data/voter_county_trend.json'
   };
   await Promise.all(Object.entries(files).map(async ([key, url]) => {
     try {
@@ -573,6 +574,7 @@ function renderCountySnapshot(row, displayName) {
     + '<button class="county-action" type="button" data-action="ask"><span>🐱</span><b>Ask Don Gato</b><small>Ask in county context</small></button>'
     + '</div>'
     + '<div class="snapshot-total"><span>Registered voters</span><b>' + escapeHtml(fmtNum(total)) + '</b></div>'
+    + countyChangeBlock(countyName)
     + '<div class="party-bars">'
     + rows.map(item => '<div class="party-row">'
       + '<div class="party-label"><span>' + escapeHtml(item.label) + '</span><b>' + escapeHtml(fmtNum(item.value)) + ' · ' + escapeHtml(item.pct) + '%</b></div>'
@@ -594,6 +596,55 @@ function renderCountySnapshot(row, displayName) {
       }
     });
   });
+}
+
+/* D-003 pilot display v0: per-county registration change from the SOS
+   monthly series (2021-01 onward). Honest about where the data ends. */
+function countyTrendSeries(name) {
+  const snap = CIVIC.county_trend;
+  if (!dataReady(snap)) return null;
+  const target = countySlug(name);
+  const entry = ((snap.data && snap.data.counties) || [])
+    .find(c => countySlug(c.county) === target || countySlug(c.county).includes(target));
+  return entry ? entry.series : null;
+}
+
+function countyChangeBlock(countyName) {
+  const series = countyTrendSeries(countyName);
+  if (!series || series.length < 2) return '';
+  const first = series[0];
+  const last = series[series.length - 1];
+  const yearAgo = series[Math.max(0, series.length - 13)];
+
+  const delta = (a, b) => {
+    const d = (b.total || 0) - (a.total || 0);
+    const pct = a.total ? (d / a.total * 100) : 0;
+    const sign = d > 0 ? '+' : d < 0 ? '−' : '±';
+    return {
+      text: sign + fmtNum(Math.abs(d)) + ' (' + sign + Math.abs(pct).toFixed(1) + '%)',
+      cls: d > 0 ? 'is-up' : d < 0 ? 'is-down' : ''
+    };
+  };
+  const share = (s, k) => (s.total ? (s[k] || 0) / s.total * 100 : 0);
+  const shift = k => {
+    const d = share(last, k) - share(first, k);
+    return (d > 0 ? '+' : d < 0 ? '−' : '±') + Math.abs(d).toFixed(1);
+  };
+
+  const sinceStart = delta(first, last);
+  const sinceYear = delta(yearAgo, last);
+  return '<div class="county-change">'
+    + '<span class="change-kicker">How is this county changing?</span>'
+    + '<div class="change-row"><span>Registered voters since ' + escapeHtml(first.year_month) + '</span>'
+    + '<b class="' + sinceStart.cls + '">' + escapeHtml(sinceStart.text) + '</b></div>'
+    + '<div class="change-row"><span>Last 12 months</span>'
+    + '<b class="' + sinceYear.cls + '">' + escapeHtml(sinceYear.text) + '</b></div>'
+    + '<div class="change-row"><span>Party-share shift since ' + escapeHtml(first.year_month) + '</span>'
+    + '<b>Dem ' + escapeHtml(shift('dem')) + ' · Rep ' + escapeHtml(shift('rep')) + ' · DTS ' + escapeHtml(shift('no_party')) + ' pts</b></div>'
+    + '<p class="change-note">Source: NM SOS monthly registration reports, '
+    + escapeHtml(first.year_month) + ' → ' + escapeHtml(last.year_month)
+    + '. Newest available month is ' + escapeHtml(last.year_month) + ' — a fresh collection is in progress.</p>'
+    + '</div>';
 }
 
 function selectCounty(name, source = 'map') {

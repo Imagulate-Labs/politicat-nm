@@ -463,6 +463,15 @@ section.block{padding:78px 0}
 }
 .nm-pin{cursor:pointer}
 .nm-pin text{font-size:26px;paint-order:stroke;stroke:#fff;stroke-width:1.5px}
+/* --- County change block (D-003 pilot display v0) --- */
+.county-change{margin-top:14px;background:rgba(20,89,90,.05);border:1px solid rgba(20,89,90,.12);border-radius:12px;padding:12px 14px}
+.change-kicker{display:block;color:var(--orange-deep);font-size:.7rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.change-row{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;padding:3px 0}
+.change-row span{color:#4a5a55}
+.change-row b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.change-row b.is-up{color:var(--teal-bright)}
+.change-row b.is-down{color:var(--clay)}
+.change-note{margin-top:8px;font-size:.72rem;color:#4a5a55;line-height:1.5}
 /* --- White paper: living roadmap checklist --- */
 .wp-section{margin-bottom:34px}
 .wp-section h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.5rem;margin-bottom:12px}
