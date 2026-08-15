@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask PolitíCat — PolitíCat NM</title>
+<meta name="description" content="Ask PolitíCat questions about New Mexico civics, voting, public records, and government in plain language.">
+<link rel="canonical" href="https://politicatnm.org/ask.html">
+<meta name="theme-color" content="#0f3d3e">
+<meta property="og:site_name" content="PolitíCat NM">
+<meta property="og:title" content="Ask PolitíCat — PolitíCat NM">
+<meta property="og:description" content="Ask PolitíCat questions about New Mexico civics, voting, public records, and government in plain language.">
+<meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<meta property="og:url" content="https://politicatnm.org/ask.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PolitiCatNM">
+<meta name="twitter:title" content="Ask PolitíCat — PolitíCat NM">
+<meta name="twitter:description" content="Ask PolitíCat questions about New Mexico civics, voting, public records, and government in plain language.">
+<meta name="twitter:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260815-map1">
+<script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="navlinks">
+      <a href="ask.html">Ask</a><a href="explore.html">Explore NM</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a>
+      <a href="ask.html" class="nav-cta">Ask a Question</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero page-hero--ask">
+    <div class="wrap page-hero-inner">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>The Product</span>
+        <h1 class="hero-title">Ask PolitíCat</h1>
+        <p class="hero-sub">Ask anything about New Mexico civics in plain language. Don Gato answers simply and shows where to verify it yourself.</p>
+      </div>
+      <div class="ask-card" id="ask">
+        <div class="ask-label">Ask Don Gato</div>
+        <div class="ask-bar">
+          <input id="heroInput" type="text" placeholder="What does the Secretary of State do?" aria-label="Ask a question">
+          <button class="ask-btn" onclick="askFromHero()">Ask</button>
+        </div>
+        <div class="ask-hints">
+          <span class="chip" onclick="quick(this)">How do I register to vote?</span>
+          <span class="chip" onclick="quick(this)">What is a county clerk?</span>
+          <span class="chip" onclick="quick(this)">What are public records?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block block--sand" id="demo">
+    <div class="wrap">
+      <div class="demo">
+        <div class="demo-top">
+          <img src="assets/img/politicat-logo.png" alt="">
+          <span class="who">Don Gato Cívico</span>
+          <span class="stat">Ready</span>
+        </div>
+        <div class="demo-body" id="demoBody">
+          <div class="bubble cat">Howdy. Ask me about voting, elections, government, public records, or county-level civic data. I will keep the answer plain and point you back to the source.</div>
+        </div>
+        <div class="demo-input">
+          <input id="demoInput" type="text" placeholder="Type your question..." aria-label="Ask Don Gato" onkeydown="if(event.key==='Enter')sendDemo()">
+          <button id="demoSend" onclick="sendDemo()">Send</button>
+        </div>
+      </div>
+      <p class="disclaimer">PolitíCat is a civic education guide, not legal advice or an official government source. Always verify with official New Mexico state and county resources.</p>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/politicat-logo.png" alt="PolitíCat NM">
+        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records one question at a time.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="ask.html">Ask PolitíCat</a>
+        <a href="explore.html">Explore NM</a>
+        <a href="learn.html">Learn</a>
+        <a href="trail.html">The Trail</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="community.html">Community</a>
+        <a href="mailto:PolitiCatNM@proton.me">PolitiCatNM@proton.me</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PolitíCat NM · politicatnm.org</span>
+      <span class="nonpartisan">Nonpartisan civic education · Not affiliated with any government, party, or campaign.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js?v=20260815-map1"></script>
+</body>
+</html>

@@ -270,27 +270,19 @@ const NM_COUNTIES = ['Bernalillo','Catron','Chaves','Cibola','Colfax','Curry','D
   'Doña Ana','Eddy','Grant','Guadalupe','Harding','Hidalgo','Lea','Lincoln','Los Alamos',
   'Luna','McKinley','Mora','Otero','Quay','Rio Arriba','Roosevelt','Sandoval','San Juan',
   'San Miguel','Santa Fe','Sierra','Socorro','Taos','Torrance','Union','Valencia'];
-const COUNTY_MAP_POSITIONS = [
-  ['San Juan',1,1], ['Rio Arriba',3,1], ['Taos',4,1], ['Colfax',5,1], ['Union',7,1],
-  ['McKinley',1,2], ['Sandoval',2,2], ['Los Alamos',3,2], ['Santa Fe',4,2], ['Mora',5,2], ['Harding',6,2],
-  ['Cibola',1,3], ['Bernalillo',2,3], ['Torrance',3,3], ['San Miguel',4,3], ['Quay',6,3],
-  ['Valencia',2,4], ['Socorro',3,4], ['Guadalupe',4,4], ['Curry',7,4],
-  ['Catron',1,5], ['Sierra',3,5], ['Lincoln',4,5], ['De Baca',5,5], ['Roosevelt',7,5],
-  ['Grant',1,6], ['Luna',2,6], ['Otero',4,6], ['Chaves',5,6],
-  ['Hidalgo',1,7], ['Doña Ana',3,7], ['Eddy',5,7], ['Lea',6,7]
-];
-
 const fmtNum = n => Number(n || 0).toLocaleString('en-US');
 const pctOf = (n, total) => total ? (n / total * 100).toFixed(1) : '0.0';
 const dataReady = snap => !!(snap && snap.confidence && snap.confidence !== 'no_data');
 
 function findCountyName(t) {
+  // Whole-word match only: "please" must not hit Lea, "learn" must not hit Lea,
+  // "grants" must not hit Grant.
+  const hasWord = phrase => new RegExp('(?:^|[^a-zñ])' + phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![a-zñ])', 'i').test(t);
   for (const c of NM_COUNTIES) {
-    const name = c.toLowerCase();
-    if (t.includes(name) || t.includes(name.replace('ñ', 'n'))) return c;
+    if (hasWord(c) || hasWord(c.replace('ñ', 'n'))) return c;
   }
   for (const [city, county] of Object.entries(CITY_TO_COUNTY)) {
-    if (t.includes(city)) return county;
+    if (hasWord(city)) return county;
   }
   return null;
 }
@@ -346,8 +338,11 @@ function matchCivicQuery(q) {
   const t = q.toLowerCase();
   const asksVoters = /(voter|registrat|registered|democrat|republican|independent|decline to state|party|how many)/.test(t);
 
-  // 1. A specific county or city — the killer feature
-  const county = findCountyName(t);
+  // 1. A specific county or city — the killer feature.
+  // Gated like steps 3-4: only fire when the question is actually about
+  // voters/registration or names a county, so civics questions that merely
+  // contain a place-like word ("state grants", "credit union") aren't hijacked.
+  const county = (asksVoters || t.includes('county')) ? findCountyName(t) : null;
   if (county) {
     const row = countyRow(county);
     if (row && (row.total || row.dem || row.rep)) return countyAnswer(row, CIVIC.counties);
@@ -394,12 +389,14 @@ function matchAnswer(q) {
 /* ---------- UI wiring ---------- */
 function quick(el) {
   const label = el.textContent.trim();
-  document.getElementById('heroInput').value = label;
+  const input = document.getElementById('heroInput');
+  if (input) input.value = label;
   trackEvent('ask-chip', { label });
   askFromHero('chip');
 }
 function askFromHero(source = 'hero') {
-  const v = document.getElementById('heroInput').value.trim();
+  const input = document.getElementById('heroInput');
+  const v = input ? input.value.trim() : '';
   if (!v) return;
   askDemo(v, { source });
 }
@@ -408,13 +405,20 @@ let demoBusy = false;
 function askDemo(q, meta = {}) {
   if (demoBusy) return;
   trackEvent('ask-submitted', { source: meta.source || 'hero' });
-  document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-  document.getElementById('demoInput').value = '';
+  const demo = document.getElementById('demo');
+  const input = document.getElementById('demoInput');
+  if (!demo || !input) {
+    window.location.href = 'ask.html?q=' + encodeURIComponent(q);
+    return;
+  }
+  demo.scrollIntoView({ behavior: 'smooth' });
+  input.value = '';
   setTimeout(() => runDemo(q, meta), 450);
 }
 function sendDemo() {
   if (demoBusy) return;
   const i = document.getElementById('demoInput');
+  if (!i) return;
   const v = i.value.trim();
   if (!v) return;
   i.value = '';
@@ -542,9 +546,18 @@ function partyRows(row) {
   ].map(([label, value, color]) => ({ label, value: value || 0, color, pct: pctOf(value || 0, total) }));
 }
 
-function renderCountySnapshot(row) {
+function renderCountySnapshot(row, displayName) {
   const panel = document.getElementById('countySnapshot');
-  if (!panel || !row) return;
+  if (!panel) return;
+
+  if (!row) {
+    // Data failed to load — say so instead of leaving the old panel in place.
+    panel.innerHTML = '<span class="snapshot-kicker">County snapshot</span>'
+      + '<h3>' + escapeHtml(displayName || 'This county') + ' County</h3>'
+      + '<p>Voter snapshot data is temporarily unavailable. For official numbers, visit '
+      + '<a href="https://www.sos.nm.gov/voting-and-elections/data-and-maps/voter-registration-statistics/" target="_blank" rel="noopener noreferrer">sos.nm.gov</a>.</p>';
+    return;
+  }
 
   const total = row.total || (row.dem + row.rep + (row.lib || 0) + row.no_party + row.other);
   const rows = partyRows(row);
@@ -585,49 +598,59 @@ function renderCountySnapshot(row) {
 
 function selectCounty(name, source = 'map') {
   const row = countyRow(name);
-  if (!row) return;
+  const display = row
+    ? countyDisplayName(row)
+    : (NM_COUNTIES.find(c => countySlug(c) === countySlug(name)) || String(name));
 
-  const display = countyDisplayName(row);
-  document.querySelectorAll('.county-tile').forEach(tile => {
-    tile.classList.toggle('is-selected', tile.dataset.county === countySlug(display));
+  document.querySelectorAll('.county-shape').forEach(shape => {
+    shape.classList.toggle('is-selected', shape.dataset.county === countySlug(display));
   });
 
   const select = document.getElementById('countySelect');
   if (select) select.value = display;
-  renderCountySnapshot(row);
-  trackEvent('map-county-selected', { source, target: countySlug(display) });
+  renderCountySnapshot(row, display);
+  // The page auto-selects Bernalillo on load; don't count that as a user action.
+  if (source !== 'default') trackEvent('map-county-selected', { source, target: countySlug(display) });
 }
 
 function initCountyExplorer() {
   const map = document.getElementById('countyMap');
   const select = document.getElementById('countySelect');
   const date = document.getElementById('mapSourceDate');
-  if (!map || !select || !dataReady(CIVIC.counties)) return;
+  if (!map || !select) return;
 
-  const rows = (CIVIC.counties.data && CIVIC.counties.data.counties) || [];
-  const totals = rows.map(row => row.total || 0);
-  const max = Math.max(...totals, 1);
-  if (date) date.textContent = 'SOS snapshot · ' + (CIVIC.counties.source_date || 'unknown');
+  const ready = dataReady(CIVIC.counties);
+  if (date) {
+    date.textContent = ready
+      ? 'SOS snapshot · ' + (CIVIC.counties.source_date || 'unknown')
+      : 'Snapshot data unavailable — the map still works';
+  }
 
-  map.innerHTML = COUNTY_MAP_POSITIONS.map(([name, col, row]) => {
-    const data = countyRow(name);
-    const total = data ? data.total || 0 : 0;
-    const level = Math.max(1, Math.ceil((total / max) * 4));
-    const display = countyDisplayName(name);
-    return '<button class="county-tile county-tile--' + level + '" type="button" role="listitem"'
-      + ' style="grid-column:' + col + ';grid-row:' + row + '"'
-      + ' data-county="' + escapeHtml(countySlug(display)) + '"'
-      + ' aria-label="' + escapeHtml(display) + ' County, ' + escapeHtml(fmtNum(total)) + ' registered voters"'
-      + '>'
-      + '<span>' + escapeHtml(display.replace('Rio Arriba', 'Rio Arr.').replace('Los Alamos', 'Los Al.').replace('San Miguel', 'San Mig.')) + '</span>'
-      + '<b>' + escapeHtml(fmtNum(total)) + '</b>'
-      + '</button>';
-  }).join('');
+  // The pictorial SVG ships in the HTML; here we enrich each county with
+  // voter counts (aria + native tooltip) and wire selection.
+  map.querySelectorAll('.county-shape').forEach(shape => {
+    const display = countyDisplayName(shape.dataset.name || '');
+    const data = ready ? countyRow(display) : null;
+    const label = data
+      ? display + ' County — ' + fmtNum(data.total || 0) + ' registered voters'
+      : display + ' County';
+    shape.setAttribute('aria-label', label);
+    const tip = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    tip.textContent = label;
+    shape.appendChild(tip);
+  });
 
   map.addEventListener('click', event => {
-    const tile = event.target.closest('.county-tile');
-    if (!tile) return;
-    selectCounty(tile.dataset.county, 'map');
+    const shape = event.target.closest('.county-shape');
+    if (shape) selectCounty(shape.dataset.county, 'map');
+  });
+  map.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    const shape = event.target.closest('.county-shape');
+    if (shape) {
+      event.preventDefault();
+      selectCounty(shape.dataset.county, 'map');
+    }
   });
 
   select.addEventListener('change', () => {
@@ -696,13 +719,16 @@ function renderVerify(ans) {
 
 async function runDemo(q, meta = {}) {
   if (demoBusy) return;
+  const body = document.getElementById('demoBody');
+  if (!body) {
+    window.location.href = 'ask.html?q=' + encodeURIComponent(q);
+    return;
+  }
   demoBusy = true;
 
   const btn = document.getElementById('demoSend');
   const origLabel = btn ? btn.textContent : null;
   if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
-
-  const body = document.getElementById('demoBody');
 
   // user bubble
   const u = document.createElement('div');
@@ -767,3 +793,11 @@ async function getAnswer(q) {
 /* ---------- Startup: load CivicSubstrate snapshots ---------- */
 loadCivicData().then(initCountyExplorer);
 initAnalyticsEvents();
+
+const params = new URLSearchParams(window.location.search);
+const initialQuestion = params.get('q');
+if (initialQuestion && document.getElementById('demoBody')) {
+  const input = document.getElementById('heroInput') || document.getElementById('demoInput');
+  if (input) input.value = initialQuestion;
+  setTimeout(() => askDemo(initialQuestion, { source: 'url' }), 250);
+}

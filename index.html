@@ -3,438 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PolitíCat NM — Politics Explained Simply</title>
-<meta name="description" content="PolitíCat NM is New Mexico's curious civic cat. Understand government, elections, public records, and your rights — one question at a time. Nonpartisan civic education.">
+<title>PolitíCat NM — New Mexico Civic Guide</title>
+<meta name="description" content="PolitíCat NM helps New Mexicans ask civic questions, explore county-level resources, and verify public records in plain language.">
 <link rel="canonical" href="https://politicatnm.org/">
 <meta name="theme-color" content="#0f3d3e">
-
-<!-- Open Graph / social -->
 <meta property="og:site_name" content="PolitíCat NM">
-<meta property="og:title" content="PolitíCat NM — Politics Explained Simply">
-<meta property="og:description" content="New Mexico's curious civic cat. Understand government, elections, and your rights — one question at a time. Curiosity > Politics.">
+<meta property="og:title" content="PolitíCat NM — New Mexico Civic Guide">
+<meta property="og:description" content="Ask questions. Explore New Mexico. Verify the trail. Curiosity > Politics.">
 <meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
-<meta property="og:image:width" content="2109">
-<meta property="og:image:height" content="746">
-<meta property="og:image:alt" content="PolitíCat NM — Don Gato Cívico, New Mexico's curious civic cat">
 <meta property="og:url" content="https://politicatnm.org/">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="en_US">
-
-<!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@PolitiCatNM">
-<meta name="twitter:title" content="PolitíCat NM — Politics Explained Simply">
-<meta name="twitter:description" content="New Mexico's curious civic cat. Understand government, elections, and your rights — one question at a time. Curiosity > Politics.">
+<meta name="twitter:title" content="PolitíCat NM — New Mexico Civic Guide">
+<meta name="twitter:description" content="Ask questions. Explore New Mexico. Verify the trail.">
 <meta name="twitter:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
-<meta name="twitter:image:alt" content="PolitíCat NM — Don Gato Cívico, New Mexico's curious civic cat">
-
 <link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="assets/css/styles.css?v=20260610-explorer1">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260815-map1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
-<!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand">
+    <a href="index.html" class="brand">
       <img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo">
       <span class="brand-name">PolitíCat<span class="nm">NM</span></span>
     </a>
     <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <nav class="nav-links" id="navlinks">
-      <a href="#ask">Ask PolitíCat</a>
-      <a href="#tools">Explore NM</a>
-      <a href="#popular">Popular Questions</a>
-      <a href="#modes">Why PolitíCat</a>
-      <a href="#community">Community</a>
-      <a href="#about">About</a>
-      <a href="#ask" class="nav-cta">Ask a Question</a>
+      <a href="ask.html">Ask</a>
+      <a href="explore.html">Explore NM</a>
+      <a href="learn.html">Learn</a>
+      <a href="trail.html">The Trail</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About</a>
+      <a href="ask.html" class="nav-cta">Ask a Question</a>
     </nav>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="top">
-  <svg class="zia-bg" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="var(--orange)" stroke-width="3">
-    <circle cx="50" cy="50" r="14"/>
-    <g stroke-width="4">
-      <path d="M50 6 V26 M50 74 V94 M6 50 H26 M74 50 H94"/>
-      <path d="M50 14 V22 M50 78 V86 M14 50 H22 M78 50 H86"/>
-    </g></g></svg>
-
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>New Mexico's Curious Civic Cat</span>
-      <h1 class="hero-title">Find your county.<br>Find your way.</h1>
-      <p class="kicker">Curiosity <span class="gt">&gt;</span> Politics</p>
-      <p class="hero-sub">PolitíCat starts where New Mexicans start: where you live. Pick your county, meet the local civic trail, and let Don Gato guide you to voting, officials, public records, lessons, and answers.</p>
-
-      <div class="hero-actions" aria-label="Primary actions">
-        <a class="explorer-btn" href="#tools">Enter the New Mexico Explorer</a>
-        <a class="ask-link" href="#ask">Ask Don Gato</a>
-      </div>
-
-      <div class="ask-card" id="ask">
-        <div class="ask-label">🔍 Ask PolitíCat</div>
-        <div class="ask-bar">
-          <input id="heroInput" type="text" placeholder="What does the Secretary of State do?" aria-label="Ask a question">
-          <button class="ask-btn" onclick="askFromHero()">Ask →</button>
-        </div>
-        <div class="ask-hints">
-          <span class="chip" onclick="quick(this)">How do I register to vote?</span>
-          <span class="chip" onclick="quick(this)">How do absentee ballots work?</span>
-          <span class="chip" onclick="quick(this)">What is a county clerk?</span>
-          <span class="chip" onclick="quick(this)">What are public records?</span>
+<main id="top">
+  <section class="hero home-hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span>New Mexico's Curious Civic Cat</span>
+        <h1 class="hero-title">Ask questions.<br>Find the trail.</h1>
+        <p class="kicker">Curiosity <span class="gt">&gt;</span> Politics</p>
+        <p class="hero-sub">PolitíCat is becoming a civic guide for New Mexico: county-first tools, plain-language explainers, public-record trails, and a source-first Ask experience.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="explorer-btn" href="explore.html">Explore New Mexico</a>
+          <a class="ask-link" href="ask.html">Ask Don Gato</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-cat">
-      <div class="speech">I'm not mad. I just have questions.</div>
-      <img src="assets/img/politicat-logo.png" alt="Don Gato Cívico, the PolitíCat mascot">
+  <div class="trust">
+    <div class="trust-inner">
+      <span>✓ Not a political party</span>
+      <span>✓ Not a campaign</span>
+      <span>✓ Not a government agency</span>
+      <span>★ A civic guide for all New Mexicans</span>
     </div>
   </div>
-</section>
 
-<!-- ============ TRUST STRIP ============ -->
-<div class="trust">
-  <div class="trust-inner">
-    <span>✓ Not a political party</span>
-    <span>✓ Not a campaign</span>
-    <span>✓ Not a government agency</span>
-    <span>★ A civic guide for all New Mexicans</span>
-  </div>
-</div>
-
-<!-- ============ NEW HERE ============ -->
-<section class="intro" id="new-here">
-  <div class="wrap intro-panel">
-    <div class="intro-cat">
-      <img src="assets/img/politicat-logo.png" alt="Don Gato Cívico">
-    </div>
-    <div class="intro-copy">
-      <div class="sec-tag">Don Gato Cívico</div>
-      <h2>New here? Meet Don Gato.</h2>
-      <p>PolitíCat exists because most people have questions about government but don't know where to start. We're building a New Mexico civic community where curiosity comes first — no party, no spin, no homework.</p>
-      <p class="intro-note">Don't overthink it. Start with one of these three:</p>
-      <div class="intro-steps" aria-label="Starter questions">
-        <button onclick="askDemo('What does the Secretary of State do?')"><span>1</span>What does the Secretary of State do? →</button>
-        <button onclick="askDemo('What is a primary election?')"><span>2</span>What's a primary election? →</button>
-        <button onclick="askDemo('How do I register to vote?')"><span>3</span>How do I register to vote? →</button>
+  <section class="platform-section">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Start Here</div>
+        <h2 class="sec-title">A Civic Platform, Not a Landing Page</h2>
+        <p class="sec-desc">Each area now has a job. The homepage is only the front door.</p>
       </div>
-      <p class="intro-close">That's it. Ask one. Don Gato takes it from there.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ NEW MEXICO EXPLORER ============ -->
-<section class="block tools" id="tools">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">New Mexico Explorer</div>
-      <h2 class="sec-title">Start With Where You Live.</h2>
-      <p class="sec-desc">Most civic sites organize information by departments. PolitíCat organizes it by county. Click where you live and Don Gato turns that county into your local dashboard.</p>
-    </div>
-
-    <div class="ready-panel">
-      <div class="ready-highlights" aria-label="Explorer highlights">
-        <div><span>🗺️</span>Explore NM by county</div>
-        <div><span>🏛️</span>Find local civic tools</div>
-        <div><span>🐱</span>Ask Don Gato in context</div>
-      </div>
-
-      <label class="county-picker" for="countySelect">
-        <span>Your county</span>
-        <small>We use county, not your home address — your business stays yours.</small>
-        <select id="countySelect">
-          <option value="">Select your New Mexico county...</option>
-          <option>Bernalillo</option><option>Catron</option><option>Chaves</option><option>Cibola</option><option>Colfax</option><option>Curry</option><option>De Baca</option><option>Doña Ana</option><option>Eddy</option><option>Grant</option><option>Guadalupe</option><option>Harding</option><option>Hidalgo</option><option>Lea</option><option>Lincoln</option><option>Los Alamos</option><option>Luna</option><option>McKinley</option><option>Mora</option><option>Otero</option><option>Quay</option><option>Rio Arriba</option><option>Roosevelt</option><option>Sandoval</option><option>San Juan</option><option>San Miguel</option><option>Santa Fe</option><option>Sierra</option><option>Socorro</option><option>Taos</option><option>Torrance</option><option>Union</option><option>Valencia</option>
-        </select>
-      </label>
-
-      <div class="county-explorer" aria-label="New Mexico county voter map">
-        <div class="county-map-card">
-          <div class="county-map-head">
-            <div>
-              <span class="map-kicker">Level 1 Navigation</span>
-              <h3>New Mexico as the Front Door</h3>
-            </div>
-            <span class="map-date" id="mapSourceDate">Loading data...</span>
-          </div>
-          <div class="county-map" id="countyMap" role="list" aria-label="Select a New Mexico county"></div>
-          <div class="map-scale" aria-label="Registered voter scale">
-            <span>Fewer registered voters</span>
-            <i></i><i></i><i></i><i></i>
-            <span>More</span>
-          </div>
-        </div>
-
-        <aside class="county-snapshot" id="countySnapshot" aria-live="polite">
-          <span class="snapshot-kicker">County dashboard</span>
-          <h3>Choose your county.</h3>
-          <p>Every county becomes its own civic starting point: voting, officials, meetings, history, local resources, and Ask Don Gato.</p>
-        </aside>
-      </div>
-
-      <div class="ready-columns">
-        <div class="ready-col">
-          <h3>Am I Registered?</h3>
-          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/voter-registration/" target="_blank" rel="noopener noreferrer">
-            <span>Register to Vote</span><small>Official NM online registration</small><b>→</b>
-          </a>
-          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
-            <span>Check My Registration</span><small>Confirm you're good to vote</small><b>→</b>
-          </a>
-          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/same-day-voter-registration-faq/" target="_blank" rel="noopener noreferrer">
-            <span>Under 18 / New Voter</span><small>Pre-register &amp; same-day rules</small><b>→</b>
-          </a>
-        </div>
-
-        <div class="ready-col">
-          <h3>Get Ready to Vote</h3>
-          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal/absentee-and-early-voting/" target="_blank" rel="noopener noreferrer">
-            <span>Request an Absentee Ballot</span><small>Vote by mail — no excuse needed</small><b>→</b>
-          </a>
-          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
-            <span>Track My Ballot</span><small>See where your mail ballot is</small><b>→</b>
-          </a>
-          <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">
-            <span>See What's on My Ballot</span><small>Your personal sample ballot</small><b>→</b>
-          </a>
-        </div>
-      </div>
-
-      <a class="clerk-wide" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer">Find my County Clerk's office &amp; local deadlines →</a>
-
-      <p class="ready-boundary">PolitíCat shows you the official requirements and links — it doesn't track your personal status or store your information. Deadlines and dates live on the state portal, which is always the final word. Next statewide election: <b>General Election, Tuesday, November 3, 2026.</b></p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ HOW POLITICAT WORKS ============ -->
-<section class="block evidence" id="evidence">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">How PolitíCat Works</div>
-      <h2 class="sec-title">Show Me the Trail.</h2>
-      <p class="sec-desc">PolitíCat changes how it answers based on the kind of question you ask, so facts, investigations, trends, and accountability questions are not treated like the same thing.</p>
-    </div>
-
-    <div class="evidence-rule">
-      <p>PolitíCat does not tell people what to think.</p>
-      <p>PolitíCat shows what records exist, what they say, and what is still unknown.</p>
-    </div>
-
-    <div class="evidence-grid" aria-label="PolitíCat answer types">
-      <article class="evidence-card">
-        <div class="evidence-type">Fact</div>
-        <h3>Answers from records.</h3>
-        <p>For direct civic questions, Don Gato gives the plain-language answer, the source, the record date, and the trail used to verify it.</p>
-      </article>
-      <article class="evidence-card">
-        <div class="evidence-type">Trend</div>
-        <h3>Shows what changed.</h3>
-        <p>For questions over time, PolitíCat uses dated data series and tells you where the record begins and ends.</p>
-      </article>
-      <article class="evidence-card">
-        <div class="evidence-type">Investigation</div>
-        <h3>Maps the trail so far.</h3>
-        <p>When the answer is not settled, PolitíCat shows records found, what is still unknown, and which records to check next.</p>
-      </article>
-      <article class="evidence-card">
-        <div class="evidence-type">Accountability</div>
-        <h3>Separates facts from why.</h3>
-        <p>For public accountability questions, PolitíCat separates what records prove from explanations that need deeper review.</p>
-      </article>
-    </div>
-
-    <div class="evidence-principles" aria-label="PolitíCat evidence principles">
-      <span>Records first</span>
-      <span>Evidence visible</span>
-      <span>Uncertainty explicit</span>
-      <span>Show me the trail</span>
-    </div>
-
-    <div class="trail-preview" aria-label="Show Me the Trail preview">
-      <div class="trail-copy">
-        <div class="trail-kicker">Preview · Future Capability</div>
-        <h3>Show Me the Trail</h3>
-        <p>Today PolitíCat answers from a small set of Civic Substrate voter-registration queries. Next, the same trust model can map grants, budgets, notices, contracts, and other public records without pretending the full records network is already built.</p>
-      </div>
-      <dl class="trail-metrics">
-        <div><dt>Records Reviewed</dt><dd>3</dd></div>
-        <div><dt>Official Sources</dt><dd>3</dd></div>
-        <div><dt>Contradicting Records Found</dt><dd>0</dd></div>
-        <div><dt>Open Questions</dt><dd>2</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<!-- ============ POPULAR QUESTIONS ============ -->
-<section class="block" id="popular">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Start Here</div>
-      <h2 class="sec-title">Popular Questions</h2>
-      <p class="sec-desc">The things New Mexicans ask most. Tap any card to see how Don Gato breaks it down.</p>
-    </div>
-    <div class="q-grid">
-      <button class="q-card" style="--cat:var(--teal-bright)" onclick="askDemo('How do I register to vote in New Mexico?')">
-        <div class="q-icon">🗳️</div><div class="q-cat">Voting</div>
-        <div class="q-text">How do I register to vote?</div><div class="go">Ask PolitíCat →</div>
-      </button>
-      <button class="q-card" style="--cat:var(--orange)" onclick="askDemo('How do absentee ballots work?')">
-        <div class="q-icon">✉️</div><div class="q-cat">Elections</div>
-        <div class="q-text">How do absentee ballots work?</div><div class="go">Ask PolitíCat →</div>
-      </button>
-      <button class="q-card" style="--cat:var(--sage)" onclick="askDemo('What does the Secretary of State do?')">
-        <div class="q-icon">🏛️</div><div class="q-cat">Government</div>
-        <div class="q-text">What does the Secretary of State do?</div><div class="go">Ask PolitíCat →</div>
-      </button>
-      <button class="q-card" style="--cat:var(--plum)" onclick="askDemo('What are public records and how do I request them?')">
-        <div class="q-icon">📂</div><div class="q-cat">Public Records</div>
-        <div class="q-text">What are public records?</div><div class="go">Ask PolitíCat →</div>
-      </button>
-      <button class="q-card" style="--cat:var(--clay)" onclick="askDemo('What are my rights as a voter in New Mexico?')">
-        <div class="q-icon">⚖️</div><div class="q-cat">Your Rights</div>
-        <div class="q-text">What are my rights as a voter?</div><div class="go">Ask PolitíCat →</div>
-      </button>
-      <button class="q-card" style="--cat:var(--teal)" onclick="askDemo('What is a county clerk and what do they do?')">
-        <div class="q-icon">📋</div><div class="q-cat">Government</div>
-        <div class="q-text">What is a county clerk?</div><div class="go">Ask PolitíCat →</div>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ASK PolitíCat DEMO ============ -->
-<section class="block block--sand" id="demo">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">The Product</div>
-      <h2 class="sec-title">Ask PolitíCat</h2>
-      <p class="sec-desc">Ask anything about New Mexico civics in plain language. Don Gato answers simply — and tells you where to verify it yourself.</p>
-    </div>
-    <div class="demo">
-      <div class="demo-top">
-        <img src="assets/img/politicat-logo.png" alt="">
-        <span class="who">Don Gato Cívico</span>
-        <span class="stat">Ready</span>
-      </div>
-      <div class="demo-body" id="demoBody">
-        <div class="bubble cat">Howdy. I'm Don Gato Cívico. Ask me about voting, elections, government, or public records — or tap one of the questions above. I'm not mad. I just have questions, and I'll help you find answers.</div>
-      </div>
-      <div class="demo-input">
-        <input id="demoInput" type="text" placeholder="Type your question…" aria-label="Ask Don Gato" onkeydown="if(event.key==='Enter')sendDemo()">
-        <button id="demoSend" onclick="sendDemo()">Send</button>
+      <div class="platform-grid">
+        <a class="platform-card platform-card--feature" href="ask.html">
+          <span>Ask</span>
+          <h3>Ask PolitíCat</h3>
+          <p>Ask questions about voting, government, public records, and civic life. Don Gato answers in plain language and points to sources.</p>
+        </a>
+        <a class="platform-card" href="explore.html">
+          <span>Explore</span>
+          <h3>New Mexico Explorer</h3>
+          <p>Start with your county and move into local civic tools, officials, voter resources, and county-level data.</p>
+        </a>
+        <a class="platform-card" href="learn.html">
+          <span>Learn</span>
+          <h3>Civic Learning</h3>
+          <p>Popular questions and lessons become a library instead of another homepage section.</p>
+        </a>
+        <a class="platform-card" href="trail.html">
+          <span>Verify</span>
+          <h3>Show Me the Trail</h3>
+          <p>PolitíCat separates facts, trends, investigations, and accountability questions so uncertainty stays visible.</p>
+        </a>
+        <a class="platform-card" href="community.html">
+          <span>Community</span>
+          <h3>Curious Crowd</h3>
+          <p>Social channels and community entry points live together instead of crowding the product surface.</p>
+        </a>
+        <a class="platform-card" href="about.html">
+          <span>About</span>
+          <h3>Mission and Boundaries</h3>
+          <p>Brand, nonpartisan posture, Don Gato, and trust rules have their own home.</p>
+        </a>
       </div>
     </div>
-    <p class="disclaimer">🐾 PolitíCat is a civic education guide, not legal advice or an official government source. Always verify with official New Mexico state and county resources — Don Gato will point you there.</p>
-  </div>
-</section>
+  </section>
 
-<!-- ============ WHY PolitíCat (THREE MODES) ============ -->
-<section class="block" id="modes">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Why PolitíCat</div>
-      <h2 class="sec-title">Same Cat. Same Mission.</h2>
-      <p class="sec-desc">Don Gato meets you wherever you are — whether you want a quick answer, the receipts, or a seat at the table.</p>
-    </div>
-    <div class="modes-grid">
-      <div class="mode-card">
-        <div class="mode-tag">Civic Professional</div>
-        <h3>Ask. Learn. Empower.</h3>
-        <p>Real questions, real answers. Understand how government and elections actually work — because knowledge makes stronger communities.</p>
+  <section class="platform-band">
+    <div class="wrap platform-split">
+      <div>
+        <div class="sec-tag">Next Best Step</div>
+        <h2 class="sec-title">Start With Where You Live.</h2>
+        <p class="sec-desc">Most people do not begin with agencies and acronyms. They begin with their county, their ballot, their clerk, their public meeting, and their question.</p>
       </div>
-      <div class="mode-card mode-card--feature">
-        <div class="mode-tag">Research Mode</div>
-        <h3>Research. Verify. Explain.</h3>
-        <p>We dig into the facts so you don't have to. Official sources, plain language, no spin — complex stuff made simple.</p>
-      </div>
-      <div class="mode-card">
-        <div class="mode-tag">Town Hall Mode</div>
-        <h3>Listen. Share. Take Action.</h3>
-        <p>Your questions matter. Real conversations build stronger communities — be informed, be involved, make an impact.</p>
+      <div class="platform-actions">
+        <a class="explorer-btn" href="explore.html">Open the Explorer</a>
+        <a class="ask-link dark" href="trail.html">See the Evidence Model</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- ============ COMMUNITY ============ -->
-<section class="block community" id="community">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag sec-tag--orange">Join In</div>
-      <h2 class="sec-title sec-title--cream">Be Part of the Curious Crowd</h2>
-      <p class="sec-desc sec-desc--cream">Questions are better together. Follow along, share what you learn, and keep New Mexico informed.</p>
-    </div>
-    <div class="comm-grid">
-      <a class="comm-card" href="https://discord.gg/rXCDt3b8" target="_blank" rel="noopener noreferrer" data-link="discord"><div class="ic">💬</div><h4>Discord</h4><p>Ask, learn, and chat civics</p><div class="handle">PolitíCatNM</div></a>
-      <a class="comm-card" href="https://www.tiktok.com/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="tiktok"><div class="ic">🎵</div><h4>TikTok</h4><p>Civics in 60 seconds</p><div class="handle">@PolitíCatNM</div></a>
-      <a class="comm-card" href="https://x.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="x"><div class="ic">𝕏</div><h4>X</h4><p>Updates &amp; explainers</p><div class="handle">@PolitíCatNM</div></a>
-      <a class="comm-card" href="https://www.instagram.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="instagram"><div class="ic">📸</div><h4>Instagram</h4><p>Civics, one post at a time</p><div class="handle">@PolitíCatNM</div></a>
-      <a class="comm-card" href="https://www.youtube.com/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="youtube"><div class="ic">▶️</div><h4>YouTube</h4><p>Explainers &amp; deep dives</p><div class="handle">@PolitíCatNM</div></a>
-      <a class="comm-card" href="https://www.facebook.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="facebook"><div class="ic">👍</div><h4>Facebook</h4><p>Join the conversation</p><div class="handle">PolitíCatNM</div></a>
-      <a class="comm-card" href="https://www.threads.net/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="threads"><div class="ic">🧵</div><h4>Threads</h4><p>Quick civic takes</p><div class="handle">@PolitíCatNM</div></a>
-      <a class="comm-card" href="mailto:PolitiCatNM@proton.me"><div class="ic">✉️</div><h4>Email</h4><p>Reach the den directly</p><div class="handle">PolitiCatNM@proton.me</div></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section class="block" id="about">
-  <div class="wrap about-grid">
-    <img src="assets/img/politicat-banner.png" alt="PolitíCat banner with Don Gato Cívico">
-    <div class="about-text">
-      <h2>About PolitíCat</h2>
-      <p class="lead">"Curiosity &gt; Politics."</p>
-      <p>PolitíCat NM is a civic education brand built on one idea: when people understand how government actually works, everyone wins. We help New Mexicans make sense of elections, public records, and civic issues — one question at a time.</p>
-      <p>Don Gato Cívico is our host: curious, a little skeptical, and allergic to spin. He doesn't tell you what to think. He helps you understand, then points you to the real source so you can decide for yourself.</p>
-      <div class="pill-row">
-        <span class="pill">✓ Civic guide</span>
-        <span class="pill">✓ Plain language</span>
-        <span class="pill">✓ Source-first</span>
-        <span class="pill no">✕ Not a party</span>
-        <span class="pill no">✕ Not a campaign</span>
-        <span class="pill no">✕ Not a .gov agency</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
         <img src="assets/img/politicat-logo.png" alt="PolitíCat NM">
-        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records — one question at a time.</p>
+        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records one question at a time.</p>
       </div>
       <div class="foot-col">
-        <h5>Explore</h5>
-        <a href="#ask">Ask PolitíCat</a>
-        <a href="#popular">Popular Questions</a>
-        <a href="#modes">Why PolitíCat</a>
-        <a href="#community">Community</a>
-        <a href="#about">About</a>
+        <h5>Site</h5>
+        <a href="ask.html">Ask PolitíCat</a>
+        <a href="explore.html">Explore NM</a>
+        <a href="learn.html">Learn</a>
+        <a href="trail.html">The Trail</a>
+        <a href="about.html">About</a>
       </div>
       <div class="foot-col">
         <h5>Connect</h5>
-        <a href="https://discord.gg/rXCDt3b8" target="_blank" rel="noopener noreferrer">Discord — PolitíCatNM</a>
-        <a href="https://www.tiktok.com/@politicatnm" target="_blank" rel="noopener noreferrer">TikTok — @PolitíCatNM</a>
-        <a href="https://x.com/politicatnm" target="_blank" rel="noopener noreferrer">X — @PolitíCatNM</a>
-        <a href="https://www.instagram.com/politicatnm" target="_blank" rel="noopener noreferrer">Instagram — @PolitíCatNM</a>
-        <a href="https://www.youtube.com/@politicatnm" target="_blank" rel="noopener noreferrer">YouTube — @PolitíCatNM</a>
-        <a href="https://www.facebook.com/politicatnm" target="_blank" rel="noopener noreferrer">Facebook — PolitíCatNM</a>
-        <a href="https://www.threads.net/@politicatnm" target="_blank" rel="noopener noreferrer">Threads — @PolitíCatNM</a>
+        <a href="community.html">Community</a>
         <a href="mailto:PolitiCatNM@proton.me">PolitiCatNM@proton.me</a>
       </div>
     </div>
@@ -449,6 +159,6 @@
   <span aria-hidden="true">.</span>
 </a>
 
-<script src="assets/js/app.js?v=20260610-explorer1"></script>
+<script src="assets/js/app.js?v=20260815-map1"></script>
 </body>
 </html>
