@@ -660,6 +660,134 @@ function initCountyExplorer() {
   selectCounty('Bernalillo', 'default');
 }
 
+/* ---------- Map navigation: zoom, pan, miles scale, pins ----------
+   Pins live ONLY in this browser's localStorage — never uploaded. */
+function initMapNav() {
+  const wrap = document.getElementById('countyMap');
+  const svg = wrap ? wrap.querySelector('svg.nm-map') : null;
+  if (!wrap || !svg) return;
+
+  const HOME = svg.getAttribute('viewBox').split(/[\s,]+/).map(Number);
+  let vb = HOME.slice();
+  // Projection: 1 SVG unit ≈ 0.345 land miles (equirectangular at NM mid-latitude).
+  const MILES_PER_UNIT = 0.3453;
+  let suppressClick = false;
+  let pinMode = false;
+  let pins = [];
+  try { pins = JSON.parse(localStorage.getItem('politicat-map-pins') || '[]') || []; } catch (_) { pins = []; }
+
+  const pinLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  pinLayer.setAttribute('id', 'nmPins');
+  svg.appendChild(pinLayer);
+
+  function apply() {
+    svg.setAttribute('viewBox', vb.map(v => Math.round(v * 10) / 10).join(' '));
+    updateScalebar();
+  }
+
+  function updateScalebar() {
+    const label = document.getElementById('mapScaleLabel');
+    const rule = document.getElementById('mapScaleRule');
+    if (!label || !rule || !svg.clientWidth) return;
+    const pxPerMile = (svg.clientWidth / vb[2]) / MILES_PER_UNIT;
+    const miles = [400, 200, 100, 50, 25, 10, 5, 2].find(m => m * pxPerMile <= 150) || 2;
+    label.textContent = miles + ' mi';
+    rule.style.width = Math.max(10, Math.round(miles * pxPerMile)) + 'px';
+  }
+
+  function clampView() {
+    const slackX = HOME[2] * 0.15, slackY = HOME[3] * 0.15;
+    vb[0] = Math.min(Math.max(vb[0], HOME[0] - slackX), HOME[0] + HOME[2] + slackX - vb[2]);
+    vb[1] = Math.min(Math.max(vb[1], HOME[1] - slackY), HOME[1] + HOME[3] + slackY - vb[3]);
+  }
+
+  function zoomBy(factor) {
+    const w = Math.min(Math.max(vb[2] / factor, HOME[2] / 8), HOME[2]);
+    const h = w * (HOME[3] / HOME[2]);
+    const cx = vb[0] + vb[2] / 2, cy = vb[1] + vb[3] / 2;
+    vb = [cx - w / 2, cy - h / 2, w, h];
+    clampView(); apply();
+  }
+
+  function renderPins() {
+    pinLayer.innerHTML = pins.map((p, i) =>
+      '<g class="nm-pin" data-pin="' + i + '">'
+      + '<title>Pin ' + (i + 1) + ' — click to remove</title>'
+      + '<text x="' + p.x + '" y="' + p.y + '" text-anchor="middle">📍</text></g>').join('');
+    try { localStorage.setItem('politicat-map-pins', JSON.stringify(pins)); } catch (_) { /* private mode */ }
+  }
+
+  const on = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+  on('mapZoomIn', () => zoomBy(1.45));
+  on('mapZoomOut', () => zoomBy(1 / 1.45));
+  on('mapReset', () => { vb = HOME.slice(); apply(); });
+  on('mapClearPins', () => { pins = []; renderPins(); });
+  const pinBtn = document.getElementById('mapPinMode');
+  if (pinBtn) {
+    pinBtn.addEventListener('click', () => {
+      pinMode = !pinMode;
+      pinBtn.setAttribute('aria-pressed', String(pinMode));
+      wrap.classList.toggle('is-pinning', pinMode);
+    });
+  }
+
+  // Drag to pan; a real drag suppresses the click that follows it.
+  let drag = null;
+  svg.addEventListener('pointerdown', event => {
+    if (event.button !== 0) return;
+    drag = { x: event.clientX, y: event.clientY, vx: vb[0], vy: vb[1], moved: false };
+    try { svg.setPointerCapture(event.pointerId); } catch (_) { /* older browsers */ }
+  });
+  svg.addEventListener('pointermove', event => {
+    if (!drag) return;
+    const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+    if (!drag.moved && Math.abs(dx) + Math.abs(dy) < 6) return;
+    drag.moved = true;
+    wrap.classList.add('is-panning');
+    const scale = vb[2] / svg.clientWidth;
+    vb[0] = drag.vx - dx * scale;
+    vb[1] = drag.vy - dy * scale;
+    clampView(); apply();
+  });
+  const endDrag = () => {
+    if (drag && drag.moved) suppressClick = true;
+    drag = null;
+    wrap.classList.remove('is-panning');
+  };
+  svg.addEventListener('pointerup', endDrag);
+  svg.addEventListener('pointercancel', endDrag);
+
+  // Capture phase: swallow post-drag clicks and handle pins before county selection.
+  wrap.addEventListener('click', event => {
+    if (suppressClick) {
+      suppressClick = false;
+      event.stopPropagation();
+      event.preventDefault();
+      return;
+    }
+    const pinEl = event.target.closest('.nm-pin');
+    if (pinEl) {
+      pins.splice(Number(pinEl.dataset.pin), 1);
+      renderPins();
+      event.stopPropagation();
+      return;
+    }
+    if (pinMode) {
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return;
+      const pt = new DOMPoint(event.clientX, event.clientY).matrixTransform(ctm.inverse());
+      pins.push({ x: Math.round(pt.x), y: Math.round(pt.y) });
+      renderPins();
+      trackEvent('map-pin-added', { source: 'map' });
+      event.stopPropagation();
+    }
+  }, true);
+
+  window.addEventListener('resize', updateScalebar);
+  renderPins();
+  apply();
+}
+
 function initAnalyticsEvents() {
   document.querySelectorAll('[data-link]').forEach(link => {
     link.addEventListener('click', () => {
@@ -792,6 +920,7 @@ async function getAnswer(q) {
 
 /* ---------- Startup: load CivicSubstrate snapshots ---------- */
 loadCivicData().then(initCountyExplorer);
+initMapNav();
 initAnalyticsEvents();
 
 const params = new URLSearchParams(window.location.search);
