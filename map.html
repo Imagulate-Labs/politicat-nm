@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Map — PolitíCat NM</title>
+<meta name="description" content="The Land of Enchantment map: every county clickable, with voter snapshots and change since 2021.">
+<link rel="canonical" href="https://politicatnm.org/map.html">
+<meta name="theme-color" content="#0f3d3e">
+<meta property="og:site_name" content="PolitíCat NM">
+<meta property="og:title" content="The Map — PolitíCat NM">
+<meta property="og:description" content="The Land of Enchantment map: every county clickable, with voter snapshots and change since 2021.">
+<meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<meta property="og:url" content="https://politicatnm.org/map.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PolitiCatNM">
+<meta name="twitter:title" content="The Map — PolitíCat NM">
+<meta name="twitter:description" content="The Land of Enchantment map: every county clickable, with voter snapshots and change since 2021.">
+<meta name="twitter:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-terminal1">
+<script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="navlinks">
+      <a href="explore.html">Explore NM</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a>
+      <a href="ask.html" class="nav-cta">Ask a Question</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero-inner">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Explore NM · Map View</span>
+        <h1 class="hero-title">The Land of Enchantment, Mapped.</h1>
+        <p class="hero-sub">Every county is a doorway. Zoom, pan, drop pins, and open any county's snapshot — or jump back to the <a href="explore.html" style="color:var(--orange)">county strips</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tools" id="tools">
+    <div class="wrap">
+      <div class="ready-panel">
+        <div class="ready-highlights" aria-label="Explorer highlights">
+          <div><span>🗺️</span>Explore NM by county</div>
+          <div><span>🏛️</span>Find local civic tools</div>
+          <div><span>🐱</span>Ask Don Gato in context</div>
+        </div>
+        <label class="county-picker" for="countySelect">
+          <span>Your county</span>
+          <small>We use county, not your home address.</small>
+          <select id="countySelect">
+            <option value="">Select your New Mexico county...</option>
+            <option>Bernalillo</option><option>Catron</option><option>Chaves</option><option>Cibola</option><option>Colfax</option><option>Curry</option><option>De Baca</option><option>Doña Ana</option><option>Eddy</option><option>Grant</option><option>Guadalupe</option><option>Harding</option><option>Hidalgo</option><option>Lea</option><option>Lincoln</option><option>Los Alamos</option><option>Luna</option><option>McKinley</option><option>Mora</option><option>Otero</option><option>Quay</option><option>Rio Arriba</option><option>Roosevelt</option><option>Sandoval</option><option>San Juan</option><option>San Miguel</option><option>Santa Fe</option><option>Sierra</option><option>Socorro</option><option>Taos</option><option>Torrance</option><option>Union</option><option>Valencia</option>
+          </select>
+        </label>
+        <div class="county-explorer" aria-label="New Mexico county map">
+          <div class="county-map-card">
+            <div class="county-map-head">
+              <div><span class="map-kicker">County Navigation</span><h3>New Mexico as the Front Door</h3></div>
+              <span class="map-date" id="mapSourceDate">Loading data...</span>
+            </div>
+            <div class="nm-map-wrap" id="countyMap">
+            <div class="map-toolbar" role="group" aria-label="Map navigation">
+              <button type="button" id="mapZoomIn" aria-label="Zoom in" title="Zoom in">+</button>
+              <button type="button" id="mapZoomOut" aria-label="Zoom out" title="Zoom out">−</button>
+              <button type="button" id="mapReset" aria-label="Reset view" title="Reset view">⌂</button>
+              <button type="button" id="mapPinMode" aria-pressed="false" aria-label="Pin mode: click the map to drop a pin" title="Pin mode — drop pins on the map">📍</button>
+              <button type="button" id="mapClearPins" aria-label="Remove all pins" title="Remove all pins">✕</button>
+            </div>
+            <div class="map-scalebar" id="mapScalebar" aria-hidden="true"><span id="mapScaleLabel"></span><i id="mapScaleRule"></i></div>
+<svg class="nm-map" xmlns="http://www.w3.org/2000/svg" viewBox="-45 -45 1090 1295.6" role="group" aria-label="Pictorial map of New Mexico. Every county is a button; select one to see its voter snapshot.">
+<defs>
+<filter id="nmWobble" x="-3%" y="-3%" width="106%" height="106%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="3" seed="7" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
+</filter>
+<filter id="nmShadow" x="-6%" y="-6%" width="112%" height="112%">
+  <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#5a3a1b" flood-opacity="0.35"/>
+</filter>
+</defs>
+<rect x="-45" y="-45" width="1090" height="1295.6" fill="#e8d9b4"/>
+<rect x="-35" y="-35" width="1070" height="1275.6" fill="none" stroke="#7c5a36" stroke-width="3" opacity=".85"/>
+<rect x="-28" y="-28" width="1056" height="1261.6" fill="#f4e8cd" stroke="#7c5a36" stroke-width="1.2" opacity=".95"/>
+<text x="400" y="-8" font-family="Libre Franklin,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#7c5a36" opacity=".7" text-anchor="middle">COLO.</text>
+<text x="985" y="-8" font-family="Libre Franklin,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#7c5a36" opacity=".7" text-anchor="middle">OKLA.</text>
+<text x="-26" y="520" font-family="Libre Franklin,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#7c5a36" opacity=".7" text-anchor="middle" transform="rotate(-90 -26 520)">ARIZ.</text>
+<text x="1030" y="640" font-family="Libre Franklin,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#7c5a36" opacity=".7" text-anchor="middle" transform="rotate(90 1030 640)">TEXAS</text>
+<text x="498" y="1052" font-family="Libre Franklin,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#7c5a36" opacity=".7" text-anchor="middle">TEXAS</text>
+<text x="225" y="1104" font-family="Libre Franklin,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#7c5a36" opacity=".7" text-anchor="middle">MEXICO</text>
+<path d="M-7.1 0.1 H8.9 M0.9 -7.9 V8.1" stroke="#7c5a36" stroke-width="1.6" opacity=".9" pointer-events="none"/>
+<text x="58.9" y="14.1" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="700" letter-spacing="1" fill="#7c5a36" opacity=".85" text-anchor="middle" pointer-events="none">FOUR CORNERS</text>
+<g filter="url(#nmShadow)"><g filter="url(#nmWobble)">
+<g id="nmCounties" stroke="#6b4a28" stroke-width="1.8" stroke-linejoin="round">
+<path class="county-shape" d="M306.5 355.9L345.2 356.1L378.1 356.1L383.6 356.1L405.3 356.1L463.8 356.7L464 391.5L464 391.7L464 409L479.5 409L479.6 425.6L473.2 425.9L436.4 425.6L435.8 421.2L435.2 421.2L434.2 419.3L432.9 419L390.9 418.5L385.2 425.7L334.9 425.6L327.9 408.3L307.6 358.7L306.5 355.9Z" fill="#c7abd6" data-county="bernalillo" data-name="Bernalillo" tabindex="0" role="button" aria-label="Bernalillo County"/>
+<path class="county-shape" d="M221.1 704.1L215.6 703.9L183.7 704.6L179 703.8L173.5 703.8L173.5 759.1L99.2 759.2L83.8 757.8L0.5 757.6L0.4 749.4L0.6 726.4L0.5 726.3L0.5 725.6L0.5 724.9L0.6 724.4L0.5 717.5L0.6 674.4L0.5 651.5L0.5 643.8L0.6 624.5L0.5 599.5L0.7 495.1L0.7 495.1L0.7 483.8L10.8 483.7L11.1 483.6L113.3 483.9L219.1 484L219 547.6L220.5 547.6L220.6 629.8L221.4 634.4L221.1 704.1Z" fill="#e59b6f" data-county="catron" data-name="Catron" tabindex="0" role="button" aria-label="Catron County"/>
+<path class="county-shape" d="M694.2 895.2L645 895.1L640.9 895.5L611.1 895.5L611.4 806.9L617.4 806.9L617.3 772.9L668.5 772.6L674.7 771.5L685.2 771.6L685.6 738.2L688.6 738.1L688.7 724L687.4 719.9L687.3 581.9L705 582L705 599.5L809.1 600.4L809.2 582.9L843.9 583L861.2 583.2L861.1 635.6L881.8 635.6L881.6 668.2L916 668L916 685.4L881.2 685.5L881.1 720.2L873.6 720.3L873.6 806.3L865.6 806.3L863.3 806.3L859.1 806.3L695.9 806.7L695.8 895.1L694.2 895.2Z" fill="#f2d992" data-county="chaves" data-name="Chaves" tabindex="0" role="button" aria-label="Chaves County"/>
+<path class="county-shape" d="M0.7 407.7L96 407.9L96.2 339.9L100.1 338.4L217.6 338.8L217.6 330.1L235.1 330.1L235.1 338.8L287.7 338.7L299.4 338.7L306.5 355.9L307.6 358.7L327.9 408.3L305.4 408.1L305.2 483.9L227.7 483.9L224.8 483.7L221.6 484.1L219.1 484L113.3 483.9L11.1 483.6L10.8 483.7L0.7 483.8L0.7 445.5L0.8 442.6L0.7 439.7L0.8 436.8L0.7 434L0.7 407.7Z" fill="#aec98c" data-county="cibola" data-name="Cibola" tabindex="0" role="button" aria-label="Cibola County"/>
+<path class="county-shape" d="M762.9 156.2L691.9 156.3L691.9 147.7L613.3 147.5L614.8 142L615.7 123.1L612.4 110.7L613.4 97.8L609.3 88.8L608.1 78.7L610.4 70.6L609.4 66.4L610.6 61.2L615.2 60.2L626 56.2L631.4 37.3L632.4 11L633.2 1L644 1L649.7 1L664.8 1.5L669.6 1.4L713.9 1.3L714 1.4L728.3 1.4L731.6 1.3L731.7 1.2L749.1 1.3L779 1.3L793.6 1.1L833.7 0.8L833.8 60.5L833.7 62.6L833.5 62.8L833.5 156.3L762.9 156.2Z" fill="#9cc4b4" data-county="colfax" data-name="Colfax" tabindex="0" role="button" aria-label="Colfax County"/>
+<path class="county-shape" d="M993.3 408.9L993.3 419.8L993.3 429.6L993.3 441.2L993.3 450.2L993.2 465.4L993.2 469L993.2 475.7L993.1 507.1L993.1 507.6L993.1 507.7L993.1 508.5L993.1 518.5L993.1 519.5L993.1 520.2L993.1 520.8L993.1 521.5L993.1 521.9L993.1 522.6L993.1 522.7L993.1 522.9L993.1 523.4L993.1 523.7L993.1 523.7L993.1 537L993.1 537L993.1 539.1L878 539L878.3 478.7L883.5 478.6L883.6 461.2L918.3 461.3L918.4 443.9L935.8 444L935.9 426.6L953.3 426.7L953.5 408.9L993.3 408.9Z" fill="#9cc4b4" data-county="curry" data-name="Curry" tabindex="0" role="button" aria-label="Curry County"/>
+<path class="county-shape" d="M813.6 443.8L813.7 478.6L843.4 478.6L843.3 547.6L843.9 547.6L843.9 583L809.2 582.9L809.1 600.4L705 599.5L705 582L687.3 581.9L687.5 530.2L687.5 478.7L761.4 478.7L761.4 461.3L778.8 461.2L778.7 443.8L813.6 443.8Z" fill="#de9a90" data-county="de-baca" data-name="De Baca" tabindex="0" role="button" aria-label="De Baca County"/>
+<path class="county-shape" d="M442 998.9L439.1 998.9L436.3 998.9L410.9 999L410.7 999L407.1 999L405.9 999L405.3 999L405.3 999L402.1 999.1L401.9 1000.2L401.2 1001L400 1001.2L399.1 1002L398.6 1003.1L398.8 1003.8L400.1 1004.9L400.7 1005L401.3 1004.6L401.5 1004.6L401.9 1004.9L402 1005.8L401.9 1006.2L401.7 1006.5L401.1 1007L400.9 1007.7L401 1008.3L401.3 1008.6L402.2 1008L402.7 1008L402.4 1009.5L401.2 1010.1L401.4 1011L401.5 1011.8L401.4 1012.2L400.9 1013.2L400.2 1013.8L400.4 1014.4L401.2 1014.1L403.1 1015.2L402.7 1015.6L401.2 1016.4L400.8 1016.7L399.5 1017.2L398.4 1018.2L397.6 1019.4L397.6 1020L397.6 1020.2L398 1020.6L398.8 1020.8L399.5 1021.3L400 1021.9L400.3 1022.4L400 1023.2L399.3 1024.3L399.2 1024.9L399.2 1025.9L400.5 1027L400.8 1027.9L401.5 1028.6L402.7 1029.9L404.1 1029.9L404.2 1030L404.8 1030.3L404.8 1031.2L404.2 1033.6L404.7 1034.1L406.1 1034.2L406.9 1034.6L407.1 1034.7L408.1 1036L408.2 1036.4L408.9 1037.1L409.9 1037.1L410.6 1036.5L411.2 1036.6L411.2 1036.9L412 1037.1L413.8 1037.7L414.1 1038.1L414.2 1038.3L414.7 1038.7L414.7 1038.7L415.7 1039.4L415.8 1039.6L415.8 1039.7L415.9 1039.9L416.2 1040.8L416.2 1040.8L416.3 1040.8L416.6 1040.7L417 1041L417.1 1041.2L417.1 1041.3L417 1041.7L416.9 1042.3L416.9 1042.4L380.2 1042.4L380.2 1042.4L340 1042.4L339.3 1042.4L338.9 1042.4L338.9 1042.4L289.9 1042.4L289.8 987L289.6 982.7L289.7 895.6L289.6 894.8L289.5 878.2L289.5 843.2L357.5 843.4L357.5 834.8L448 788.8L448 807.7L442 807.8L441.9 834.5L442 998.9Z" fill="#f2d992" data-county="dona-ana" data-name="Doña Ana" tabindex="0" role="button" aria-label="Doña Ana County"/>
+<path class="county-shape" d="M838.3 999.2L830.9 999.2L747.1 999.2L747 999.1L729 999.1L728.6 999.1L694.8 999.1L694.9 948.6L694.3 948.6L694.2 895.2L695.8 895.1L695.9 806.7L859.1 806.3L863.3 806.3L865.6 806.3L865.7 894.8L880.8 894.7L880.8 999.1L876.6 999.1L855.6 999.1L838.3 999.2Z" fill="#9cc4b4" data-county="eddy" data-name="Eddy" tabindex="0" role="button" aria-label="Eddy County"/>
+<path class="county-shape" d="M238.4 878.2L186.3 878.4L186.3 895.8L135.7 895.9L135.6 983.2L137.8 983.2L137.7 1026.3L86.9 1026.4L86.9 983.2L84.7 983.2L84.8 895.9L66.6 895.9L66.8 878.6L32.6 878.6L32.4 843.9L0.5 843.8L0.5 843.8L0.4 785.7L0.4 785.5L0.5 781L0.5 780.8L0.5 771.9L0.5 771.8L0.5 757.6L83.8 757.8L99.2 759.2L173.5 759.1L194.2 758.9L197.1 759.2L196.5 761.4L200.1 762.8L197.4 766.3L198 772.5L200.7 785.8L198.2 788.1L197.3 792L198.7 794.1L197.3 798.8L201.4 804.5L201.8 806.6L206.5 807.8L208.1 809.7L211 809.2L210.7 813.2L212.4 817L210.2 819.9L211.2 828.6L213.6 830.1L215.7 834.2L215.1 838.3L217.1 842.4L219.7 843.7L220.6 846.8L219.5 852.1L220.7 855L218.7 860.9L219 867.1L217.1 873.4L220.4 874.8L238.4 878.2Z" fill="#e0c084" data-county="grant" data-name="Grant" tabindex="0" role="button" aria-label="Grant County"/>
+<path class="county-shape" d="M621.6 391.3L621.5 356.5L669.6 356.5L814.3 356.6L814.3 371.3L814.2 408.9L813.5 408.8L813.6 443.8L778.7 443.8L778.8 461.2L761.4 461.3L761.4 478.7L687.5 478.7L687.5 530.2L617.9 530.2L618 478.2L621.7 478.3L621.7 478.1L621.6 391.3Z" fill="#f2d992" data-county="guadalupe" data-name="Guadalupe" tabindex="0" role="button" aria-label="Guadalupe County"/>
+<path class="county-shape" d="M833.5 156.3L833.5 165L869 165.1L869 182.7L940 182.6L939.9 194.9L938.3 200.1L938.3 251.8L938.4 263.6L937.6 269.3L937.5 320.2L935.8 321.8L895 321.8L895 315.4L880.5 315.3L838.8 239.5L831.5 243.5L774.2 243.5L774 238.2L773 233.4L773 230.6L771.7 227.5L772.9 225.2L775.2 222.9L776.9 219.6L776.9 216.7L778.4 215.2L778.1 213.7L777.1 211.8L777.2 210L778.3 209.3L779.4 206.7L778.3 204.9L777.8 201.6L776.5 197.8L775.2 193.5L772.4 188.6L771.7 184.5L768.9 179.3L767.1 173.9L767.6 171L766.3 166.9L764.4 164L763.2 160.8L763.8 157.4L762.9 156.2L833.5 156.3Z" fill="#aec98c" data-county="harding" data-name="Harding" tabindex="0" role="button" aria-label="Harding County"/>
+<path class="county-shape" d="M139.2 1042.4L139.2 1076.4L139.2 1099.1L139.1 1099.1L139.1 1132.4L56.6 1132.4L43.2 1132.6L32.9 1132.6L31.3 1132.6L0 1132.6L0 1103.1L0.1 1099.2L0.1 1099.2L0.2 1071.8L0.2 1039.8L0.2 1037L0.2 1030.4L0.2 1026.9L0.3 1025L0.3 996.4L0.2 993.5L0.3 982.4L0.3 981.4L0.4 914L0.4 863L0.4 862L0.4 861.3L0.4 860.6L0.5 843.8L32.4 843.9L32.6 878.6L66.8 878.6L66.6 895.9L84.8 895.9L84.7 983.2L86.9 983.2L86.9 1026.4L137.7 1026.3L137.7 1035.1L139.2 1042.4Z" fill="#e59b6f" data-county="hidalgo" data-name="Hidalgo" tabindex="0" role="button" aria-label="Hidalgo County"/>
+<path class="county-shape" d="M991 721.7L990.8 733.5L990.8 736.4L990.5 747.3L990.5 748.1L990.4 755.5L989.8 790.9L989.7 791.6L989.7 797.3L989.6 799.4L989.6 806.5L989.6 807.5L989.6 819.3L989.6 823.5L989.6 825.7L989.6 827.8L989.6 827.9L989.6 829.5L989.6 833.6L989.6 833.8L989.6 842.4L989.6 842.6L989.6 843.9L989.6 854L989.6 857.6L989.6 861.1L989.6 862.8L989.6 870L989.6 874.4L989.6 878.9L989.6 879.2L989.6 881.7L989.6 894.8L989.7 970.2L989.7 974.6L989.7 981.8L989.7 999.1L986.1 999.1L985.7 999.1L964.7 999.1L956.1 999.1L956.1 999.1L955.6 999.1L954.3 999.1L946.3 999.1L880.8 999.1L880.8 894.7L865.7 894.8L865.6 806.3L873.6 806.3L873.6 720.3L881.1 720.2L881.2 685.5L916 685.4L991.6 685.3L991 721.7L991 721.7Z" fill="#de9a90" data-county="lea" data-name="Lea" tabindex="0" role="button" aria-label="Lea County"/>
+<path class="county-shape" d="M442.6 703.4L442.5 667.4L459.9 667.4L473.8 668.6L478.1 669.4L495.6 669.4L495.6 634.3L516.8 634.4L516.9 547.6L617.9 547.6L617.9 530.2L687.5 530.2L687.3 581.9L687.4 719.9L688.7 724L688.6 738.1L685.6 738.2L685.2 771.6L674.7 771.5L668.5 772.6L617.3 772.9L616.9 738.4L549.6 738.4L549.4 721.3L447.1 721.3L442.8 721.2L442.6 703.4Z" fill="#aec98c" data-county="lincoln" data-name="Lincoln" tabindex="0" role="button" aria-label="Lincoln County"/>
+<path class="county-shape" d="M463.7 213.7L463.3 232L467 234.1L475.9 234.2L469.8 244.3L463.3 248.7L457.6 241.5L445.3 236.6L438.1 238.3L435.1 236L438.3 234.3L438.2 207.9L440.4 209.3L452.2 209.4L454.7 208.2L454.6 205.2L458 205.3L463.3 206.6L463.7 213.7Z" fill="#e59b6f" data-county="los-alamos" data-name="Los Alamos" tabindex="0" role="button" aria-label="Los Alamos County"/>
+<path class="county-shape" d="M137.7 1026.3L137.8 983.2L135.6 983.2L135.7 895.9L186.3 895.8L186.3 878.4L238.4 878.2L289.5 878.2L289.6 894.8L289.7 895.6L289.6 982.7L289.8 987L289.9 1042.4L269.2 1042.4L269.1 1042.4L139.2 1042.4L137.7 1035.1L137.7 1026.3Z" fill="#aec98c" data-county="luna" data-name="Luna" tabindex="0" role="button" aria-label="Luna County"/>
+<path class="county-shape" d="M0.7 364.6L0.7 349.7L0.6 327L0.6 290.5L0.6 290.5L0.6 277L0.6 276.5L0.7 223.9L0.7 222.1L0.7 214.7L0.7 214.7L0.7 199.4L20.5 199.3L182.1 199.5L182.2 199.4L235.4 199.8L288 200.1L288.3 316.1L287.8 316L287.7 338.7L235.1 338.8L235.1 330.1L217.6 330.1L217.6 338.8L100.1 338.4L96.2 339.9L96 407.9L0.7 407.7L0.7 364.6Z" fill="#de9a90" data-county="mckinley" data-name="McKinley" tabindex="0" role="button" aria-label="McKinley County"/>
+<path class="county-shape" d="M551 204.1L552.7 206.1L560.5 208.2L565.1 204L575 205.4L580.8 201.7L582 197.3L585.7 195.9L588.7 192.4L593.1 184.2L600.2 173.6L601.1 168.5L599.9 165.9L604 161.6L604.7 156.7L601.9 152.6L605.6 149.3L613.3 147.5L691.9 147.7L691.9 156.3L762.9 156.2L763.8 157.4L763.2 160.8L764.4 164L766.3 166.9L767.6 171L767.1 173.9L768.9 179.3L771.7 184.5L772.4 188.6L775.2 193.5L776.5 197.8L777.8 201.6L778.3 204.9L779.4 206.7L778.3 209.3L777.2 210L777.1 211.8L778.1 213.7L778.4 215.2L776.9 216.7L776.9 219.6L775.2 222.9L772.9 225.2L771.7 227.5L773 230.6L773 233.4L774 238.2L774.2 243.5L672.1 245.3L666.5 245.9L665.4 249L651.5 238.3L644.8 238L640.5 234.7L633.6 234L630.3 232.2L612.1 225.7L550.6 225.6L550.5 224.8L551 204.1Z" fill="#e0c084" data-county="mora" data-name="Mora" tabindex="0" role="button" aria-label="Mora County"/>
+<path class="county-shape" d="M504.6 998.7L487.8 998.7L483.6 998.7L474.2 998.8L471.1 998.8L470.3 998.8L452.5 998.9L442 998.9L442 998.9L441.9 834.5L442 807.8L448 807.7L448 788.8L447.1 721.3L549.4 721.3L549.6 738.4L616.9 738.4L617.3 772.9L617.4 806.9L611.4 806.9L611.1 895.5L640.9 895.5L645 895.1L694.2 895.2L694.3 948.6L694.9 948.6L694.8 999.1L683.2 999.1L656.9 999.1L656.7 999.1L650.1 999.1L647.9 999.1L647.7 999.1L645.1 999.1L644.8 999.1L644.2 999.1L605.1 999.1L599 999L598.8 999.1L598.7 999.1L548.7 998.9L545.6 998.7L528.4 998.7L523.1 998.8L520.7 998.8L504.6 998.7Z" fill="#de9a90" data-county="otero" data-name="Otero" tabindex="0" role="button" aria-label="Otero County"/>
+<path class="county-shape" d="M993.3 363.1L993.3 363.1L993.3 363.2L993.3 363.3L993.3 364L993.3 367.9L993.3 370.8L993.3 371.2L993.3 372.6L993.2 374.7L993.3 377.7L993.3 408.9L953.5 408.9L953.3 426.7L935.9 426.6L935.8 444L918.4 443.9L918.3 461.3L883.6 461.2L883.5 478.6L878.3 478.7L843.4 478.6L813.7 478.6L813.6 443.8L813.5 408.8L814.2 408.9L814.3 371.3L858.5 346.9L858.5 351.3L895 351.6L895 321.8L935.8 321.8L937.5 320.2L937.6 269.3L938.4 263.6L938.3 251.8L993.5 252L993.5 275.3L993.3 349.7L993.3 351.5L993.3 357.4L993.3 363.1Z" fill="#e59b6f" data-county="quay" data-name="Quay" tabindex="0" role="button" aria-label="Quay County"/>
+<path class="county-shape" d="M235.8 156L235.5 130L235.8 121.3L235.3 112.4L235.9 65L236.6 64.9L236.7 39.1L238.9 40.4L239.9 33.3L243.1 33L247 28.6L248.5 30.2L251.4 29.2L252.5 24.9L257.5 24.7L260.1 21.3L264.3 19.2L263.4 9L267.8 6L269.4 0L269.4 0L359.3 0L360.5 1.6L380.2 1.6L392.6 1.4L395 1.4L400.4 1.4L400.4 1.4L402.3 1.4L402.3 1.5L421.5 1.3L425.6 1.3L447.6 1.2L455.8 1.3L463.2 1.2L463.4 1.2L471 1.2L503.2 1L503.5 4.7L506.3 11.9L506.7 15.9L509 22.8L508.5 32.5L506.9 37.6L507.6 46.5L507.3 50.7L507.8 59.8L509.5 68.1L506.9 68.1L507 70.9L508.9 70.4L510.2 80.3L511.6 84.9L512.6 91.4L512.3 96.5L513.9 100.6L514.5 106.9L511.7 116.1L512.3 125L511 129L504.6 133.2L498 134.8L494.7 140.5L528 153.8L548 179.9L582 197.3L580.8 201.7L575 205.4L565.1 204L560.5 208.2L552.7 206.1L551 204.1L551.1 199.4L492.5 199.5L495.4 204.2L495.4 213.7L463.7 213.7L463.3 206.6L463.4 199.6L357.9 200.1L358 156.6L235.8 156Z" fill="#aec98c" data-county="rio-arriba" data-name="Rio Arriba" tabindex="0" role="button" aria-label="Rio Arriba County"/>
+<path class="county-shape" d="M992.5 634.6L992.2 650.2L992.1 651.9L992 659.1L992 665L991.9 667.8L991.8 669.4L991.8 671.1L991.8 673.6L991.6 685.3L916 685.4L916 668L881.6 668.2L881.8 635.6L861.1 635.6L861.2 583.2L843.9 583L843.9 547.6L843.3 547.6L843.4 478.6L878.3 478.7L878 539L993.1 539.1L993.1 541.7L993.1 548.2L993.1 581.9L993.1 583.7L993.1 586.9L993.1 589.5L993.1 590.8L993.1 591.1L993.1 591.2L993.1 592.1L993.1 593L993.1 595.9L993.1 598.8L993.1 604.6L992.9 610.4L992.8 618.2L992.8 619.2L992.6 629.4L992.5 634.6Z" fill="#c7abd6" data-county="roosevelt" data-name="Roosevelt" tabindex="0" role="button" aria-label="Roosevelt County"/>
+<path class="county-shape" d="M235.4 199.8L182.2 199.4L182.1 199.5L20.5 199.3L0.7 199.4L0.7 176.5L0.7 163.6L0.8 100L0.8 25.1L0.8 25L0.8 6.3L0.8 6.1L0.8 0.2L15.1 0.3L15.8 0.3L71.1 0.2L71.2 0.2L110.9 0.2L120.6 0.1L120.6 0.1L126 0.1L126 0.1L132.2 0.1L132.4 0.2L173.5 0L259.3 0L269.4 0L267.8 6L263.4 9L264.3 19.2L260.1 21.3L257.5 24.7L252.5 24.9L251.4 29.2L248.5 30.2L247 28.6L243.1 33L239.9 33.3L238.9 40.4L236.7 39.1L236.6 64.9L235.9 65L235.3 112.4L235.8 121.3L235.5 130L235.8 156L235.4 199.8Z" fill="#f2d992" data-county="san-juan" data-name="San Juan" tabindex="0" role="button" aria-label="San Juan County"/>
+<path class="county-shape" d="M550.6 225.6L612.1 225.7L630.3 232.2L633.6 234L640.5 234.7L644.8 238L651.5 238.3L665.4 249L666.5 245.9L672.1 245.3L774.2 243.5L831.5 243.5L838.8 239.5L880.5 315.3L895 315.4L895 321.8L895 351.6L858.5 351.3L858.5 346.9L814.3 371.3L814.3 356.6L669.6 356.5L621.5 356.5L621.6 391.3L551.5 391.4L550.8 273.4L551.3 269.2L550.4 249.8L550.4 237.4L550.2 237.4L550.6 225.6Z" fill="#c7abd6" data-county="san-miguel" data-name="San Miguel" tabindex="0" role="button" aria-label="San Miguel County"/>
+<path class="county-shape" d="M378.1 356.1L345.2 356.1L306.5 355.9L299.4 338.7L287.7 338.7L287.8 316L288.3 316.1L288 200.1L235.4 199.8L235.8 156L358 156.6L357.9 200.1L463.4 199.6L463.3 206.6L458 205.3L454.6 205.2L454.7 208.2L452.2 209.4L440.4 209.3L438.2 207.9L438.3 234.3L435.1 236L438.1 238.3L445.3 236.6L457.6 241.5L463.3 248.7L463.2 311.1L463.1 338.8L463.7 352L463.8 356.7L405.3 356.1L383.6 356.1L378.1 356.1Z" fill="#9cc4b4" data-county="sandoval" data-name="Sandoval" tabindex="0" role="button" aria-label="Sandoval County"/>
+<path class="county-shape" d="M463.2 311.1L463.3 248.7L469.8 244.3L475.9 234.2L467 234.1L463.3 232L463.7 213.7L495.4 213.7L495.4 204.2L492.5 199.5L551.1 199.4L551 204.1L550.5 224.8L550.6 225.6L550.2 237.4L550.4 237.4L550.4 249.8L551.3 269.2L550.8 273.4L551.5 391.4L545.7 391.4L545.6 391.5L472.2 391.7L464 391.7L464 391.5L463.8 356.7L463.7 352L463.1 338.8L463.2 311.1Z" fill="#f2d992" data-county="santa-fe" data-name="Santa Fe" tabindex="0" role="button" aria-label="Santa Fe County"/>
+<path class="county-shape" d="M221.1 704.1L275.2 703.9L425.9 704.3L425.9 703.4L442.6 703.4L442.8 721.2L447.1 721.3L448 788.8L357.5 834.8L357.5 843.4L289.5 843.2L289.5 878.2L238.4 878.2L220.4 874.8L217.1 873.4L219 867.1L218.7 860.9L220.7 855L219.5 852.1L220.6 846.8L219.7 843.7L217.1 842.4L215.1 838.3L215.7 834.2L213.6 830.1L211.2 828.6L210.2 819.9L212.4 817L210.7 813.2L211 809.2L208.1 809.7L206.5 807.8L201.8 806.6L201.4 804.5L197.3 798.8L198.7 794.1L197.3 792L198.2 788.1L200.7 785.8L198 772.5L197.4 766.3L200.1 762.8L196.5 761.4L197.1 759.2L194.2 758.9L173.5 759.1L173.5 703.8L179 703.8L183.7 704.6L215.6 703.9L221.1 704.1Z" fill="#9cc4b4" data-county="sierra" data-name="Sierra" tabindex="0" role="button" aria-label="Sierra County"/>
+<path class="county-shape" d="M376.5 493L377.3 493.4L420.9 508.2L428.9 512.2L435.4 511.6L435.5 524.6L435.5 524.9L435.6 547.6L516.9 547.6L516.8 634.4L495.6 634.3L495.6 669.4L478.1 669.4L473.8 668.6L459.9 667.4L442.5 667.4L442.6 703.4L425.9 703.4L425.9 704.3L275.2 703.9L221.1 704.1L221.4 634.4L220.6 629.8L220.5 547.6L219 547.6L219.1 484L221.6 484.1L224.8 483.7L227.7 483.9L305.2 483.9L341.3 483.5L358.4 483.7L376.5 493Z" fill="#e0c084" data-county="socorro" data-name="Socorro" tabindex="0" role="button" aria-label="Socorro County"/>
+<path class="county-shape" d="M503.2 1L504.7 1L504.9 1L550.9 0.9L551.2 0.9L559.7 0.9L565.9 0.9L581.4 0.9L584.9 0.9L585.5 0.9L592.7 0.8L595.7 0.8L596.5 0.8L600.3 0.9L628.1 0.9L633.2 1L632.4 11L631.4 37.3L626 56.2L615.2 60.2L610.6 61.2L609.4 66.4L610.4 70.6L608.1 78.7L609.3 88.8L613.4 97.8L612.4 110.7L615.7 123.1L614.8 142L613.3 147.5L605.6 149.3L601.9 152.6L604.7 156.7L604 161.6L599.9 165.9L601.1 168.5L600.2 173.6L593.1 184.2L588.7 192.4L585.7 195.9L582 197.3L548 179.9L528 153.8L494.7 140.5L498 134.8L504.6 133.2L511 129L512.3 125L511.7 116.1L514.5 106.9L513.9 100.6L512.3 96.5L512.6 91.4L511.6 84.9L510.2 80.3L508.9 70.4L507 70.9L506.9 68.1L509.5 68.1L507.8 59.8L507.3 50.7L507.6 46.5L506.9 37.6L508.5 32.5L509 22.8L506.7 15.9L506.3 11.9L503.5 4.7L503.2 1Z" fill="#e59b6f" data-county="taos" data-name="Taos" tabindex="0" role="button" aria-label="Taos County"/>
+<path class="county-shape" d="M435.4 511.6L435.3 495.3L426.6 495.4L426.4 477.9L427.4 477.8L427.5 437.8L427.6 425.6L436.4 425.6L473.2 425.9L479.6 425.6L479.5 409L464 409L464 391.7L472.2 391.7L545.6 391.5L545.7 391.4L551.5 391.4L621.6 391.3L621.7 478.1L621.7 478.3L618 478.2L617.9 530.2L617.9 547.6L516.9 547.6L435.6 547.6L435.5 524.9L435.5 524.6L435.4 511.6Z" fill="#9cc4b4" data-county="torrance" data-name="Torrance" tabindex="0" role="button" aria-label="Torrance County"/>
+<path class="county-shape" d="M993.6 188.8L993.5 232.3L993.3 234.8L993.4 237L993.4 240.5L993.5 241.5L993.5 252L938.3 251.8L938.3 200.1L939.9 194.9L940 182.6L869 182.7L869 165.1L833.5 165L833.5 156.3L833.5 62.8L833.7 62.6L833.8 60.5L833.7 0.8L878.9 0.4L879.1 0.4L974.5 0L986.1 0L1000 0L1000 17.7L1000 18.1L1000 56.1L999.9 65L1000 76.5L1000 79.4L999.9 94.6L999.9 99.9L993.4 99.9L993.4 136.3L993.4 136.4L993.6 188.8Z" fill="#f2d992" data-county="union" data-name="Union" tabindex="0" role="button" aria-label="Union County"/>
+<path class="county-shape" d="M435.8 421.2L436.4 425.6L427.6 425.6L427.5 437.8L427.4 477.8L426.4 477.9L426.6 495.4L435.3 495.3L435.4 511.6L428.9 512.2L420.9 508.2L377.3 493.4L376.5 493L358.4 483.7L341.3 483.5L305.2 483.9L305.4 408.1L327.9 408.3L334.9 425.6L385.2 425.7L390.9 418.5L432.9 419L434.2 419.3L435.2 421.2L435.8 421.2Z" fill="#e59b6f" data-county="valencia" data-name="Valencia" tabindex="0" role="button" aria-label="Valencia County"/>
+</g></g></g>
+<g fill="none" stroke="#5b93b8" stroke-linecap="round" stroke-linejoin="round" opacity=".75" pointer-events="none">
+<path d="M550.6 -0.1 L552.3 49.9 L547.3 89.9 L557.2 135.8 L532.4 167.8 L494.4 187.8 L487.8 213.8 L479.5 243.7 L468.0 275.7 L454.7 303.7 L413.4 339.7 L396.9 383.6 L391.9 429.6 L382.0 479.5 L363.8 529.5 L357.2 587.4 L352.2 639.4 L339.0 689.4 L309.2 729.3 L305.9 769.3 L292.7 819.3 L305.9 849.2 L314.2 875.2 L347.3 909.2 L375.4 935.2 L401.8 979.1 L416.7 1019.1 L423.3 1043.1" stroke-width="3.4"/>
+<path d="M560.5 251.7 L603.5 299.7 L636.6 329.7 L677.9 363.6 L711.0 389.6 L722.6 411.6 L760.6 459.6 L795.3 505.5 L777.1 559.5 L765.6 619.4 L752.3 679.4 L749.0 721.3 L760.6 779.3 L768.9 831.2 L785.4 879.2 L797.0 915.2 L818.5 959.1 L826.8 999.1" stroke-width="2.2"/>
+<path d="M248.0 29.9 L190.2 39.9 L137.3 53.9 L82.7 49.9 L36.4 55.9 L1.7 19.9" stroke-width="2.2"/>
+<path d="M694.5 29.9 L719.3 89.9 L744.1 139.8 L777.1 189.8 L785.4 239.7 L818.5 289.7 L868.1 309.7 L909.4 319.7 L950.8 315.7 L998.7 309.7" stroke-width="1.8"/>
+<path d="M157.1 729.3 L115.8 759.3 L82.7 789.3 L49.6 809.3 L24.8 829.2 L1.7 843.2" stroke-width="1.8"/>
+</g>
+<text x="342.3" y="475.5" font-family="Fraunces,Georgia,serif" font-style="italic" font-size="11" fill="#5b93b8" text-anchor="middle" transform="rotate(-72 342.3 475.5)" pointer-events="none">Rio Grande</text>
+<text x="810.2" y="589.4" font-family="Fraunces,Georgia,serif" font-style="italic" font-size="10" fill="#5b93b8" text-anchor="middle" transform="rotate(-65 810.2 589.4)" pointer-events="none">Pecos</text>
+<path d="M998.7 359.6 L942.5 363.6 L881.3 365.6 L802.0 389.6 L722.6 411.6 L636.6 399.6 L557.2 393.6 L496.1 395.6 L438.2 387.6 L396.9 383.6 L305.9 379.6 L198.4 369.6 L115.8 329.7 L51.3 295.7 L1.7 275.7" fill="none" stroke="#b23a48" stroke-width="2.4" stroke-dasharray="9 6" stroke-linecap="round" opacity=".8" pointer-events="none"/>
+<g pointer-events="none"><circle cx="947.5" cy="317.7" r="9" fill="#f4e8cd" stroke="#b23a48" stroke-width="1.6"/><text x="947.5" y="321.2" font-family="Libre Franklin,sans-serif" font-size="9" font-weight="800" fill="#b23a48" text-anchor="middle">66</text></g>
+<g pointer-events="none"><circle cx="256.3" cy="361.6" r="9" fill="#f4e8cd" stroke="#b23a48" stroke-width="1.6"/><text x="256.3" y="365.1" font-family="Libre Franklin,sans-serif" font-size="9" font-weight="800" fill="#b23a48" text-anchor="middle">66</text></g>
+<g pointer-events="none" opacity=".9"><ellipse cx="446.5" cy="815.3" rx="26" ry="11" fill="#fdfaf1" stroke="#d8c9a5" stroke-width="1"/><ellipse cx="432.5" cy="824.3" rx="16" ry="7" fill="#fdfaf1" stroke="#d8c9a5" stroke-width="1"/><ellipse cx="462.5" cy="823.3" rx="13" ry="6" fill="#fdfaf1" stroke="#d8c9a5" stroke-width="1"/></g>
+<ellipse cx="310.9" cy="739.3" rx="6" ry="13" fill="#5b93b8" opacity=".65" pointer-events="none" transform="rotate(12 310.9 739.3)"/>
+<path d="M27.799999999999997 67.9 L32.8 53.9 L34.8 59.9 L36.8 52.9 L41.8 67.9 Z" fill="#8a6a48" stroke="#4a3520" stroke-width=".8" pointer-events="none"/>
+<path d="M337.3 641.4 q5 -6 10 0 q-5 -3 -10 0Z" fill="none" stroke="#4a3520" stroke-width="1.1" opacity=".7" pointer-events="none"/>
+<path d="M349.3 635.4 q5 -6 10 0 q-5 -3 -10 0Z" fill="none" stroke="#4a3520" stroke-width="1.1" opacity=".7" pointer-events="none"/>
+<path d="M361.3 643.4 q5 -6 10 0 q-5 -3 -10 0Z" fill="none" stroke="#4a3520" stroke-width="1.1" opacity=".7" pointer-events="none"/>
+<g pointer-events="none" font-family="Fraunces,Georgia,serif" fill="#4a3520" text-anchor="middle" style="letter-spacing:.4px">
+<text x="359.5" y="405.4" font-size="9" font-weight="600" opacity=".78">BERNALILLO</text>
+<text x="106.7" y="596.5" font-size="13" font-weight="600" opacity=".78">CATRON</text>
+<text x="767.7" y="752.8" font-size="13" font-weight="600" opacity=".78">CHAVES</text>
+<text x="149.7" y="421.2" font-size="13" font-weight="600" opacity=".78">CIBOLA</text>
+<text x="723.8" y="112.7" font-size="12" font-weight="600" opacity=".78">COLFAX</text>
+<text x="931.0" y="506.8" font-size="10.5" font-weight="600" opacity=".78">CURRY</text>
+<text x="766.8" y="559.0" font-size="10" font-weight="600" opacity=".78">DE BACA</text>
+<text x="372.6" y="908.7" font-size="11" font-weight="600" opacity=".78">DOÑA ANA</text>
+<text x="778.7" y="927.0" font-size="12" font-weight="600" opacity=".78">EDDY</text>
+<text x="116.4" y="835.5" font-size="12" font-weight="600" opacity=".78">GRANT</text>
+<text x="704.2" y="441.0" font-size="11" font-weight="600" opacity=".78">GUADALUPE</text>
+<text x="864.7" y="242.3" font-size="11" font-weight="600" opacity=".78">HARDING</text>
+<text x="61.4" y="990.4" font-size="10" font-weight="600" opacity=".78">HIDALGO</text>
+<text x="932.1" y="870.9" font-size="12" font-weight="600" opacity=".78">LEA</text>
+<text x="583.8" y="710.4" font-size="13" font-weight="600" opacity=".78">LINCOLN</text>
+<text x="215.0" y="974.8" font-size="11" font-weight="600" opacity=".78">LUNA</text>
+<text x="130.4" y="303.7" font-size="13" font-weight="600" opacity=".78">MCKINLEY</text>
+<text x="684.9" y="207.9" font-size="11" font-weight="600" opacity=".78">MORA</text>
+<text x="533.0" y="896.6" font-size="13" font-weight="600" opacity=".78">OTERO</text>
+<text x="909.4" y="400.8" font-size="11.5" font-weight="600" opacity=".78">QUAY</text>
+<text x="399.7" y="124.0" font-size="12" font-weight="600" opacity=".78">RIO ARRIBA</text>
+<text x="914.9" y="619.3" font-size="10.5" font-weight="600" opacity=".78">ROOSEVELT</text>
+<text x="120.6" y="128.3" font-size="13" font-weight="600" opacity=".78">SAN JUAN</text>
+<text x="706.1" y="319.8" font-size="11.5" font-weight="600" opacity=".78">SAN MIGUEL</text>
+<text x="377.1" y="282.0" font-size="12" font-weight="600" opacity=".78">SANDOVAL</text>
+<text x="510.3" y="324.4" font-size="10.5" font-weight="600" opacity=".78">SANTA FE</text>
+<text x="281.1" y="755.2" font-size="12" font-weight="600" opacity=".78">SIERRA</text>
+<text x="364.6" y="618.1" font-size="13" font-weight="600" opacity=".78">SOCORRO</text>
+<text x="559.0" y="114.5" font-size="12" font-weight="600" opacity=".78">TAOS</text>
+<text x="529.0" y="485.6" font-size="12" font-weight="600" opacity=".78">TORRANCE</text>
+<text x="922.4" y="123.6" font-size="12" font-weight="600" opacity=".78">UNION</text>
+<text x="364.5" y="466.5" font-size="10" font-weight="600" opacity=".78">VALENCIA</text>
+</g>
+<g pointer-events="none">
+<circle cx="137.3" cy="53.9" r="2.6" fill="#4a3520"/>
+<text x="142.3" y="49.9" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Farmington</text>
+<circle cx="51.3" cy="295.7" r="2.6" fill="#4a3520"/>
+<text x="56.3" y="307.7" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Gallup</text>
+<circle cx="198.4" cy="369.6" r="2.6" fill="#4a3520"/>
+<text x="198.4" y="362.6" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="middle">Grants</text>
+<circle cx="396.9" cy="383.6" r="2.6" fill="#4a3520"/>
+<text x="403.9" y="386.6" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Albuquerque</text>
+<path d="M514.3 255.7 L516.0999999999999 259.9 L520.3 260.3 L517.0999999999999 263.3 L518.0999999999999 267.7 L514.3 265.09999999999997 L510.49999999999994 267.7 L511.49999999999994 263.3 L508.29999999999995 260.3 L512.5 259.9 Z" fill="#b23a48" stroke="#4a3520" stroke-width=".6"/>
+<text x="521.3" y="262.7" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Santa Fe</text>
+<circle cx="575.4" cy="117.8" r="2.6" fill="#4a3520"/>
+<text x="581.4" y="120.8" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Taos</text>
+<circle cx="762.3" cy="19.9" r="2.6" fill="#4a3520"/>
+<text x="767.3" y="28.9" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Raton</text>
+<circle cx="633.3" cy="281.7" r="2.6" fill="#4a3520"/>
+<text x="639.3" y="286.7" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Las Vegas</text>
+<circle cx="970.6" cy="109.8" r="2.6" fill="#4a3520"/>
+<text x="965.6" y="112.8" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Clayton</text>
+<circle cx="881.3" cy="365.6" r="2.6" fill="#4a3520"/>
+<text x="881.3" y="358.6" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="middle">Tucumcari</text>
+<circle cx="722.6" cy="411.6" r="2.6" fill="#4a3520"/>
+<text x="727.6" y="421.6" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Santa Rosa</text>
+<circle cx="967.3" cy="519.5" r="2.6" fill="#4a3520"/>
+<text x="962.3" y="519.5" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Clovis</text>
+<circle cx="945.8" cy="561.5" r="2.6" fill="#4a3520"/>
+<text x="940.8" y="569.5" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Portales</text>
+<circle cx="749.0" cy="721.3" r="2.6" fill="#4a3520"/>
+<text x="755.0" y="723.3" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Roswell</text>
+<circle cx="797.0" cy="915.2" r="2.6" fill="#4a3520"/>
+<text x="803.0" y="917.2" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Carlsbad</text>
+<circle cx="977.2" cy="857.2" r="2.6" fill="#4a3520"/>
+<text x="972.2" y="865.2" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Hobbs</text>
+<circle cx="510.9" cy="819.3" r="2.6" fill="#4a3520"/>
+<text x="516.9" y="822.3" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Alamogordo</text>
+<circle cx="375.4" cy="935.2" r="2.6" fill="#4a3520"/>
+<text x="382.4" y="935.2" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Las Cruces</text>
+<circle cx="213.3" cy="945.2" r="2.6" fill="#4a3520"/>
+<text x="213.3" y="957.2" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="middle">Deming</text>
+<circle cx="127.3" cy="845.2" r="2.6" fill="#4a3520"/>
+<text x="122.3" y="843.2" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Silver City</text>
+<circle cx="357.2" cy="587.4" r="2.6" fill="#4a3520"/>
+<text x="363.2" y="589.4" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Socorro</text>
+<circle cx="297.6" cy="773.3" r="2.6" fill="#4a3520"/>
+<text x="304.6" y="773.3" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">T or C</text>
+<circle cx="453.1" cy="221.8" r="2.6" fill="#4a3520"/>
+<text x="448.1" y="219.8" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Los Alamos</text>
+<circle cx="408.4" cy="19.9" r="2.6" fill="#4a3520"/>
+<text x="402.4" y="22.9" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="end">Chama</text>
+<circle cx="558.9" cy="733.3" r="2.6" fill="#4a3520"/>
+<text x="564.9" y="736.3" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="700" fill="#4a3520" text-anchor="start">Ruidoso</text>
+</g>
+<g pointer-events="none">
+<text x="401.8" y="347.6" font-size="30" text-anchor="middle">🎈</text>
+<text x="755.7" y="671.4" font-size="28" text-anchor="middle">🛸</text>
+<text x="755.7" y="657.4" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">UFO COUNTRY · 1947</text>
+<text x="759.0" y="965.1" font-size="26" text-anchor="middle">🦇</text>
+<text x="759.0" y="981.1" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">CARLSBAD CAVERNS</text>
+<text x="322.5" y="879.2" font-size="24" text-anchor="middle">🌶️</text>
+<text x="322.5" y="895.2" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">HATCH CHILE</text>
+<text x="431.6" y="193.8" font-size="20" text-anchor="middle">⚛️</text>
+<text x="236.5" y="583.5" font-size="24" text-anchor="middle">📡</text>
+<text x="236.5" y="599.5" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">VERY LARGE ARRAY</text>
+<text x="148.8" y="535.5" font-size="20" text-anchor="middle">🥧</text>
+<text x="148.8" y="550.5" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">PIE TOWN</text>
+<text x="587.0" y="659.4" font-size="24" text-anchor="middle">🐻</text>
+<text x="587.0" y="643.4" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">SMOKEY BEAR'S HOME</text>
+<text x="802.0" y="515.5" font-size="22" text-anchor="middle">🤠</text>
+<text x="802.0" y="531.5" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">BILLY THE KID'S GRAVE</text>
+<text x="725.9" y="383.6" font-size="18" text-anchor="middle">🤿</text>
+<text x="725.9" y="365.6" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">BLUE HOLE</text>
+<text x="595.3" y="75.9" font-size="22" text-anchor="middle">⛷️</text>
+<text x="595.3" y="90.9" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">TAOS SKI VALLEY</text>
+<text x="434.9" y="11.9" font-size="24" text-anchor="middle">🚂</text>
+<text x="840.0" y="39.9" font-size="22" text-anchor="middle">🌋</text>
+<text x="840.0" y="55.9" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">CAPULIN VOLCANO</text>
+<text x="669.7" y="111.8" font-size="20" text-anchor="middle">🏕️</text>
+<text x="669.7" y="126.8" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">PHILMONT</text>
+<text x="339.0" y="811.3" font-size="24" text-anchor="middle">🚀</text>
+<text x="339.0" y="827.3" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">SPACEPORT AMERICA</text>
+<text x="91.0" y="719.3" font-size="24" text-anchor="middle">🌲</text>
+<text x="91.0" y="735.3" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">GILA WILDERNESS</text>
+<text x="909.4" y="455.6" font-size="22" text-anchor="middle">🐄</text>
+<text x="914.4" y="909.2" font-size="22" text-anchor="middle">🛢️</text>
+<text x="914.4" y="924.2" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">OIL PATCH</text>
+<text x="540.7" y="725.3" font-size="20" text-anchor="middle">🐎</text>
+<text x="180.3" y="187.8" font-size="22" text-anchor="middle">🏺</text>
+<text x="180.3" y="203.8" font-family="Libre Franklin,sans-serif" font-size="8.5" font-weight="800" letter-spacing=".6" fill="#4a3520" opacity=".82" text-anchor="middle">CHACO CANYON</text>
+<text x="82.7" y="143.8" font-family="Libre Franklin,sans-serif" font-size="10.5" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">NAVAJO NATION</text>
+<text x="342.3" y="83.9" font-family="Libre Franklin,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">JICARILLA APACHE NATION</text>
+<text x="583.7" y="805.3" font-family="Libre Franklin,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">MESCALERO APACHE RES.</text>
+<text x="61.2" y="371.6" font-family="Libre Franklin,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">ZUNI PUEBLO</text>
+<text x="248.0" y="447.6" font-family="Libre Franklin,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">ACOMA SKY CITY</text>
+<text x="429.9" y="667.4" font-family="Libre Franklin,sans-serif" font-size="9.0" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">TRINITY SITE · 1945</text>
+<text x="451.4" y="843.2" font-family="Libre Franklin,sans-serif" font-size="10.0" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">WHITE SANDS</text>
+<text x="34.8" y="75.9" font-family="Libre Franklin,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">SHIPROCK</text>
+<text x="352.2" y="729.3" font-family="Libre Franklin,sans-serif" font-size="9.0" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">ELEPHANT BUTTE</text>
+<text x="276.2" y="655.4" font-family="Libre Franklin,sans-serif" font-size="9.0" font-weight="800" letter-spacing="1" fill="#4a3520" opacity=".62" text-anchor="middle">BOSQUE DEL APACHE</text>
+</g>
+<text x="423.3" y="1055.1" font-family="Fraunces,Georgia,serif" font-style="italic" font-size="9.5" fill="#7c5a36" opacity=".8" text-anchor="middle" pointer-events="none">El Paso · Cd. Juárez</text>
+<text x="686.2" y="1009.1" font-size="15" opacity=".4" text-anchor="middle" transform="rotate(-18 686.2 1009.1)" pointer-events="none">🐾</text>
+<text x="653.1" y="929.2" font-size="15" opacity=".4" text-anchor="middle" transform="rotate(10 653.1 929.2)" pointer-events="none">🐾</text>
+<text x="611.8" y="875.2" font-size="15" opacity=".4" text-anchor="middle" transform="rotate(-8 611.8 875.2)" pointer-events="none">🐾</text>
+<text x="636.6" y="799.3" font-size="15" opacity=".4" text-anchor="middle" transform="rotate(14 636.6 799.3)" pointer-events="none">🐾</text>
+<g pointer-events="none" transform="translate(470 1180.6)">
+<path d="M0 -34 L6 -8 L0 -12 L-6 -8 Z" fill="#4a3520"/>
+<path d="M0 34 L6 8 L0 12 L-6 8 Z" fill="#f4e8cd" stroke="#4a3520" stroke-width="1"/>
+<path d="M-34 0 L-8 -6 L-12 0 L-8 6 Z" fill="#f4e8cd" stroke="#4a3520" stroke-width="1"/>
+<path d="M34 0 L8 -6 L12 0 L8 6 Z" fill="#f4e8cd" stroke="#4a3520" stroke-width="1"/>
+<circle r="7" fill="#f08a24" stroke="#4a3520" stroke-width="1.4"/>
+<text y="-40" font-family="Fraunces,Georgia,serif" font-size="14" font-weight="700" fill="#4a3520" text-anchor="middle">N</text>
+</g>
+<g pointer-events="none">
+<path d="M561 1154.6 L583 1180.6 L583 1128.6 Z" fill="#8f2b37"/>
+<path d="M1009 1154.6 L987 1180.6 L987 1128.6 Z" fill="#8f2b37"/>
+<rect x="583" y="1114.6" width="404" height="74" fill="#b23a48" stroke="#8f2b37" stroke-width="2"/>
+<text x="785" y="1150.6" font-family="'Alfa Slab One',serif" font-size="34" fill="#f4e8cd" text-anchor="middle" letter-spacing="2">NEW MEXICO</text>
+<text x="785" y="1174.6" font-family="Fraunces,Georgia,serif" font-style="italic" font-size="14.5" fill="#f6d9b0" text-anchor="middle">La Tierra del Encanto · The Land of Enchantment</text>
+<text x="785" y="1202.6" font-family="Libre Franklin,sans-serif" font-size="9" font-weight="700" letter-spacing="1.5" fill="#7c5a36" text-anchor="middle" opacity=".8">UN MAPA DE POLITÍCAT · TOCA UN CONDADO — TAP ANY COUNTY</text>
+</g>
+</svg>
+            </div>
+            <p class="map-hint">🐾 Tap any county for its civic snapshot · drag to pan, <b>+</b>/<b>−</b> to zoom · 📍 drops pins for planning or research (pins are saved only in your browser — nothing is uploaded).</p>
+          </div>
+          <aside class="county-snapshot" id="countySnapshot" aria-live="polite">
+            <span class="snapshot-kicker">County dashboard</span>
+            <h3>Choose your county.</h3>
+            <p>Every county becomes its own civic starting point.</p>
+          </aside>
+        </div>
+        <div class="ready-columns">
+          <div class="ready-col">
+            <h3>Am I Registered?</h3>
+            <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/voter-registration/" target="_blank" rel="noopener noreferrer"><span>Register to Vote</span><small>Official NM online registration</small><b>→</b></a>
+            <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer"><span>Check My Registration</span><small>Confirm your status</small><b>→</b></a>
+          </div>
+          <div class="ready-col">
+            <h3>Get Ready to Vote</h3>
+            <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal/absentee-and-early-voting/" target="_blank" rel="noopener noreferrer"><span>Request an Absentee Ballot</span><small>Vote by mail</small><b>→</b></a>
+            <a class="ready-action" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer"><span>See What's on My Ballot</span><small>Your personal sample ballot</small><b>→</b></a>
+          </div>
+        </div>
+        <a class="clerk-wide" href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer">Find my County Clerk's office and local deadlines →</a>
+        <p class="ready-boundary">PolitíCat shows official requirements and links. It does not track your personal status or store your information.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/politicat-logo.png" alt="PolitíCat NM">
+        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records one question at a time.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="ask.html">Ask PolitíCat</a>
+        <a href="explore.html">Explore NM</a>
+        <a href="learn.html">Learn</a>
+        <a href="trail.html">The Trail</a>
+        <a href="whitepaper.html">White Paper</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="community.html">Community</a>
+        <a href="mailto:PolitiCatNM@proton.me">PolitiCatNM@proton.me</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PolitíCat NM · politicatnm.org</span>
+      <span class="nonpartisan">Nonpartisan civic education · Not affiliated with any government, party, or campaign.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js?v=20260816-terminal1"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse — PolitíCat NM</title>
+<meta name="description" content="The Civic Pulse: what's changing across New Mexico's 33 counties — official records, explanations, and honest source coverage in one feed.">
+<link rel="canonical" href="https://politicatnm.org/pulse.html">
+<meta name="theme-color" content="#0f3d3e">
+<meta property="og:site_name" content="PolitíCat NM">
+<meta property="og:title" content="Pulse — PolitíCat NM">
+<meta property="og:description" content="The Civic Pulse: what's changing across New Mexico's 33 counties — official records, explanations, and honest source coverage in one feed.">
+<meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<meta property="og:url" content="https://politicatnm.org/pulse.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PolitiCatNM">
+<link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-terminal1">
+<script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+.proto-banner{background:#8f2b37;color:#fff;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.5px;padding:7px 14px}
+.proto-banner b{color:#ffd9a0}
+.preview-note{background:rgba(240,138,36,.13);border-bottom:1px solid rgba(240,138,36,.4);color:#8a5a1a;text-align:center;font-size:.76rem;font-weight:700;padding:6px 14px}
+/* ---- Civic Pulse ticker ---- */
+.pulse-ticker{background:var(--teal-deep);border-top:1px solid rgba(230,215,184,.25);overflow:hidden;position:relative}
+.pulse-ticker .lane{display:flex;gap:38px;white-space:nowrap;padding:9px 0;animation:tick 55s linear infinite;width:max-content}
+.pulse-ticker:hover .lane{animation-play-state:paused}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{color:var(--cream);font-size:.82rem;font-weight:600;display:flex;gap:8px;align-items:center;text-decoration:none}
+.tick-item:hover{color:#fff}
+.tick-item .cty{background:rgba(240,138,36,.25);color:#ffd9a0;font-size:.66rem;font-weight:900;letter-spacing:.5px;padding:2px 8px;border-radius:999px;text-transform:uppercase}
+.tick-item .when{color:#9fc5bd;font-size:.7rem;font-weight:700}
+.tick-item.warn{color:#ffb9a8}
+/* ---- terminal grid ---- */
+.pt-shell{width:100%;padding:18px clamp(16px,1.2vw,36px) 60px;display:grid;grid-template-columns:clamp(280px,16vw,380px) minmax(0,1fr) clamp(290px,17vw,390px);gap:18px;align-items:start}
+.pt-col-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.pt-col-head h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.05rem}
+.pt-col-head select{padding:6px 9px;border-radius:8px;border:1px solid rgba(20,89,90,.3);font-family:inherit;font-size:.76rem;font-weight:700;color:var(--teal)}
+/* county strip */
+.pt-counties{display:flex;flex-direction:column;gap:8px;max-height:78vh;overflow-y:auto;padding-right:4px}
+.pt-county{background:var(--cream-soft);border:1px solid rgba(20,89,90,.16);border-radius:11px;padding:10px 13px;text-decoration:none;display:block}
+.pt-county:hover{border-color:var(--orange)}
+.pt-county b{display:block;color:var(--teal-deep);font-size:.9rem}
+.pt-county .stats{font-size:.72rem;color:#4a5a55;font-weight:600;margin-top:2px}
+.pt-county .cov{display:inline-block;margin-top:5px;font-size:.62rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:rgba(90,125,58,.14);color:#3f6d33}
+.pt-county .cov.partial{background:rgba(240,138,36,.15);color:var(--orange-deep)}
+/* feed */
+.pt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.pt-tab{border:1px solid rgba(20,89,90,.3);background:#fff;color:var(--teal);font-weight:800;font-size:.76rem;border-radius:999px;padding:7px 13px;cursor:pointer}
+.pt-tab.on{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
+.pt-feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:12px;align-items:start}
+.pt-card.grouped{grid-column:1/-1}
+.pt-card{background:#fff;border:1px solid rgba(20,89,90,.18);border-radius:13px;padding:15px 17px}
+.pt-card .top{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
+.badge{font-size:.62rem;font-weight:900;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px;border-radius:5px}
+.badge.official{background:var(--teal-deep);color:var(--cream)}
+.badge.report{background:rgba(106,76,147,.14);color:var(--plum);border:1px solid rgba(106,76,147,.35)}
+.badge.community{background:rgba(90,125,58,.14);color:#3f6d33;border:1px solid rgba(90,125,58,.35)}
+.badge.social{background:#f2f2f2;color:#555;border:1px dashed #999}
+.badge.politicat{background:var(--orange);color:#fff}
+.pt-card .cty{font-size:.68rem;font-weight:900;color:var(--orange-deep);letter-spacing:.5px;text-transform:uppercase}
+.pt-card .when{margin-left:auto;font-size:.7rem;font-weight:700;color:#4a5a55}
+.pt-card h3{font-size:1.02rem;color:var(--ink);line-height:1.3;margin-bottom:4px}
+.pt-card .said{font-size:.85rem;color:#333;line-height:1.55}
+.pt-card .why{margin-top:8px;background:rgba(240,138,36,.08);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;padding:8px 12px;font-size:.82rem;line-height:1.5}
+.pt-card .why b{color:var(--orange-deep)}
+.pt-card .links{margin-top:9px;display:flex;gap:14px;flex-wrap:wrap;font-size:.76rem;font-weight:800}
+.pt-card .links a{color:var(--teal-bright);text-decoration:none}
+.pt-card.grouped{border-width:2px;border-color:rgba(20,89,90,.35)}
+.pt-card .rollup{display:flex;gap:10px;margin-top:9px;font-size:.74rem;font-weight:700;color:#4a5a55;flex-wrap:wrap}
+.pt-card .rollup span{background:var(--cream-soft);border:1px solid rgba(20,89,90,.15);border-radius:999px;padding:4px 11px}
+.pt-card.unavailable{border-style:dashed;border-color:#b98a4a;background:#fdf9ef}
+/* right rail */
+.pt-right{position:sticky;top:14px;display:flex;flex-direction:column;gap:13px}
+.pt-panel{background:var(--cream-soft);border:1px solid rgba(20,89,90,.16);border-radius:13px;padding:15px 17px}
+.pt-panel h4{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1rem;margin-bottom:9px}
+.pt-follow{display:flex;flex-wrap:wrap;gap:6px}
+.pt-follow button{border:1px solid rgba(20,89,90,.3);background:#fff;border-radius:999px;padding:6px 12px;font-size:.74rem;font-weight:800;color:var(--teal);cursor:pointer}
+.pt-follow button.on{background:var(--orange);border-color:var(--orange-deep);color:#fff}
+.pt-note{font-size:.72rem;color:#4a5a55;line-height:1.6}
+@media(max-width:1150px){.pt-shell{grid-template-columns:1fr}.pt-counties{max-height:none;flex-direction:row;flex-wrap:wrap}.pt-county{flex:1 1 180px}.pt-right{position:static}}
+</style>
+</head>
+<body>
+<div class="preview-note">Preview build — feed items marked 'sample' are demonstrations; registration numbers and items marked 'real' are real. The live Pulse turns on per source family as scheduled collection lands.</div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="navlinks"><a href="explore.html">Explore NM</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a><a href="ask.html" class="nav-cta">Ask a Question</a></nav>
+  </div>
+</header>
+
+<div class="pulse-ticker" aria-label="Civic Pulse ticker — sample items">
+  <div class="lane">
+    <a class="tick-item" href="#"><span class="cty">Bernalillo</span>🗳️ Sample ballots published <span class="when">updated today</span></a>
+    <a class="tick-item" href="#"><span class="cty">Statewide</span>🏛️ HB 143 committee hearing <span class="when">hearing tomorrow</span></a>
+    <a class="tick-item" href="#"><span class="cty">Socorro</span>💧 Water filing updated <span class="when">just recorded</span></a>
+    <a class="tick-item" href="#"><span class="cty">Santa Fe</span>📅 County agenda posted <span class="when">published yesterday</span></a>
+    <a class="tick-item warn" href="#"><span class="cty">Chaves</span>⚠️ Election source unavailable <span class="when">checking</span></a>
+    <a class="tick-item" href="#"><span class="cty">Doña Ana</span>⚖️ Court calendar updated <span class="when">updated today</span></a>
+    <a class="tick-item" href="#"><span class="cty">Bernalillo</span>🗳️ Sample ballots published <span class="when">updated today</span></a>
+    <a class="tick-item" href="#"><span class="cty">Statewide</span>🏛️ HB 143 committee hearing <span class="when">hearing tomorrow</span></a>
+    <a class="tick-item" href="#"><span class="cty">Socorro</span>💧 Water filing updated <span class="when">just recorded</span></a>
+    <a class="tick-item" href="#"><span class="cty">Santa Fe</span>📅 County agenda posted <span class="when">published yesterday</span></a>
+    <a class="tick-item warn" href="#"><span class="cty">Chaves</span>⚠️ Election source unavailable <span class="when">checking</span></a>
+    <a class="tick-item" href="#"><span class="cty">Doña Ana</span>⚖️ Court calendar updated <span class="when">updated today</span></a>
+  </div>
+</div>
+
+<div class="pt-shell">
+
+  <!-- 33-county strip -->
+  <aside>
+    <div class="pt-col-head">
+      <h2>All 33 Counties</h2>
+      <select aria-label="Organize counties">
+        <option>Alphabetical</option><option>My counties</option><option>Recently updated</option>
+        <option>Upcoming meetings</option><option>Elections</option><option>Collection problems</option>
+      </select>
+    </div>
+    <div class="pt-counties" id="counties"></div>
+  </aside>
+
+  <!-- feed -->
+  <main>
+    <div class="pt-col-head"><h2>Civic Feed</h2></div>
+    <div class="pt-tabs">
+      <button class="pt-tab on" type="button">For You</button><button class="pt-tab" type="button">New Mexico</button>
+      <button class="pt-tab" type="button">My Counties</button><button class="pt-tab" type="button">Elections</button>
+      <button class="pt-tab" type="button">Legislation</button><button class="pt-tab" type="button">Meetings</button>
+      <button class="pt-tab" type="button">Water &amp; Land</button><button class="pt-tab" type="button">Courts</button>
+    </div>
+    <div class="pt-feed">
+
+      <div class="pt-card grouped">
+        <div class="top"><span class="badge official">Official</span><span class="cty">Bernalillo</span><span class="when">recorded 22 min ago · sample</span></div>
+        <h3>County commission agenda published — land-use amendment on Tuesday</h3>
+        <p class="said"><b>What the source says:</b> the agenda lists a proposed amendment to a county land-use ordinance, scheduled for the Aug 18 commission meeting.</p>
+        <div class="why"><b>Why it may matter:</b> the proposal could change what can be built in the affected area. The commission can adopt, amend, or table it.</div>
+        <div class="rollup"><span>📄 Official record</span><span>📰 3 news reports</span><span>💬 12 community discussions</span></div>
+        <div class="links"><a href="#">PolitíCat explanation →</a><a href="#">View original agenda ↗</a><a href="#">Follow this issue ☆</a></div>
+      </div>
+
+      <div class="pt-card">
+        <div class="top"><span class="badge politicat">PolitíCat</span><span class="cty">Statewide</span><span class="when">updated today · sample</span></div>
+        <h3>What HB 143 would actually change</h3>
+        <p class="said">Plain-English walk-through of the bill as filed: what it changes, what it doesn't, and which agencies would carry it out — every claim linked to the filed text.</p>
+        <div class="links"><a href="#">Read the explainer →</a><a href="#">Filed bill text ↗</a></div>
+      </div>
+
+      <div class="pt-card">
+        <div class="top"><span class="badge report">Local reporting</span><span class="cty">Socorro</span><span class="when">published yesterday · sample</span></div>
+        <h3>Local newsroom covers the water filing</h3>
+        <p class="said"><b>What the source says:</b> a New Mexico news organization reports on the updated OSE filing. Reporting is a discovery source — the filing itself is the record.</p>
+        <div class="links"><a href="#">The filing (official) ↗</a><a href="#">The article ↗</a></div>
+      </div>
+
+      <div class="pt-card">
+        <div class="top"><span class="badge social">Social discussion</span><span class="cty">Doña Ana</span><span class="when">today · sample</span></div>
+        <h3>Community thread about the court calendar change</h3>
+        <p class="said">Social posts are discussion, never records. PolitíCat links the conversation and the official calendar side by side — and they never look alike.</p>
+        <div class="links"><a href="#">Official calendar ↗</a><a href="#">Thread ↗</a></div>
+      </div>
+
+      <div class="pt-card unavailable">
+        <div class="top"><span class="badge official">Official</span><span class="cty">Chaves</span><span class="when">source unavailable</span></div>
+        <h3>Election page could not be reached</h3>
+        <p class="said">The county's election source didn't respond on our last check. That's a fact about <b>our coverage</b>, not about the county — we say it instead of hiding it.</p>
+        <div class="links"><a href="#">Coverage record →</a></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- right rail -->
+  <aside class="pt-right">
+    <div class="pt-panel">
+      <h4>☆ My PolitíCat</h4>
+      <p class="pt-note" style="margin-bottom:8px">Follow counties and issues. Saved <b>only in this browser</b> — no account, no tracking. Facts are never behind a login.</p>
+      <div class="pt-follow">
+        <button type="button" class="on">Bernalillo</button><button type="button">Doña Ana</button>
+        <button type="button">Socorro</button><button type="button">+ county</button>
+      </div>
+      <div class="pt-follow" style="margin-top:8px">
+        <button type="button" class="on">Elections</button><button type="button">Water</button><button type="button">HB 143</button>
+      </div>
+    </div>
+    <div class="pt-panel">
+      <h4>📅 Coming up</h4>
+      <p class="pt-note">Nov 3 — General election (official calendar)<br>Aug 18 — Bernalillo commission meeting <i>(sample)</i><br>Tomorrow — HB 143 hearing <i>(sample)</i></p>
+    </div>
+    <div class="pt-panel">
+      <h4>Source coverage</h4>
+      <p class="pt-note">Voter registration — captured (2026-05)<br>Legislative seats — captured (112)<br>Meetings/agendas — not yet collected<br>Courts — not yet collected<br><br>The Pulse goes live per source family as its collection goes on schedule.</p>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/politicat-logo.png" alt="PolitíCat NM">
+        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records one question at a time.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="ask.html">Ask PolitíCat</a>
+        <a href="explore.html">Explore NM</a>
+        <a href="elections.html">Elections</a>
+        <a href="learn.html">Learn</a>
+        <a href="trail.html">The Trail</a>
+        <a href="whitepaper.html">White Paper</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="community.html">Community</a>
+        <a href="mailto:PolitiCatNM@proton.me">PolitiCatNM@proton.me</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PolitíCat NM · politicatnm.org</span>
+      <span class="nonpartisan">Nonpartisan civic education · Not affiliated with any government, party, or campaign.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const C = [["Bernalillo",447967],["Catron",3313],["Chaves",37547],["Cibola",16623],["Colfax",8539],
+["Curry",26456],["De Baca",1318],["Doña Ana",146761],["Eddy",37625],["Grant",21652],["Guadalupe",3051],
+["Harding",570],["Hidalgo",2988],["Lea",39231],["Lincoln",14693],["Los Alamos",16374],["Luna",14258],
+["McKinley",46954],["Mora",3873],["Otero",41835],["Quay",5967],["Rio Arriba",26851],["Roosevelt",11673],
+["Sandoval",116985],["San Juan",84598],["San Miguel",18116],["Santa Fe",116391],["Sierra",8612],
+["Socorro",11237],["Taos",26641],["Torrance",11316],["Union",2532],["Valencia",51187]];
+document.getElementById('counties').innerHTML = C.map(([n, v]) =>
+  '<a class="pt-county" href="county.html?c=' + n.toLowerCase().replace('ñ','n').replace(/[^a-z0-9]+/g,'-') + '"><b>' + n + '</b>' +
+  '<span class="stats">' + v.toLocaleString('en-US') + ' registered voters · SOS 2026-05</span>' +
+  '<span class="cov partial">Coverage: registration + seats</span></a>').join('');
+</script>
+</body>
+</html>

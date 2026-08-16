@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>County Civic Profile — PolitíCat NM</title>
+<meta name="description" content="A New Mexico county's complete civic world: people and offices, elections, courts, money, meetings, land and water — with sources and honest coverage.">
+<link rel="canonical" href="https://politicatnm.org/county.html">
+<meta name="theme-color" content="#0f3d3e">
+<meta property="og:site_name" content="PolitíCat NM">
+<meta property="og:title" content="County Civic Profile — PolitíCat NM">
+<meta property="og:description" content="A county's complete civic world: people, elections, courts, money, meetings, land and water.">
+<meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<meta property="og:url" content="https://politicatnm.org/county.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PolitiCatNM">
+<link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-terminal1">
+<script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+.preview-note{background:rgba(240,138,36,.13);border-bottom:1px solid rgba(240,138,36,.4);color:#8a5a1a;text-align:center;font-size:.76rem;font-weight:700;padding:6px 14px}
+.cp-shell{width:100%;padding:22px clamp(16px,1.3vw,40px) 60px;display:grid;grid-template-columns:clamp(230px,14vw,340px) minmax(0,1fr) clamp(300px,17vw,400px);gap:22px;align-items:start}
+.cp-rail{position:sticky;top:16px}
+.cp-rail-card,.cp-action-card{background:var(--cream-soft);border:1px solid rgba(20,89,90,.14);border-radius:14px;padding:16px}
+.cp-rail h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.15rem;line-height:1.15;margin-bottom:8px}
+.cp-rail-nav{display:flex;flex-direction:column;gap:2px;margin-top:12px}
+.cp-rail-nav a{display:flex;gap:8px;align-items:center;color:var(--teal);text-decoration:none;font-weight:600;font-size:.86rem;padding:8px 10px;border-radius:9px}
+.cp-rail-nav a:hover{background:rgba(20,89,90,.08)}
+.cp-rail-nav a.is-active{background:var(--teal);color:var(--cream)}
+.cp-rail select{width:100%;padding:8px;border-radius:9px;border:1px solid rgba(20,89,90,.3);font-family:inherit;font-size:.84rem}
+.cp-crumb{font-size:.78rem;font-weight:700;color:#4a5a55;margin-bottom:6px}
+.cp-crumb a{color:var(--teal-bright);text-decoration:none}
+.cp-h1{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:2.3rem;line-height:1.05}
+.cp-recorded{font-size:.78rem;font-weight:700;color:#4a5a55;margin:4px 0 14px}
+.cp-notice{display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(29,122,124,.09);border:1px solid rgba(29,122,124,.25);border-radius:12px;padding:11px 14px;font-size:.86rem;font-weight:600;color:var(--teal-deep);margin-bottom:16px}
+.cp-notice button{background:var(--teal-deep);color:var(--cream);border:none;border-radius:9px;padding:9px 14px;font-weight:800;font-size:.8rem;cursor:not-allowed;opacity:.75;white-space:nowrap}
+.cp-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.cp-fact{background:#fff;border:1px solid rgba(20,89,90,.13);border-radius:12px;padding:13px 15px}
+.cp-fact span{display:block;font-size:.74rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#4a5a55}
+.cp-fact b{font-size:1.45rem;color:var(--teal-deep);font-variant-numeric:tabular-nums}
+.cp-fact small{display:block;font-size:.72rem;color:#4a5a55;margin-top:2px}
+.cp-sec-title{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.65rem;margin:4px 0 2px}
+.cp-sec-sub{font-size:.92rem;color:#4a5a55;margin-bottom:12px}
+section,details{scroll-margin-top:24px}
+.cp-tabs{display:flex;gap:8px;margin-bottom:12px}
+.cp-tab{border:1px solid rgba(20,89,90,.3);background:#fff;color:var(--teal);font-weight:800;font-size:.82rem;border-radius:999px;padding:8px 16px;cursor:pointer}
+.cp-tab[aria-selected="true"]{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
+.cp-group{margin:22px 0 10px;display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:11px;border-left:7px solid var(--teal)}
+.cp-group h4{font-size:.92rem;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+.cp-group small{font-size:.78rem;color:#4a5a55;font-weight:600}
+.cp-group--state{background:rgba(20,89,90,.1);border-left-color:var(--teal)}
+.cp-group--state h4{color:var(--teal-deep)}
+.cp-group--county{background:rgba(240,138,36,.12);border-left-color:var(--orange)}
+.cp-group--county h4{color:var(--orange-deep)}
+.cp-group--addr{background:rgba(185,138,74,.14);border-left-color:#b98a4a}
+.cp-group--addr h4{color:#8a6430}
+.cp-group--court{background:rgba(106,76,147,.1);border-left-color:var(--plum)}
+.cp-group--court h4{color:var(--plum)}
+.cp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.cp-person{background:#fff;border:2px solid rgba(20,89,90,.22);border-radius:13px;padding:17px;display:flex;flex-direction:column;gap:7px}
+.cp-avatar{width:86px;height:86px;border-radius:50%;background:linear-gradient(160deg,#c9d8cf,#9db8ad);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;color:#41564b;border:2px solid rgba(20,89,90,.18)}
+.cp-person h5{font-size:1.05rem;color:var(--ink);line-height:1.25}
+.cp-person .office{font-size:.8rem;font-weight:800;color:var(--teal)}
+.cp-badge{display:inline-block;font-size:.64rem;font-weight:900;letter-spacing:.6px;text-transform:uppercase;background:rgba(240,138,36,.14);color:var(--orange-deep);border-radius:999px;padding:3px 9px;width:max-content}
+.cp-badge--state{background:rgba(20,89,90,.1);color:var(--teal)}
+.cp-badge--court{background:rgba(106,76,147,.12);color:var(--plum)}
+.cp-meta{font-size:.72rem;color:#4a5a55;line-height:1.45}
+.cp-person details.src{font-size:.72rem;color:#4a5a55;border-top:1px dashed rgba(90,58,27,.2);padding-top:6px;margin-top:2px}
+.cp-person details.src summary{cursor:pointer;font-weight:800;color:var(--teal)}
+.cp-callout{display:flex;gap:14px;align-items:flex-start;background:rgba(240,138,36,.1);border:1px solid rgba(240,138,36,.35);border-radius:13px;padding:14px 16px;margin:14px 0;font-size:.86rem;line-height:1.55}
+.cp-callout b{color:var(--orange-deep)}
+.cp-guide{display:flex;gap:14px;align-items:center;background:var(--cream-soft);border:1px solid rgba(20,89,90,.14);border-radius:13px;padding:12px 16px;margin:14px 0}
+.cp-guide .cat{font-size:2.3rem}
+.cp-guide p{font-size:.84rem;line-height:1.5}
+.cp-guide small{display:block;font-size:.7rem;font-weight:800;color:var(--orange-deep);letter-spacing:.5px;text-transform:uppercase;margin-top:3px}
+.cp-ballot-cta{display:flex;gap:16px;align-items:center;background:linear-gradient(120deg,var(--teal-deep),var(--teal));color:var(--cream);border-radius:14px;padding:18px 20px;margin:20px 0 4px}
+.cp-ballot-cta .big{font-family:'Alfa Slab One',serif;font-size:1.25rem;line-height:1.2}
+.cp-ballot-cta p{font-size:.85rem;opacity:.92;margin-top:4px}
+.cp-ballot-cta a{margin-left:auto;background:var(--orange);color:#fff;font-weight:900;border-radius:11px;padding:13px 20px;text-decoration:none;white-space:nowrap;font-size:.95rem}
+.cp-acc{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.cp-acc details{background:#fff;border:2px solid rgba(20,89,90,.3);border-radius:13px;overflow:hidden}
+.cp-acc summary{cursor:pointer;padding:18px 20px;font-weight:800;color:var(--teal-deep);font-size:1.08rem;display:flex;align-items:center;gap:10px;list-style:none}
+.cp-acc summary::-webkit-details-marker{display:none}
+.cp-acc summary::after{content:"▾";margin-left:auto;color:var(--orange);transition:transform .15s}
+.cp-acc details[open] summary::after{transform:rotate(180deg)}
+.cp-acc summary:focus-visible{outline:3px solid var(--orange);outline-offset:-3px}
+.cp-acc .body{padding:4px 18px 18px;font-size:.86rem;color:#333;line-height:1.6}
+.cp-right{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+.cp-action-card h4{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.02rem;margin-bottom:10px}
+.cp-actions{display:flex;flex-direction:column;gap:7px}
+.cp-actions a{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid rgba(20,89,90,.16);border-radius:10px;padding:10px 13px;font-size:.83rem;font-weight:700;color:var(--teal);text-decoration:none}
+.cp-actions a:hover{border-color:var(--orange)}
+.cp-next b{font-size:1.05rem;color:var(--teal-deep);display:block}
+.cp-next small{font-size:.74rem;color:#4a5a55}
+.cp-cov{display:flex;flex-direction:column;gap:6px;font-size:.8rem;font-weight:600}
+.cp-cov i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.cov-ok{background:#5a7d3a}.cov-part{background:var(--orange)}.cov-none{background:#b9b2a4}
+.cp-foot-note{font-size:.72rem;color:#4a5a55;line-height:1.55}
+.cp-foot-note a{color:var(--teal-bright)}
+@media(max-width:1100px){.cp-shell{grid-template-columns:1fr}.cp-rail,.cp-right{position:static}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="navlinks"><a href="explore.html">Explore NM</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a><a href="ask.html" class="nav-cta">Ask a Question</a></nav>
+  </div>
+</header>
+
+<div class="preview-note">Preview build — registration and change figures are real; officials, candidates, and courts show honest "awaiting collection" cards until their rosters are approved for publication.</div>
+
+<div class="cp-shell">
+
+  <aside class="cp-rail">
+    <div class="cp-rail-card">
+      <h2 data-county-name>County</h2>
+      <select id="cpCountyPick" aria-label="Choose a county"></select>
+      <nav class="cp-rail-nav" aria-label="County sections">
+        <a href="#overview">🏠 Overview</a>
+        <a href="#people" class="is-active">👤 People &amp; Offices</a>
+        <a href="#elections">🗳️ Elections &amp; Candidates</a>
+        <a href="#courts">⚖️ Courts &amp; Judges</a>
+        <a href="#money">🏛️ Money &amp; Decisions</a>
+        <a href="#meetings">📄 Meetings &amp; Public Records</a>
+        <a href="#land">💧 Land, Water &amp; Development</a>
+        <a href="#story">📖 County Story &amp; History</a>
+        <a href="#sources">🧾 Sources &amp; Coverage</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main id="overview">
+    <div class="cp-crumb"><a href="explore.html">Explore NM</a> / <span data-county-name>County</span></div>
+    <h1 class="cp-h1" data-county-name>County</h1>
+    <p class="cp-recorded">Latest recorded: <b>2026-05 (SOS registration)</b> · officials &amp; candidates: awaiting first collection</p>
+
+    <div class="cp-notice">
+      <span>ℹ️ Showing <b>countywide</b> information. Enter an address for your exact districts and city offices.</span>
+      <button disabled title="Coming with address-to-district lookup">Find my exact districts</button>
+    </div>
+
+    <div class="cp-facts">
+      <div class="cp-fact"><span>Registered voters</span><b id="cpVoters">—</b><small>NM SOS report, 2026-05 · real</small></div>
+      <div class="cp-fact"><span>Population</span><b>—</b><small>Awaiting approved source</small></div>
+      <div class="cp-fact"><span>Source coverage</span><b>2 of 5</b><small>Registration + legislative seats captured</small></div>
+    </div>
+
+    <div id="cpChangeSlot"></div>
+
+    <section id="people" style="margin-top:22px">
+      <h3 class="cp-sec-title">People serving <span data-county-name>this county</span></h3>
+      <p class="cp-sec-sub">Current officeholders, grouped by the jurisdiction that actually applies to you.</p>
+
+      <div class="cp-tabs" role="tablist">
+        <button class="cp-tab" role="tab" aria-selected="true" onclick="cpSwap(this,'cpOfficials')" type="button">Current officials</button>
+        <button class="cp-tab" role="tab" aria-selected="false" onclick="cpSwap(this,'cpCandidates')" type="button">2026 candidates</button>
+      </div>
+
+      <div id="cpOfficials">
+        <div class="cp-group cp-group--state"><h4>Statewide — serve every resident</h4><small>Governor · SOS · AG · Treasurer · Auditor · Public Lands</small></div>
+        <div class="cp-cards">
+          <div class="cp-person"><div class="cp-avatar">GV</div><h5>Name — awaiting approved source</h5><div class="office">Governor</div><span class="cp-badge cp-badge--state">Statewide</span><div class="cp-meta">Filled from the official roster when its collection is approved for publication.</div><details class="src"><summary>Source details</summary>Source: pending first officials collection · Latest recorded: —</details></div>
+          <div class="cp-person"><div class="cp-avatar">SS</div><h5>Name — awaiting approved source</h5><div class="office">Secretary of State</div><span class="cp-badge cp-badge--state">Statewide</span><div class="cp-meta">Filled from the official roster when its collection is approved for publication.</div><details class="src"><summary>Source details</summary>Source: pending first officials collection · Latest recorded: —</details></div>
+          <div class="cp-person"><div class="cp-avatar">AG</div><h5>Name — awaiting approved source</h5><div class="office">Attorney General</div><span class="cp-badge cp-badge--state">Statewide</span><div class="cp-meta">Filled from the official roster when its collection is approved for publication.</div><details class="src"><summary>Source details</summary>Source: pending first officials collection · Latest recorded: —</details></div>
+        </div>
+
+        <div class="cp-group cp-group--county"><h4>Countywide — every resident votes for these</h4><small>Clerk · Sheriff · Treasurer · Assessor · Probate Judge</small></div>
+        <div class="cp-cards">
+          <div class="cp-person"><div class="cp-avatar">CC</div><h5>Name — awaiting approved source</h5><div class="office">County Clerk</div><span class="cp-badge">Countywide</span><div class="cp-meta">Runs county elections, records deeds, issues licenses.</div><details class="src"><summary>Source details</summary>Source: pending first officials collection · Latest recorded: —</details></div>
+          <div class="cp-person"><div class="cp-avatar">SH</div><h5>Name — awaiting approved source</h5><div class="office">Sheriff</div><span class="cp-badge">Countywide</span><div class="cp-meta">County law enforcement outside city limits; runs detention.</div><details class="src"><summary>Source details</summary>Source: pending first officials collection · Latest recorded: —</details></div>
+          <div class="cp-person"><div class="cp-avatar">AS</div><h5>Name — awaiting approved source</h5><div class="office">Assessor</div><span class="cp-badge">Countywide</span><div class="cp-meta">Values property for the county tax roll.</div><details class="src"><summary>Source details</summary>Source: pending first officials collection · Latest recorded: —</details></div>
+        </div>
+
+        <div class="cp-guide">
+          <span class="cat">🐱</span>
+          <p><b>What does the County Clerk's office do?</b> Runs county elections, records deeds, issues marriage licenses.
+          <small>Office guide — the office, not the officeholder</small></p>
+        </div>
+
+        <div class="cp-group cp-group--addr"><h4>Depends on your address</h4><small>Commissioner district · legislators · school board · city offices</small></div>
+        <div class="cp-callout">
+          <span style="font-size:1.6rem">🏙️</span>
+          <div><b>City officials depend on where you live.</b> A city mayor applies only to that city's residents. If you live in an unincorporated area — like Bernalillo County's South Valley — <b>no city mayor applies to your address</b>, and your county commissioner matters more than you've been told. An address lookup for the exact answer is coming.</div>
+        </div>
+
+        <div class="cp-group cp-group--court"><h4>Courts serving this county</h4><small>Judges serve courts and districts — not every judge "represents" every resident</small></div>
+        <div class="cp-cards">
+          <div class="cp-person"><div class="cp-avatar">DC</div><h5>District Court — list pending</h5><div class="office">Judicial district serving this county</div><span class="cp-badge cp-badge--court">Judicial district</span><details class="src"><summary>Source details</summary>Source: pending courts collection · Latest recorded: —</details></div>
+          <div class="cp-person"><div class="cp-avatar">MG</div><h5>Magistrate / Metro Court — list pending</h5><div class="office">County-seated, state-operated</div><span class="cp-badge cp-badge--court">County</span><details class="src"><summary>Source details</summary>Source: pending courts collection · Latest recorded: —</details></div>
+        </div>
+      </div>
+
+      <div id="cpCandidates" hidden>
+        <div class="cp-callout"><span style="font-size:1.6rem">🗳️</span><div><b>2026 candidates view.</b> Every ballot-qualified candidate in a race gets an identical card — same size, same fields, photo only if the campaign provides one. Populated from certified SOS candidate lists when that collection is approved for publication.</div></div>
+      </div>
+    </section>
+
+    <div class="cp-ballot-cta">
+      <span style="font-size:2.2rem">🗳️</span>
+      <div>
+        <div class="big">Practice Your Ballot</div>
+        <p>See what voting will look like before Election Day. Learn every office, mark your choices, review privately.<br><b>This is practice — it does not cast or submit a vote.</b></p>
+      </div>
+      <a href="ballot.html">Start practicing →</a>
+    </div>
+
+    <div class="cp-acc">
+      <details id="elections" open>
+        <summary>🗳️ Elections &amp; Candidates</summary>
+        <div class="body">
+          <p><b>General election: November 3, 2026</b> — Governor, U.S. Senate, all three U.S. House seats, the Legislature, county offices, judges, and ballot questions (official SOS calendar). Candidates appear here only from certified lists — never invented. Until then, use the official tools in the right rail.</p>
+        </div>
+      </details>
+      <details id="courts"><summary>⚖️ Courts &amp; Judges</summary><div class="body">Judges grouped by court and judicial district, with retention and election dates. Awaiting the courts collection.</div></details>
+      <details id="money"><summary>🏛️ Money &amp; Decisions</summary><div class="body">Budgets, mill levies (DFA certificates), and Sunshine Portal purchases scoped to this county. Each figure will ship with source and date — or ship as UNKNOWN.</div></details>
+      <details id="meetings"><summary>📄 Meetings &amp; Public Records</summary><div class="body">Commission agendas, minutes, and notices — discrete event marks with capture receipts, never fake "live" feeds. Awaiting the meetings collection.</div></details>
+      <details id="land"><summary>💧 Land, Water &amp; Development</summary><div class="body">Parcels, points of diversion (evidence connected to water rights — not the complete legal record), and development projects. Awaiting linkage work.</div></details>
+      <details id="story"><summary>📖 County Story &amp; History</summary><div class="body">The registration-change story above is live today. Landmarks and county identity join it from the map's landmark layer.</div></details>
+      <details id="sources"><summary>🧾 Sources &amp; Coverage</summary><div class="body">Coverage describes <b>our records</b>, never county performance. Captured today: voter registration (SOS monthly reports, 2021-01 → 2026-05) and legislative seats (112, with two vacancies shown honestly). Not yet captured: officials roster, meetings, money detail, courts.</div></details>
+    </div>
+  </main>
+
+  <aside class="cp-right">
+    <div class="cp-action-card">
+      <h4>Your voting tools</h4>
+      <div class="cp-actions">
+        <a href="https://www.sos.nm.gov/voting-and-elections/voting-faqs/voter-registration/" target="_blank" rel="noopener noreferrer">Register to vote <b>→</b></a>
+        <a href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">Check my registration <b>→</b></a>
+        <a href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal/absentee-and-early-voting/" target="_blank" rel="noopener noreferrer">Request absentee ballot <b>→</b></a>
+        <a href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/" target="_blank" rel="noopener noreferrer">View my sample ballot <b>→</b></a>
+      </div>
+    </div>
+    <div class="cp-action-card cp-next">
+      <h4>📅 Next election</h4>
+      <b>November 3, 2026</b>
+      <small>General election · NM SOS calendar</small>
+    </div>
+    <div class="cp-action-card">
+      <h4>🐱 Ask Don Gato</h4>
+      <p style="font-size:.82rem;margin-bottom:8px">Ask in <span data-county-name>county</span> context.</p>
+      <a href="ask.html" style="font-weight:800;font-size:.84rem;color:var(--orange-deep);text-decoration:none">Start a question →</a>
+    </div>
+    <div class="cp-action-card">
+      <h4>Source coverage</h4>
+      <p style="font-size:.74rem;color:#4a5a55;margin-bottom:8px">Coverage describes records we've captured — never county performance.</p>
+      <div class="cp-cov">
+        <span><i class="cov-ok"></i>Voter registration — captured (2026-05)</span>
+        <span><i class="cov-ok"></i>Legislative seats — captured (112)</span>
+        <span><i class="cov-none"></i>Officials — not yet captured</span>
+        <span><i class="cov-part"></i>Elections — partial (federal only)</span>
+        <span><i class="cov-none"></i>Courts — not yet captured</span>
+      </div>
+    </div>
+    <p class="cp-foot-note">Some county sources publish less often than others. <a href="whitepaper.html">How we collect data →</a> · Back to <a href="explore.html">county strips</a> or the <a href="map.html">map</a>.</p>
+  </aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/politicat-logo.png" alt="PolitíCat NM">
+        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records one question at a time.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="ask.html">Ask PolitíCat</a>
+        <a href="explore.html">Explore NM</a>
+        <a href="elections.html">Elections</a>
+        <a href="learn.html">Learn</a>
+        <a href="trail.html">The Trail</a>
+        <a href="whitepaper.html">White Paper</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="community.html">Community</a>
+        <a href="mailto:PolitiCatNM@proton.me">PolitiCatNM@proton.me</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PolitíCat NM · politicatnm.org</span>
+      <span class="nonpartisan">Nonpartisan civic education · Not affiliated with any government, party, or campaign.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function cpSwap(btn, id) {
+  document.querySelectorAll('.cp-tab').forEach(t => t.setAttribute('aria-selected', 'false'));
+  btn.setAttribute('aria-selected', 'true');
+  document.getElementById('cpOfficials').hidden = (id !== 'cpOfficials');
+  document.getElementById('cpCandidates').hidden = (id !== 'cpCandidates');
+}
+</script>
+<script src="assets/js/app.js?v=20260816-terminal1"></script>
+</body>
+</html>

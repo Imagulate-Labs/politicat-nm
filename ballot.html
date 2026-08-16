@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Your Ballot — PolitíCat NM</title>
+<meta name="description" content="Practice voting privately before Election Day. Sample contests until official ballots are published — nothing is cast, nothing leaves your device.">
+<link rel="canonical" href="https://politicatnm.org/ballot.html">
+<meta name="theme-color" content="#0f3d3e">
+<meta property="og:site_name" content="PolitíCat NM">
+<meta property="og:title" content="Practice Your Ballot — PolitíCat NM">
+<meta property="og:description" content="Practice voting privately before Election Day. Sample contests until official ballots are published — nothing is cast, nothing leaves your device.">
+<meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<meta property="og:url" content="https://politicatnm.org/ballot.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PolitiCatNM">
+<link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-terminal1">
+<script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+.proto-banner{background:#8f2b37;color:#fff;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.5px;padding:7px 14px}
+.proto-banner b{color:#ffd9a0}
+.preview-note{background:rgba(240,138,36,.13);border-bottom:1px solid rgba(240,138,36,.4);color:#8a5a1a;text-align:center;font-size:.76rem;font-weight:700;padding:6px 14px}
+.pb-shell{width:100%;padding:22px clamp(16px,1.4vw,44px) 70px;display:grid;grid-template-columns:minmax(0,1fr) clamp(320px,19vw,420px);gap:26px;align-items:start}
+/* real ballots are multi-column — contests flow into columns on wide screens */
+.pb-contests{padding-bottom:6px}
+@media(min-width:1500px){.pb-contests{columns:2;column-gap:6px}.pb-contest{break-inside:avoid}}
+@media(min-width:2400px){.pb-contests{columns:3}}
+.pb-privacy{grid-column:1/-1;display:flex;gap:16px;align-items:center;background:rgba(20,89,90,.08);border:2px solid var(--teal);border-radius:14px;padding:16px 20px}
+.pb-privacy .lock{font-size:2rem}
+.pb-privacy h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.25rem;margin-bottom:3px}
+.pb-privacy p{font-size:.88rem;line-height:1.55}
+.pb-privacy b{color:var(--orange-deep)}
+.pb-find{grid-column:1/-1;background:var(--cream-soft);border:1px solid rgba(20,89,90,.16);border-radius:14px;padding:16px 20px;display:flex;gap:18px;align-items:end;flex-wrap:wrap}
+.pb-find label{font-size:.78rem;font-weight:800;color:var(--teal-deep);display:flex;flex-direction:column;gap:5px}
+.pb-find select{padding:9px 12px;border-radius:9px;border:1px solid rgba(20,89,90,.35);font-family:inherit;font-size:.9rem;min-width:220px}
+.pb-find .no-id{font-size:.76rem;color:#4a5a55;font-weight:600;max-width:340px;line-height:1.5}
+/* the ballot paper */
+.pb-paper{background:#fff;border:2px solid #1d1d1d;border-radius:6px;padding:0;box-shadow:0 20px 44px -20px rgba(15,61,62,.4)}
+.pb-paper-head{border-bottom:3px double #1d1d1d;padding:18px 24px;text-align:center}
+.pb-paper-head .off{font-weight:900;font-size:1.15rem;letter-spacing:1px}
+.pb-paper-head .sub{font-size:.85rem;font-weight:700;margin-top:2px}
+.pb-paper-head .sample{display:inline-block;margin-top:8px;background:#8f2b37;color:#fff;font-size:.7rem;font-weight:900;letter-spacing:1.5px;padding:4px 12px;border-radius:4px}
+.pb-instr{margin:16px 24px 0;border:1.5px solid #1d1d1d;padding:12px 14px;font-size:.82rem;line-height:1.55;background:#fbf9f2}
+.pb-instr b{text-transform:uppercase;letter-spacing:.5px}
+.pb-contest{margin:18px 24px;border:1.5px solid #1d1d1d}
+.pb-contest-head{background:#1d1d1d;color:#fff;padding:9px 14px;font-size:.85rem;font-weight:800;letter-spacing:.4px}
+.pb-contest-head small{display:block;font-weight:600;font-size:.72rem;opacity:.85}
+.pb-opts{padding:6px 14px 10px}
+.pb-opt{display:flex;align-items:center;gap:12px;padding:9px 4px;border-bottom:1px dotted rgba(0,0,0,.2);cursor:pointer}
+.pb-opt:last-child{border-bottom:none}
+.pb-opt input{appearance:none;width:38px;height:20px;border:2px solid #1d1d1d;border-radius:999px;cursor:pointer;flex:none;position:relative}
+.pb-opt input:checked{background:#1d1d1d}
+.pb-opt input:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.pb-opt .who b{display:block;font-size:.95rem}
+.pb-opt .who small{font-size:.74rem;color:#4a5a55}
+.pb-opt.writein input[type="text"]{appearance:auto;width:220px;height:auto;border:none;border-bottom:1.5px solid #1d1d1d;border-radius:0;font-family:'Fraunces',serif;font-size:.95rem;padding:2px 4px;background:transparent}
+.pb-warn{display:none;margin:0 14px 10px;background:rgba(178,58,72,.1);border:1.5px solid #b23a48;color:#8f2b37;font-size:.8rem;font-weight:700;padding:8px 12px;border-radius:6px}
+.pb-contest.overvoted .pb-warn{display:block}
+.pb-contest.overvoted{border-color:#b23a48;box-shadow:0 0 0 2px rgba(178,58,72,.3)}
+.pb-learn{margin:0 14px 12px;border:1px dashed rgba(20,89,90,.4);border-radius:8px;background:rgba(20,89,90,.04)}
+.pb-learn summary{cursor:pointer;padding:8px 12px;font-size:.78rem;font-weight:800;color:var(--teal);list-style:none}
+.pb-learn summary::-webkit-details-marker{display:none}
+.pb-learn .body{padding:2px 14px 12px;font-size:.82rem;line-height:1.6}
+.pb-learn .body a{color:var(--orange-deep);font-weight:700}
+/* right rail */
+.pb-rail{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+.pb-card{background:var(--cream-soft);border:1px solid rgba(20,89,90,.16);border-radius:14px;padding:16px 18px}
+.pb-card h4{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.05rem;margin-bottom:10px}
+.pb-progress{display:flex;flex-direction:column;gap:7px;font-size:.85rem;font-weight:600}
+.pb-progress .row{display:flex;justify-content:space-between}
+.pb-progress b{font-variant-numeric:tabular-nums}
+.pb-progress .fixup{color:#8f2b37}
+.pb-review-btn{display:block;width:100%;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:15px;font-family:inherit;font-weight:900;font-size:1.02rem;cursor:pointer;margin-top:12px}
+.pb-review-btn:hover{background:var(--orange-deep)}
+.pb-small-btns{display:flex;gap:8px;margin-top:9px}
+.pb-small-btns button{flex:1;background:#fff;border:1px solid rgba(20,89,90,.35);border-radius:9px;padding:9px;font-family:inherit;font-size:.8rem;font-weight:800;color:var(--teal);cursor:pointer}
+.pb-review{display:none;border:2px solid var(--teal-deep)}
+.pb-review.open{display:block}
+.pb-review .item{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;padding:7px 0;border-bottom:1px dashed rgba(90,58,27,.2)}
+.pb-review .st-ok{color:#3f6d33;font-weight:800}
+.pb-review .st-blank{color:#8a6430;font-weight:800}
+.pb-review .st-fix{color:#8f2b37;font-weight:800}
+.pb-review .verdict{margin-top:10px;font-size:.9rem;font-weight:700;line-height:1.5}
+.pb-note{font-size:.74rem;color:#4a5a55;line-height:1.6}
+.pb-note a{color:var(--teal-bright)}
+@media(max-width:980px){.pb-shell{grid-template-columns:1fr}.pb-rail{position:static}.pb-contest{margin:14px 10px}.pb-instr{margin:14px 10px 0}}
+@media print{.nav,.proto-banner,.pb-rail,.pb-find,.pb-privacy{display:none!important}.pb-shell{display:block}}
+</style>
+</head>
+<body>
+<div class="preview-note">Practice preview — sample contests and placeholder candidates until official ballots are published. This is practice: it does not cast or submit a vote, and your choices never leave your device.</div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="navlinks"><a href="explore.html">Explore NM</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a><a href="ask.html" class="nav-cta">Ask a Question</a></nav>
+  </div>
+</header>
+
+<div class="pb-shell">
+
+  <div class="pb-privacy">
+    <span class="lock">🔒</span>
+    <div>
+      <h2>Practice Your Ballot — private, on this device only</h2>
+      <p><b>This is practice. It does not cast, submit, or count a vote.</b> Your choices are never sent anywhere, never stored on our servers, and never shared — they exist only on this screen until you print or erase them. We never ask your name, birthday, or voter ID.</p>
+    </div>
+  </div>
+
+  <div class="pb-find">
+    <label>County
+      <select><option>Bernalillo</option><option>Catron</option><option>…all 33…</option></select>
+    </label>
+    <label>Precinct <small style="font-weight:600">(or use an address — coming with district lookup)</small>
+      <select><option>Precinct 123 — sample</option></select>
+    </label>
+    <span class="no-id">We only need location to find the right ballot style. Registration status never changes what you can practice here.</span>
+  </div>
+
+  <main class="pb-paper" id="paper">
+    <div class="pb-paper-head">
+      <div class="off">PRACTICE BALLOT</div>
+      <div class="sub">General Election · November 3, 2026 · Bernalillo County, New Mexico · Precinct 123</div>
+      <span class="sample">SAMPLE LAYOUT — NOT AN OFFICIAL BALLOT</span>
+    </div>
+
+    <div class="pb-instr">
+      <b>Instructions:</b> To vote, completely fill in the oval next to your choice. Vote for <b>one</b> in each contest unless told otherwise. If you mark more than the allowed number, that contest is an <b>overvote</b> and will not count. Leaving a contest blank (an <b>undervote</b>) is allowed — the rest of your ballot still counts.
+    </div>
+
+    <div class="pb-contests">
+    <section class="pb-contest" data-name="United States Senator" data-max="1">
+      <div class="pb-contest-head">UNITED STATES SENATOR <small>Vote for one</small></div>
+      <div class="pb-opts">
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Candidate A — pending certified list</b><small>Party — from SOS certification</small></span></label>
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Candidate B — pending certified list</b><small>Party — from SOS certification</small></span></label>
+        <label class="pb-opt writein"><input type="checkbox"><span class="who"><b>Write-in:</b></span><input type="text" aria-label="Write-in candidate name"></label>
+      </div>
+      <div class="pb-warn">⚠ Overvote — you marked more than one. On a real ballot this contest would not count. Un-mark one to fix it.</div>
+      <details class="pb-learn"><summary>🐱 Learn: What does a U.S. Senator do? · Meet the candidates · Sources</summary>
+        <div class="body">One of New Mexico's two seats in the U.S. Senate — six-year term, votes on federal law, treaties, and confirmations. Candidate cards with photos and official links appear here from the certified SOS list. <a href="#">View sources →</a></div>
+      </details>
+    </section>
+
+    <section class="pb-contest" data-name="U.S. Representative, District 1" data-max="1">
+      <div class="pb-contest-head">UNITED STATES REPRESENTATIVE — DISTRICT 1 <small>Vote for one</small></div>
+      <div class="pb-opts">
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Candidate A — pending certified list</b><small>Party — from SOS certification</small></span></label>
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Candidate B — pending certified list</b><small>Party — from SOS certification</small></span></label>
+        <label class="pb-opt writein"><input type="checkbox"><span class="who"><b>Write-in:</b></span><input type="text" aria-label="Write-in candidate name"></label>
+      </div>
+      <div class="pb-warn">⚠ Overvote — you marked more than one. On a real ballot this contest would not count. Un-mark one to fix it.</div>
+      <details class="pb-learn"><summary>🐱 Learn: What does a U.S. Representative do? · Meet the candidates · Sources</summary>
+        <div class="body">Your seat in the U.S. House — two-year term. District 1 covers most of Albuquerque; whether you're in it depends on your address. <a href="#">View sources →</a></div>
+      </details>
+    </section>
+
+    <section class="pb-contest" data-name="Governor &amp; Lieutenant Governor" data-max="1">
+      <div class="pb-contest-head">GOVERNOR AND LIEUTENANT GOVERNOR <small>Vote for one team</small></div>
+      <div class="pb-opts">
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Team A — pending certified list</b><small>Governor / Lt. Governor run together</small></span></label>
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Team B — pending certified list</b><small>Governor / Lt. Governor run together</small></span></label>
+      </div>
+      <div class="pb-warn">⚠ Overvote — you marked more than one. On a real ballot this contest would not count. Un-mark one to fix it.</div>
+      <details class="pb-learn"><summary>🐱 Learn: What does the Governor do? · Meet the teams · Sources</summary>
+        <div class="body">Heads the state's executive branch: signs or vetoes bills, proposes the budget, appoints cabinet secretaries and many judges' interim seats. In New Mexico, the Governor and Lt. Governor are elected as one ticket. <a href="#">View sources →</a></div>
+      </details>
+    </section>
+
+    <section class="pb-contest" data-name="County Assessor" data-max="1">
+      <div class="pb-contest-head">BERNALILLO COUNTY ASSESSOR <small>Vote for one</small></div>
+      <div class="pb-opts">
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Candidate A — pending certified list</b><small>Countywide office</small></span></label>
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>Candidate B — pending certified list</b><small>Countywide office</small></span></label>
+      </div>
+      <div class="pb-warn">⚠ Overvote — you marked more than one. On a real ballot this contest would not count. Un-mark one to fix it.</div>
+      <details class="pb-learn"><summary>🐱 Learn: What does the Assessor do? · Sources</summary>
+        <div class="body">Values every property in the county for tax purposes. The Assessor doesn't set your tax rate — rates are certified by the state DFA with the counties. <a href="#">View sources →</a></div>
+      </details>
+    </section>
+
+    <section class="pb-contest" data-name="Judicial Retention — Court of Appeals" data-max="1">
+      <div class="pb-contest-head">JUDICIAL RETENTION <small>Shall Judge [NAME PENDING] of the Court of Appeals be retained in office?</small></div>
+      <div class="pb-opts">
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>YES</b><small>Retain the judge</small></span></label>
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>NO</b><small>Do not retain</small></span></label>
+      </div>
+      <div class="pb-warn">⚠ Overvote — mark only YES or NO.</div>
+      <details class="pb-learn"><summary>🐱 Learn: What is judicial retention? · Sources</summary>
+        <div class="body">Retention isn't judge vs. judge — it's a yes/no on keeping a sitting judge. In New Mexico a judge needs <b>57% YES</b> to stay (that's in the state constitution). The Judicial Performance Evaluation Commission publishes evaluations. <a href="#">View sources →</a></div>
+      </details>
+    </section>
+
+    <section class="pb-contest" data-name="General Obligation Bond — Libraries" data-max="1">
+      <div class="pb-contest-head">BOND QUESTION <small>Sample: General obligation bond for library facilities</small></div>
+      <div class="pb-opts">
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>FOR</b></span></label>
+        <label class="pb-opt"><input type="checkbox"><span class="who"><b>AGAINST</b></span></label>
+      </div>
+      <div class="pb-warn">⚠ Overvote — mark only FOR or AGAINST.</div>
+      <details class="pb-learn"><summary>🐱 Learn: What happens if this passes? What stays the same? · Sources</summary>
+        <div class="body"><b>If it passes:</b> the state may borrow the stated amount for the stated purpose, repaid through existing property-tax levies. <b>What stays the same:</b> your tax <i>rate</i> doesn't automatically change — bonds are structured within current levies. <b>Who carries it out:</b> the agencies named in the bond act. No score, no recommendation — just what the record says. <a href="#">View sources →</a></div>
+      </details>
+    </section>
+    </div>
+
+    <section class="pb-contest pb-review" id="review" aria-live="polite">
+      <div class="pb-contest-head">YOUR PRACTICE REVIEW <small>No scores. No judgments. Just what's marked, blank, or needs a fix.</small></div>
+      <div class="pb-opts" id="reviewBody"></div>
+    </section>
+  </main>
+
+  <aside class="pb-rail">
+    <div class="pb-card">
+      <h4>Your progress</h4>
+      <div class="pb-progress">
+        <div class="row"><span>Contests marked</span><b id="pMarked">0 of 6</b></div>
+        <div class="row"><span>Left blank</span><b id="pBlank">6</b></div>
+        <div class="row fixup"><span>Need correction</span><b id="pFix">0</b></div>
+      </div>
+      <button class="pb-review-btn" type="button" onclick="review()">Review my practice ballot</button>
+      <div class="pb-small-btns">
+        <button type="button" onclick="window.print()">🖨 Print</button>
+        <button type="button" onclick="eraseAll()">🗑 Erase everything</button>
+      </div>
+    </div>
+    <div class="pb-card">
+      <h4>🐱 Don Gato says</h4>
+      <p style="font-size:.84rem;line-height:1.6">Blank is allowed. Overvotes don't count. And nobody — including me — sees your choices. <i>Practica sin miedo.</i></p>
+    </div>
+    <div class="pb-card">
+      <p class="pb-note"><b>Where the real thing lives:</b> official sample ballots come from <a href="https://www.sos.nm.gov/nmvote-org/" target="_blank" rel="noopener noreferrer">NMVote (SOS)</a> once your county prepares them after candidate filing — <a href="https://www.berncoclerk.gov/elections/" target="_blank" rel="noopener noreferrer">Bernalillo County elections</a>. This page reproduces the official order and wording, with the source and collection date shown, the moment they're published.</p>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/politicat-logo.png" alt="PolitíCat NM">
+        <p>New Mexico's curious civic cat. Helping everyday New Mexicans understand government, elections, and public records one question at a time.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="ask.html">Ask PolitíCat</a>
+        <a href="explore.html">Explore NM</a>
+        <a href="elections.html">Elections</a>
+        <a href="learn.html">Learn</a>
+        <a href="trail.html">The Trail</a>
+        <a href="whitepaper.html">White Paper</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="community.html">Community</a>
+        <a href="mailto:PolitiCatNM@proton.me">PolitiCatNM@proton.me</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PolitíCat NM · politicatnm.org</span>
+      <span class="nonpartisan">Nonpartisan civic education · Not affiliated with any government, party, or campaign.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const contests = Array.from(document.querySelectorAll('.pb-contest[data-max]'));
+
+function stateOf(c) {
+  const boxes = Array.from(c.querySelectorAll('input[type="checkbox"]'));
+  const marked = boxes.filter(b => b.checked).length;
+  const max = Number(c.dataset.max);
+  if (marked === 0) return 'blank';
+  if (marked > max) return 'overvote';
+  return 'marked';
+}
+
+function refresh() {
+  let marked = 0, blank = 0, fix = 0;
+  contests.forEach(c => {
+    const s = stateOf(c);
+    c.classList.toggle('overvoted', s === 'overvote');
+    if (s === 'marked') marked++;
+    else if (s === 'blank') blank++;
+    else fix++;
+  });
+  document.getElementById('pMarked').textContent = marked + ' of ' + contests.length;
+  document.getElementById('pBlank').textContent = blank;
+  document.getElementById('pFix').textContent = fix;
+}
+
+function review() {
+  const body = document.getElementById('reviewBody');
+  let fix = 0, blank = 0;
+  body.innerHTML = contests.map(c => {
+    const s = stateOf(c);
+    if (s === 'overvote') fix++;
+    if (s === 'blank') blank++;
+    const label = s === 'marked' ? '<span class="st-ok">✓ Marked</span>'
+      : s === 'blank' ? '<span class="st-blank">— Left blank (allowed)</span>'
+      : '<span class="st-fix">⚠ Overvote — needs correction</span>';
+    return '<div class="item"><span>' + c.dataset.name + '</span>' + label + '</div>';
+  }).join('')
+  + '<p class="verdict">' + (fix > 0
+      ? 'Almost ready — fix ' + fix + ' overvote' + (fix > 1 ? 's' : '') + ' above and review again.'
+      : 'Ready to review. ' + (blank > 0 ? blank + ' contest' + (blank > 1 ? 's' : '') + ' left blank — that\'s allowed. ' : '')
+        + 'Print this practice sheet or bring your notes to the polls.')
+  + '</p>';
+  document.getElementById('review').classList.add('open');
+  document.getElementById('review').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function eraseAll() {
+  if (!confirm('Erase all practice choices from this screen?')) return;
+  document.querySelectorAll('#paper input[type="checkbox"]').forEach(b => { b.checked = false; });
+  document.querySelectorAll('#paper input[type="text"]').forEach(t => { t.value = ''; });
+  document.getElementById('review').classList.remove('open');
+  refresh();
+}
+
+document.getElementById('paper').addEventListener('change', refresh);
+refresh();
+</script>
+</body>
+</html>

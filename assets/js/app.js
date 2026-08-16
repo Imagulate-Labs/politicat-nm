@@ -970,7 +970,41 @@ async function getAnswer(q) {
 }
 
 /* ---------- Startup: load CivicSubstrate snapshots ---------- */
-loadCivicData().then(initCountyExplorer);
+/* county.html: fill the civic profile from real data (?c=slug) */
+function initCountyPage() {
+  const nameEls = document.querySelectorAll('[data-county-name]');
+  if (!nameEls.length) return;
+  const params = new URLSearchParams(window.location.search);
+  const slug = countySlug(params.get('c') || 'bernalillo');
+  const display = NM_COUNTIES.find(c => countySlug(c) === slug) || 'Bernalillo';
+  document.title = display + ' County — PolitíCat NM';
+  nameEls.forEach(el => { el.textContent = display + ' County'; });
+
+  const pick = document.getElementById('cpCountyPick');
+  if (pick && !pick.options.length) {
+    pick.innerHTML = NM_COUNTIES.slice().sort().map(c =>
+      '<option value="' + escapeHtml(countySlug(c)) + '"' + (countySlug(c) === slug ? ' selected' : '') + '>'
+      + escapeHtml(c) + '</option>').join('');
+    pick.addEventListener('change', () => {
+      window.location.href = 'county.html?c=' + pick.value;
+    });
+  }
+
+  const row = countyRow(display);
+  const votersEl = document.getElementById('cpVoters');
+  if (votersEl) votersEl.textContent = row ? fmtNum(row.total || 0) : '—';
+
+  const slot = document.getElementById('cpChangeSlot');
+  if (slot) {
+    slot.innerHTML = countyChangeBlock(display)
+      || '<p class="change-note">Change data unavailable for this county right now.</p>';
+  }
+}
+
+loadCivicData().then(() => {
+  initCountyExplorer();
+  initCountyPage();
+});
 initMapNav();
 initAnalyticsEvents();
 
