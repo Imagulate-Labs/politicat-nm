@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260816-vista5">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-vista6">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 .proto-banner{background:#8f2b37;color:#fff;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.5px;padding:7px 14px}
@@ -89,7 +89,18 @@
 .pb-note{font-size:.74rem;color:#4a5a55;line-height:1.6}
 .pb-note a{color:var(--teal-bright)}
 @media(max-width:980px){.pb-shell{grid-template-columns:1fr}.pb-rail{position:static}.pb-contest{margin:14px 10px}.pb-instr{margin:14px 10px 0}}
-@media print{.nav,.proto-banner,.pb-rail,.pb-find,.pb-privacy{display:none!important}.pb-shell{display:block}}
+/* Take-it-with-you print sheet: clean notes page, marks preserved */
+.print-head{display:none}
+@media print{
+  .nav,.preview-note,.proto-banner,.pb-rail,.pb-find,.pb-privacy,.pb-learn,.pb-warn,footer{display:none!important}
+  .pb-shell{display:block;padding:0}
+  .pb-paper{box-shadow:none;border-width:1.5px}
+  .pb-contests{columns:auto!important}
+  .pb-opt input{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .print-head{display:block;padding:14px 24px 0;font-size:.8rem;line-height:1.6}
+  .print-head b{font-size:1rem}
+  .pb-review.open{display:block}
+}
 </style>
 </head>
 <body>
@@ -124,6 +135,12 @@
   </div>
 
   <main class="pb-paper" id="paper">
+    <div class="print-head">
+      <b>My Practice Notes — PolitíCat NM</b> · politicatnm.org/ballot.html<br>
+      This is a personal practice sheet, <b>not an official ballot</b>. Nothing was cast or submitted.
+      Bringing your own notes when you vote is generally allowed — verify at sos.nm.gov.
+      Date practiced: ____________
+    </div>
     <div class="pb-paper-head">
       <div class="off">PRACTICE BALLOT</div>
       <div class="sub">General Election · November 3, 2026 · Bernalillo County, New Mexico · Precinct 123</div>
@@ -226,9 +243,10 @@
       </div>
       <button class="pb-review-btn" type="button" onclick="review()">Review my practice ballot</button>
       <div class="pb-small-btns">
-        <button type="button" onclick="window.print()">🖨 Print</button>
+        <button type="button" onclick="window.print()">🖨 Print / save PDF</button>
         <button type="button" onclick="eraseAll()">🗑 Erase everything</button>
       </div>
+      <p class="pb-note" style="margin-top:9px">Print your marked sheet (or save it as a PDF from the print dialog) and <b>take your notes with you to vote</b> — bringing personal notes is generally allowed in NM. Your choices never leave this device; share the <a href="learn.html">guides</a>, not your votes.</p>
     </div>
     <div class="pb-card">
       <h4>🐱 Don Gato says</h4>
