@@ -394,9 +394,10 @@ section.block{padding:78px 0}
 }
 .county-map-card,
 .county-snapshot{
-  border:1px solid rgba(20,89,90,.14);
+  border:2px solid rgba(58,42,24,.5);
   border-radius:16px;
   background:linear-gradient(180deg,#fff,var(--cream-soft));
+  box-shadow:0 4px 14px -6px rgba(58,42,24,.3);
 }
 .county-map-card{padding:18px}
 .county-map-head{
@@ -543,7 +544,7 @@ footer::before{
 .whw-table{width:100%;min-width:1080px;border-collapse:collapse;background:var(--cream-soft);font-size:.84rem;line-height:1.5}
 .whw-table thead th{background:var(--teal-deep);color:var(--cream);padding:12px 14px;text-align:left;font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;white-space:nowrap}
 .whw-table tbody th{background:rgba(20,89,90,.07);color:var(--teal-deep);padding:12px 14px;text-align:left;font-size:.9rem;white-space:nowrap;vertical-align:top}
-.whw-table td{padding:12px 14px;vertical-align:top;border-bottom:1px solid rgba(90,58,27,.12);border-left:1px solid rgba(90,58,27,.08);color:#333}
+.whw-table td{padding:12px 14px;vertical-align:top;border-bottom:1.5px solid rgba(58,42,24,.3);border-left:1px solid rgba(58,42,24,.22);color:#333}
 .whw-table tbody tr:nth-child(even) td{background:rgba(239,227,200,.35)}
 .whw-verify{display:inline-block;margin-top:4px;color:var(--orange-deep);font-weight:800;font-size:.76rem;text-decoration:none;white-space:nowrap}
 .whw-verify:hover{text-decoration:underline}

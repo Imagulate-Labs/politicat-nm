@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260816-vista6">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-vista7">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 .preview-note{background:rgba(240,138,36,.13);border-bottom:1px solid rgba(240,138,36,.4);color:#8a5a1a;text-align:center;font-size:.76rem;font-weight:700;padding:6px 14px}
@@ -45,12 +45,12 @@
 .mo-tab{border:1px solid rgba(20,89,90,.3);background:#fff;border-radius:11px;padding:10px 18px;font-weight:800;font-size:.88rem;color:var(--teal);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
 .mo-tab.on{background:var(--teal);color:var(--cream);border-color:var(--teal)}
 .mo-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.mo-chip{border:1px solid rgba(20,89,90,.3);background:#fff;border-radius:999px;padding:8px 15px;font-size:.79rem;font-weight:800;color:var(--teal);cursor:pointer}
+.mo-chip{border:1.5px solid rgba(15,61,62,.55);background:#fff;border-radius:999px;padding:8px 15px;font-size:.79rem;font-weight:800;color:var(--teal);cursor:pointer}
 .mo-chip.on{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
-.mo-table-wrap{background:#fff;border:1px solid rgba(20,89,90,.16);border-radius:14px;overflow:hidden}
-.mo-head{display:grid;grid-template-columns:230px 130px 140px 150px 170px 150px 1fr 118px;gap:10px;align-items:center;padding:11px 16px;background:var(--cream-soft);border-bottom:2px solid rgba(20,89,90,.15);font-size:.66rem;font-weight:900;letter-spacing:.7px;text-transform:uppercase;color:#4a5a55}
+.mo-table-wrap{background:#fff;border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
+.mo-head{display:grid;grid-template-columns:230px 130px 140px 150px 170px 150px 1fr 118px;gap:10px;align-items:center;padding:11px 16px;background:var(--cream-soft);border-bottom:2px solid rgba(58,42,24,.5);font-size:.66rem;font-weight:900;letter-spacing:.7px;text-transform:uppercase;color:#3f3320}
 .mo-head .concept{color:#b98a4a}
-.mo-row{display:grid;grid-template-columns:230px 130px 140px 150px 170px 150px 1fr 118px;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid rgba(20,89,90,.09);font-size:.8rem}
+.mo-row{display:grid;grid-template-columns:230px 130px 140px 150px 170px 150px 1fr 118px;gap:10px;align-items:center;padding:11px 16px;border-bottom:1.5px solid rgba(58,42,24,.28);font-size:.8rem}
 .mo-row:nth-child(even){background:rgba(239,227,200,.28)}
 .mo-row:hover{background:rgba(29,122,124,.07)}
 .mo-cty{display:flex;gap:11px;align-items:center}
@@ -67,11 +67,11 @@
 .mo-open:hover{background:var(--teal)}
 .mo-foot{padding:10px 16px;font-size:.7rem;color:#8a6430;font-weight:700;background:#fdf9ef;border-top:1px dashed rgba(185,138,74,.5)}
 .mo-right{position:sticky;top:14px;display:flex;flex-direction:column;gap:14px}
-.mo-panel{background:var(--cream-soft);border:1px solid rgba(20,89,90,.16);border-radius:14px;padding:17px 18px}
+.mo-panel{background:var(--cream-soft);border:2px solid rgba(58,42,24,.5);border-radius:14px;padding:17px 18px;box-shadow:0 4px 14px -6px rgba(58,42,24,.3)}
 .mo-panel h3{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.05rem;margin-bottom:4px}
 .mo-panel .sub{font-size:.78rem;color:#4a5a55;font-weight:600;margin-bottom:12px}
 .mo-world{display:flex;flex-direction:column;gap:7px}
-.mo-world a{display:flex;gap:11px;align-items:center;background:#fff;border:1px solid rgba(20,89,90,.15);border-radius:11px;padding:11px 13px;text-decoration:none}
+.mo-world a{display:flex;gap:11px;align-items:center;background:#fff;border:1.5px solid rgba(58,42,24,.4);border-radius:11px;padding:11px 13px;text-decoration:none}
 .mo-world a:hover{border-color:var(--orange)}
 .mo-world .ic{font-size:1.25rem;flex:none}
 .mo-world b{display:block;color:var(--teal-deep);font-size:.85rem}
@@ -261,6 +261,6 @@ document.getElementById('rows').innerHTML = STRIP_C.map(([n, v, e], i) => {
   + '</div>';
 }).join('');
 </script>
-<script src="assets/js/app.js?v=20260816-vista6"></script>
+<script src="assets/js/app.js?v=20260816-vista7"></script>
 </body>
 </html>
