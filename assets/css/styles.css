@@ -484,6 +484,12 @@ section.block{padding:78px 0}
   text-shadow:0 1px 0 rgba(255,246,225,.6);
 }
 .story-banner .banner-tabs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.banner-facts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.banner-facts span,.banner-facts a{
+  background:rgba(251,246,234,.85);border:1.5px solid rgba(90,58,27,.35);border-radius:999px;
+  padding:7px 14px;font-size:.78rem;font-weight:800;color:#5a3a1b;text-decoration:none;
+}
+.banner-facts a:hover{border-color:var(--orange);color:var(--orange-deep)}
 @media(max-width:900px){
   .story-banner .banner-copy{max-width:100%;padding:44px 20px 36px}
   .story-banner .banner-art{width:100%;opacity:.35;-webkit-mask-image:none;mask-image:none}
