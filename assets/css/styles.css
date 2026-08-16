@@ -39,7 +39,14 @@ html{scroll-behavior:smooth}
 body{
   font-family:'Libre Franklin',sans-serif;
   color:var(--ink);
-  background:var(--cream);
+  /* VISTA CANON (2026-08-16): rustic aged-paper ground, not flat cream.
+     Grain + mottling are procedural SVG data-URIs — no external requests. */
+  background-color:#e9d6ae;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.38 0 0 0 0 0.27 0 0 0 0 0.13 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='700' height='700' filter='url(%23b)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 18% 8%, rgba(255,246,225,.55), transparent 55%),
+    radial-gradient(ellipse at 85% 92%, rgba(120,84,40,.16), transparent 60%);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
@@ -437,6 +444,52 @@ section.block{padding:78px 0}
   font-size:.78rem;
   font-weight:600;
 }
+/* --- VISTA: Southwestern textile border + story-banner frame --- */
+.vista-border{
+  height:18px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='20' viewBox='0 0 64 20'%3E%3Crect width='64' height='20' fill='%230f3d3e'/%3E%3Cpath d='M0 14 L8 6 L16 14 L24 6 L32 14 L40 6 L48 14 L56 6 L64 14' fill='none' stroke='%23f08a24' stroke-width='3'/%3E%3Cpath d='M0 17 L8 9 L16 17 L24 9 L32 17 L40 9 L48 17 L56 9 L64 17' fill='none' stroke='%23e6d7b8' stroke-width='1.4' opacity='.8'/%3E%3Ccircle cx='8' cy='3' r='1.3' fill='%23e6d7b8'/%3E%3Ccircle cx='24' cy='3' r='1.3' fill='%23e6d7b8'/%3E%3Ccircle cx='40' cy='3' r='1.3' fill='%23e6d7b8'/%3E%3Ccircle cx='56' cy='3' r='1.3' fill='%23e6d7b8'/%3E%3C/svg%3E") repeat-x;
+  background-size:auto 100%;
+}
+.story-banner{
+  position:relative;
+  border:6px solid #3a2a18;
+  border-radius:10px;
+  overflow:hidden;
+  background:#e9d6ae;
+  box-shadow:0 18px 44px -18px rgba(40,25,10,.55), inset 0 0 70px rgba(90,58,27,.28);
+}
+.story-banner .vista-border{position:absolute;left:0;right:0;z-index:3}
+.story-banner .vista-border.top{top:0}
+.story-banner .vista-border.bottom{bottom:0}
+.story-banner .banner-art{
+  position:absolute;top:0;right:0;bottom:0;width:62%;
+  background-position:center right;background-size:cover;background-repeat:no-repeat;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 24%);
+  mask-image:linear-gradient(90deg,transparent,#000 24%);
+  z-index:1;
+}
+.story-banner .banner-copy{position:relative;z-index:2;padding:52px clamp(22px,2.4vw,54px) 44px;max-width:52%}
+.story-banner h1{
+  font-family:'Alfa Slab One',serif;color:var(--teal-deep);
+  font-size:clamp(2rem,3.8vw,3.4rem);line-height:1;letter-spacing:1px;
+  text-shadow:0 1px 0 rgba(255,246,225,.7);
+}
+.story-banner .tagline{
+  font-size:clamp(.95rem,1.2vw,1.2rem);color:#3f3320;font-weight:700;margin-top:8px;
+  text-shadow:0 1px 0 rgba(255,246,225,.6);
+}
+.story-banner .banner-tabs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+@media(max-width:900px){
+  .story-banner .banner-copy{max-width:100%;padding:44px 20px 36px}
+  .story-banner .banner-art{width:100%;opacity:.35;-webkit-mask-image:none;mask-image:none}
+}
+footer{position:relative}
+footer::before{
+  content:"";display:block;height:16px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='20' viewBox='0 0 64 20'%3E%3Crect width='64' height='20' fill='%230f3d3e'/%3E%3Cpath d='M0 14 L8 6 L16 14 L24 6 L32 14 L40 6 L48 14 L56 6 L64 14' fill='none' stroke='%23f08a24' stroke-width='3'/%3E%3Cpath d='M0 17 L8 9 L16 17 L24 9 L32 17 L40 9 L48 17 L56 9 L64 17' fill='none' stroke='%23e6d7b8' stroke-width='1.4' opacity='.8'/%3E%3C/svg%3E") repeat-x;
+  background-size:auto 100%;
+}
+
 /* --- Map navigation: zoom/pan toolbar, miles scale, pins --- */
 .nm-map-wrap{position:relative}
 .nm-map-wrap.is-panning{cursor:grabbing}

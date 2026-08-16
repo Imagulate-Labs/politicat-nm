@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260816-terminal1">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260816-vista1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 .preview-note{background:rgba(240,138,36,.13);border-bottom:1px solid rgba(240,138,36,.4);color:#8a5a1a;text-align:center;font-size:.76rem;font-weight:700;padding:6px 14px}
@@ -117,33 +117,19 @@
 
 <div class="mo-shell">
 
-  <div class="mo-hero">
-    <div>
+  <div class="story-banner" style="grid-column:1/-1;min-height:330px">
+    <div class="vista-border top"></div>
+    <div class="banner-art" style="background-image:url('assets/img/banner-explore.jpg')" role="img" aria-label="Don Gato Cívico investigating a pinned map of New Mexico while the PolitíCat News reporter covers the story"></div>
+    <div class="banner-copy">
       <h1>SEE NEW MEXICO<br>IN MOTION</h1>
-      <p>Every county. Every change. One clear starting point.</p>
-      <div class="mo-tabs">
+      <p class="tagline">Every county. Every change. One clear starting point.</p>
+      <div class="banner-tabs">
         <a class="mo-tab on" href="explore.html">☰ County Strips</a>
         <a class="mo-tab" href="#bubbles">🫧 Bubble Map</a>
         <a class="mo-tab" href="map.html">🗺️ Map View</a>
       </div>
     </div>
-    <svg width="330" height="150" viewBox="0 0 330 150" aria-hidden="true">
-      <circle cx="272" cy="34" r="17" fill="#f08a24"/>
-      <g stroke="#f08a24" stroke-width="2.4" stroke-linecap="round">
-        <line x1="272" y1="8" x2="272" y2="2"/><line x1="272" y1="60" x2="272" y2="66"/>
-        <line x1="246" y1="34" x2="240" y2="34"/><line x1="298" y1="34" x2="304" y2="34"/>
-        <line x1="254" y1="16" x2="249" y2="11"/><line x1="290" y1="52" x2="295" y2="57"/>
-        <line x1="290" y1="16" x2="295" y2="11"/><line x1="254" y1="52" x2="249" y2="57"/>
-      </g>
-      <path d="M0 150 L0 96 L26 96 L34 74 L78 74 L86 96 L120 96 L120 150 Z" fill="#c9641a"/>
-      <path d="M96 150 L96 108 L118 108 L126 84 L182 84 L190 108 L214 108 L214 150 Z" fill="#e2a37f"/>
-      <path d="M196 150 L196 116 L216 116 L222 98 L280 98 L286 116 L330 116 L330 150 Z" fill="#b23a48" opacity=".85"/>
-      <rect x="238" y="122" width="52" height="28" rx="3" fill="#e6cda4"/>
-      <rect x="248" y="132" width="10" height="18" rx="2" fill="#5a3a1b"/>
-      <rect x="266" y="130" width="9" height="8" rx="1.5" fill="#5a3a1b"/>
-      <path d="M158 150 L158 122 q0 -9 7 -9 q7 0 7 9 L172 150 Z" fill="#5a7d3a"/>
-      <path d="M150 132 q-8 -2 -8 -10 M180 134 q8 -3 8 -11" stroke="#5a7d3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-    </svg>
+    <div class="vista-border bottom"></div>
   </div>
 
   <main>
@@ -270,6 +256,6 @@ document.getElementById('rows').innerHTML = STRIP_C.map(([n, v, e], i) => {
   + '</div>';
 }).join('');
 </script>
-<script src="assets/js/app.js?v=20260816-terminal1"></script>
+<script src="assets/js/app.js?v=20260816-vista1"></script>
 </body>
 </html>
