@@ -26,9 +26,11 @@
 
   /* --- Utility --- */
   --shadow:rgba(15,61,62,.18);
-  /* CANON (2026-08-15): use the whole screen. Content stretches to the
-     viewport minus comfortable gutters; the old 1180px letterbox is gone. */
-  --maxw:min(1800px,96vw);
+  /* CANON (2026-08-16, hardened): EDGE-TO-EDGE. No pixel cap, ever.
+     The layout fills 100% of every screen — phone, tablet, laptop, 65-inch —
+     with gutters only. Density scales by adding columns and panels,
+     never by centering a boxed column in dead space. */
+  --maxw:100%;
 }
 
 /* ---------- RESET ---------- */
@@ -43,7 +45,7 @@ body{
   overflow-x:hidden;
 }
 img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,1.6vw,44px)}
 
 /* subtle grain overlay */
 body::before{
