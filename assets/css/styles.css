@@ -445,16 +445,20 @@ section.block{padding:78px 0}
   font-weight:600;
 }
 /* --- VISTA: Southwestern textile border + story-banner frame --- */
-/* Placeholder band until the real textile border art arrives at
-   assets/img/vista-border.png — then this becomes a repeat-x image. */
+/* Real woven textile borders (commissioned art, assets/img/vista-*.png) */
 .vista-border{
-  height:16px;
-  background:linear-gradient(180deg,#0f3d3e 0 38%,#f08a24 38% 52%,#e6d7b8 52% 58%,#0f3d3e 58% 100%);
+  height:20px;
+  background:url("../img/vista-border.png") repeat-x;
+  background-size:auto 100%;
+}
+.story-banner .vista-border{
+  height:26px;
+  background-image:url("../img/vista-border-hero.png");
 }
 .story-banner{
   position:relative;
-  border:6px solid #3a2a18;
-  border-radius:10px;
+  border:12px solid transparent;
+  border-image:url("../img/vista-frame.png") 128 round;
   overflow:hidden;
   background:#e9d6ae;
   box-shadow:0 18px 44px -18px rgba(40,25,10,.55), inset 0 0 70px rgba(90,58,27,.28);
@@ -486,8 +490,9 @@ section.block{padding:78px 0}
 }
 footer{position:relative}
 footer::before{
-  content:"";display:block;height:14px;
-  background:linear-gradient(180deg,#0f3d3e 0 38%,#f08a24 38% 52%,#e6d7b8 52% 58%,#0f3d3e 58% 100%);
+  content:"";display:block;height:18px;
+  background:url("../img/vista-border.png") repeat-x;
+  background-size:auto 100%;
 }
 
 /* --- Map navigation: zoom/pan toolbar, miles scale, pins --- */
