@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Community — PolitíCat NM</title>
-<meta name="description" content="Follow and contact PolitíCat NM across social and community channels.">
+<meta name="description" content="New Mexico is talking. Follow what's moving, meet the PolitíCat community crew, and join the conversation where it happens.">
 <link rel="canonical" href="https://politicatnm.org/community.html">
 <meta name="theme-color" content="#0f3d3e">
 <meta property="og:site_name" content="PolitíCat NM">
 <meta property="og:title" content="Community — PolitíCat NM">
-<meta property="og:description" content="Follow and contact PolitíCat NM across social and community channels.">
+<meta property="og:description" content="New Mexico is talking. Follow what's moving, meet the crew, and join the conversation.">
 <meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
 <meta property="og:url" content="https://politicatnm.org/community.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@PolitiCatNM">
 <meta name="twitter:title" content="Community — PolitíCat NM">
-<meta name="twitter:description" content="Follow and contact PolitíCat NM across social and community channels.">
+<meta name="twitter:description" content="New Mexico is talking. Follow what's moving, meet the crew, and join the conversation.">
 <meta name="twitter:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
 <link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css?v=20260817-wall2">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* community page (cm-*) */
+.cm-hero{position:relative;min-height:clamp(480px,58vh,760px);display:flex;align-items:center;background-image:url('assets/img/wallpaper-community.jpg');background-size:cover;background-position:center bottom;border-bottom:3px solid rgba(58,42,24,.6)}
+.cm-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,24,27,.82) 0%,rgba(6,24,27,.55) 38%,rgba(6,24,27,.08) 70%)}
+.cm-hero-copy{position:relative;padding:56px clamp(16px,2.5vw,64px);max-width:min(860px,92vw)}
+.cm-hero h1{font-family:'Alfa Slab One',serif;color:var(--cream);font-size:clamp(2.4rem,5.2vw,4.6rem);line-height:1.02;text-shadow:0 3px 14px rgba(0,0,0,.55)}
+.cm-hero .sub{color:#f0e6cf;font-size:clamp(1rem,1.4vw,1.25rem);font-weight:600;margin:16px 0 22px;text-shadow:0 2px 8px rgba(0,0,0,.6);line-height:1.55}
+.cm-cta{display:flex;gap:12px;flex-wrap:wrap}
+.cm-btn{background:var(--orange);color:#fff;font-weight:900;border-radius:11px;padding:14px 24px;text-decoration:none;font-size:.95rem;box-shadow:0 4px 14px -4px rgba(0,0,0,.5)}
+.cm-btn.ghost{background:rgba(251,246,234,.12);color:var(--cream);border:2px solid rgba(230,215,184,.55);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.cm-live{margin-top:20px;color:#cfe3da;font-weight:900;font-size:.8rem;letter-spacing:1.6px}
+.cm-live b{color:var(--orange)}
+.cm-shell{padding:0 clamp(16px,1.5vw,44px) 60px}
+.cm-sec{margin-top:44px}
+.cm-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.cm-head h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:clamp(1.5rem,2.4vw,2.2rem)}
+.cm-head .viewall{font-weight:900;color:var(--orange-deep);text-decoration:none;font-size:.9rem}
+.cm-sub{font-size:.95rem;color:#4a3f2c;font-weight:600;margin-bottom:18px}
+.cm-orn{text-align:center}
+.cm-orn h2{display:inline-flex;align-items:center;gap:16px;font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:clamp(1.5rem,2.4vw,2.2rem)}
+.cm-orn h2::before,.cm-orn h2::after{content:"⟿";color:var(--orange);font-size:1.2em}
+.cm-orn h2::before{transform:scaleX(-1)}
+.cm-orn .cm-sub{text-align:center}
+/* trending cards */
+.cm-trend{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.cm-card{background:#fff;border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:0 4px 14px -6px rgba(58,42,24,.35);display:flex;flex-direction:column;transition:transform .18s}
+.cm-card:hover{transform:translateY(-3px)}
+.cm-thumb{position:relative;aspect-ratio:16/10;overflow:hidden}
+.cm-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.cm-tag{position:absolute;top:10px;left:10px;font-size:.6rem;font-weight:900;letter-spacing:.8px;padding:4px 10px;border-radius:5px;color:#fff;text-transform:uppercase}
+.cm-body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cm-body b{font-size:.95rem;line-height:1.35;color:var(--teal-deep)}
+.cm-body small{font-size:.76rem;color:#4a5a55;font-weight:600}
+.cm-meta{margin-top:auto;padding-top:8px;border-top:1px dashed rgba(90,58,27,.3);font-size:.72rem;color:#4a5a55;font-weight:700}
+.cm-meta .ok{color:#3f6d33}
+/* verify bar */
+.cm-verify{margin-top:34px;background:var(--teal-deep);border:2px solid rgba(58,42,24,.6);border-radius:14px;padding:18px clamp(16px,2vw,30px);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cm-verify .shield{font-size:1.8rem}
+.cm-verify .txt{flex:1;min-width:240px}
+.cm-verify .txt b{display:block;color:var(--cream);font-size:1.02rem}
+.cm-verify .txt small{color:#bcd6cd;font-weight:600;font-size:.82rem}
+.cm-verify a{background:var(--orange);color:#fff;font-weight:900;border-radius:10px;padding:11px 20px;text-decoration:none;font-size:.85rem;white-space:nowrap}
+/* corners */
+.cm-corners{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.cm-corner{border-radius:16px;padding:24px 18px;text-align:center;color:#fff;text-decoration:none;border:2px solid rgba(58,42,24,.4);box-shadow:0 4px 14px -6px rgba(58,42,24,.4);display:flex;flex-direction:column;gap:7px;transition:transform .18s}
+.cm-corner:hover{transform:translateY(-3px)}
+.cm-corner .ic{font-size:2rem;font-weight:900}
+.cm-corner h4{font-size:1rem;font-weight:900;letter-spacing:.5px}
+.cm-corner p{font-size:.78rem;font-weight:600;opacity:.92;line-height:1.4}
+.cm-corner .go{margin-top:auto;font-weight:900;font-size:.8rem;padding-top:8px}
+/* crew */
+.cm-crew{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.cm-mate{background:var(--cream-soft);border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px -6px rgba(58,42,24,.35);text-align:center}
+.cm-mate .ph{aspect-ratio:3/4;overflow:hidden;border-bottom:2px solid rgba(58,42,24,.4);background:radial-gradient(circle at 50% 30%,#f4e5c5,#dfc9a0)}
+.cm-mate .ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.cm-mate h4{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1rem;margin:12px 10px 2px}
+.cm-mate .role{font-size:.66rem;font-weight:900;letter-spacing:1.2px;color:var(--orange-deep);text-transform:uppercase}
+.cm-mate p{font-size:.78rem;color:#4a3f2c;font-weight:600;line-height:1.45;padding:8px 14px 16px}
+.cm-crewbtn{display:block;width:fit-content;margin:20px auto 0;background:var(--orange);color:#fff;font-weight:900;border-radius:11px;padding:13px 26px;text-decoration:none;font-size:.9rem}
+/* closer */
+.cm-closer{margin-top:44px;border-radius:18px;overflow:hidden;border:2.5px solid rgba(58,42,24,.6)}
+.cm-closer-inner{padding:clamp(36px,5vw,80px) clamp(20px,3vw,60px)}
+.cm-closer h2{font-family:'Alfa Slab One',serif;color:var(--cream);font-size:clamp(1.6rem,3vw,2.8rem);line-height:1.12;text-shadow:0 3px 12px rgba(0,0,0,.55)}
+.cm-closer h2 b{color:var(--orange)}
+.cm-closer p{color:#f0e6cf;font-weight:600;margin:14px 0 24px;max-width:720px;text-shadow:0 2px 8px rgba(0,0,0,.6);line-height:1.6}
+@media(max-width:700px){.cm-hero{min-height:70vh}.cm-verify a{width:100%;text-align:center}}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -35,23 +102,136 @@
 </header>
 
 <main>
-  <section class="block community page-community wall wall--dusk" id="community" style="--wall:url('assets/img/wallpaper-duo.jpg')">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-tag sec-tag--orange">Join In</div>
-        <h1 class="sec-title sec-title--cream">Be Part of the Curious Crowd</h1>
-        <p class="sec-desc sec-desc--cream">Questions are better together. Follow along, share what you learn, and keep New Mexico informed.</p>
+  <section class="cm-hero" id="community">
+    <div class="cm-hero-copy">
+      <h1>NEW MEXICO<br>IS TALKING.</h1>
+      <p class="sub">Follow what's moving. Ask what matters. Share what the record supports.</p>
+      <div class="cm-cta">
+        <a class="cm-btn" href="#trending">See what's trending →</a>
+        <a class="cm-btn ghost" href="#corner">Join the community →</a>
       </div>
-      <div class="comm-grid">
-        <a class="comm-card" href="https://discord.gg/rXCDt3b8" target="_blank" rel="noopener noreferrer" data-link="discord"><div class="ic">💬</div><h4>Discord</h4><p>Ask, learn, and chat civics</p><div class="handle">PolitíCatNM</div></a>
-        <a class="comm-card" href="https://www.tiktok.com/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="tiktok"><div class="ic">🎵</div><h4>TikTok</h4><p>Civics in 60 seconds</p><div class="handle">@PolitíCatNM</div></a>
-        <a class="comm-card" href="https://x.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="x"><div class="ic">X</div><h4>X</h4><p>Updates and explainers</p><div class="handle">@PolitíCatNM</div></a>
-        <a class="comm-card" href="https://www.instagram.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="instagram"><div class="ic">📸</div><h4>Instagram</h4><p>Civics, one post at a time</p><div class="handle">@PolitíCatNM</div></a>
-        <a class="comm-card" href="https://www.youtube.com/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="youtube"><div class="ic">▶</div><h4>YouTube</h4><p>Explainers and deep dives</p><div class="handle">@PolitíCatNM</div></a>
-        <a class="comm-card" href="mailto:PolitiCatNM@proton.me"><div class="ic">✉️</div><h4>Email</h4><p>Reach the den directly</p><div class="handle">PolitiCatNM@proton.me</div></a>
-      </div>
+      <p class="cm-live">🟢 LIVE RECORD. <b>REAL PEOPLE.</b> NEW MEXICO.</p>
     </div>
   </section>
+
+  <div class="cm-shell">
+
+    <section class="cm-sec" id="trending">
+      <div class="cm-head">
+        <h2>🔥 Trending in New Mexico</h2>
+        <a class="viewall" href="pulse.html">View all on Pulse →</a>
+      </div>
+      <p class="cm-sub">The stories moving right now — every one tied to a public record, never a rumor.</p>
+      <div class="cm-trend">
+        <a class="cm-card" href="trail.html#power">
+          <div class="cm-thumb"><img src="assets/img/banner-trail.jpg" alt=""><span class="cm-tag" style="background:var(--orange-deep)">Top story</span></div>
+          <div class="cm-body"><b>Follow the Record: HB 9, from promise to law to courtroom</b><small>One real bill told in four chapters — with the receipt on the page.</small>
+          <span class="cm-meta">nmlegis.gov capture · <span class="ok">✓ receipt on file</span> · Aug 17, 2026</span></div>
+        </a>
+        <a class="cm-card" href="pulse.html">
+          <div class="cm-thumb"><img src="assets/img/banner-pulse.jpg" alt=""><span class="cm-tag" style="background:#3f6d33">New</span></div>
+          <div class="cm-body"><b>House Districts 37 &amp; 41 are sitting vacant</b><small>Two of 70 House seats have no representative right now.</small>
+          <span class="cm-meta">nmlegis roster capture · <span class="ok">✓ receipt on file</span> · Aug 17, 2026</span></div>
+        </a>
+        <a class="cm-card" href="explore.html">
+          <div class="cm-thumb"><img src="assets/img/banner-county.jpg" alt=""><span class="cm-tag" style="background:var(--orange)">Watching</span></div>
+          <div class="cm-body"><b>How is your county changing?</b><small>61 months of voter-registration data, all 33 counties, on the map.</small>
+          <span class="cm-meta">SOS monthly reports · <span class="ok">✓ official source</span> · 2021→2026</span></div>
+        </a>
+        <a class="cm-card" href="elections.html">
+          <div class="cm-thumb"><img src="assets/img/wallpaper-sos.jpg" alt=""><span class="cm-tag" style="background:var(--teal-bright)">Updated</span></div>
+          <div class="cm-body"><b>General Election: November 3, 2026</b><small>Governor, U.S. Senate, all three U.S. House seats, and more.</small>
+          <span class="cm-meta">SOS election calendar · <span class="ok">✓ official source</span></span></div>
+        </a>
+        <a class="cm-card" href="ballot.html">
+          <div class="cm-thumb"><img src="assets/img/banner-learn.jpg" alt=""><span class="cm-tag" style="background:#6a4c93">Community pick</span></div>
+          <div class="cm-body"><b>Practice your ballot before the real one</b><small>Every office explained. Private, on your device, never submitted.</small>
+          <span class="cm-meta">preview · your choices never leave your device</span></div>
+        </a>
+      </div>
+
+      <div class="cm-verify">
+        <span class="shield">🛡️</span>
+        <span class="txt"><b>Facts over rumors. Records over noise.</b><small>Every story is sourced, receipted, and updated as the public record changes.</small></span>
+        <a href="trail.html#pipeline">How we verify →</a>
+      </div>
+    </section>
+
+    <section class="cm-sec cm-orn" id="corner">
+      <h2>Choose Your Corner</h2>
+      <p class="cm-sub">Join the conversation where it happens.</p>
+      <div class="cm-corners">
+        <a class="cm-corner" href="https://discord.gg/rXCDt3b8" target="_blank" rel="noopener noreferrer" data-link="discord" style="background:#5865F2">
+          <span class="ic">💬</span><h4>Discord</h4><p>Ask, learn, and chat with fellow civics nerds.</p><span class="go">Join the server →</span>
+        </a>
+        <a class="cm-corner" href="https://www.tiktok.com/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="tiktok" style="background:#101014">
+          <span class="ic">🎵</span><h4>TikTok</h4><p>Short civics. Big impact. Explainers in 60s.</p><span class="go">Follow @PolitiCatNM →</span>
+        </a>
+        <a class="cm-corner" href="https://x.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="x" style="background:#000">
+          <span class="ic">𝕏</span><h4>X (Twitter)</h4><p>Real-time updates and quick takes.</p><span class="go">Follow @PolitiCatNM →</span>
+        </a>
+        <a class="cm-corner" href="https://www.instagram.com/politicatnm" target="_blank" rel="noopener noreferrer" data-link="instagram" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+          <span class="ic">📸</span><h4>Instagram</h4><p>Civic vibes, visual stories, behind the scenes.</p><span class="go">Follow @PolitiCatNM →</span>
+        </a>
+        <a class="cm-corner" href="https://www.youtube.com/@politicatnm" target="_blank" rel="noopener noreferrer" data-link="youtube" style="background:#c4302b">
+          <span class="ic">▶</span><h4>YouTube</h4><p>Deep dives, explainers, and live chats.</p><span class="go">Watch &amp; subscribe →</span>
+        </a>
+        <a class="cm-corner" href="mailto:PolitiCatNM@proton.me" data-link="email" style="background:var(--teal)">
+          <span class="ic">✉️</span><h4>Email</h4><p>Reach the den directly. What matters most.</p><span class="go">PolitiCatNM@proton.me →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="cm-sec cm-orn" id="crew">
+      <h2>Meet the Community Crew</h2>
+      <p class="cm-sub">Real characters. Real roles. Real commitment to New Mexico.</p>
+      <div class="cm-crew">
+        <div class="cm-mate">
+          <div class="ph"><img src="assets/img/crew-don-gato.jpg" alt="Don Gato Cívico, a serious cat in a cowboy hat holding a magnifying glass"></div>
+          <h4>Don Gato</h4><span class="role">Civic Investigator</span>
+          <p>Digging into records so you don't have to. No spin. Just facts.</p>
+        </div>
+        <div class="cm-mate">
+          <div class="ph"><img src="assets/img/crew-chispa.jpg" alt="Chispa, a chihuahua reporter with a microphone and rainbow mane"></div>
+          <h4>Chispa</h4><span class="role">Community Reporter</span>
+          <p>Stories from the people and places that make New Mexico, New Mexico.</p>
+        </div>
+        <div class="cm-mate">
+          <div class="ph"><img src="assets/img/crew-secretary-meow.jpg" alt="Secretary Meow, an elegant Persian cat holding a records folio"></div>
+          <h4>Secretary Meow</h4><span class="role">Records Keeper</span>
+          <p>Protecting access to public records and your right to know.</p>
+        </div>
+        <div class="cm-mate">
+          <div class="ph"><img src="assets/img/crew-rio-ranger.jpg" alt="Río Ranger, a friendly cat in a fedora with a map and hiking pack"></div>
+          <h4>Río Ranger</h4><span class="role">Community Guide</span>
+          <p>Connecting voices across our towns, tribes, and barrios.</p>
+        </div>
+        <div class="cm-mate">
+          <div class="ph"><img src="assets/img/crew-data-paws.jpg" alt="Data Paws, a fluffy gray cat showing charts on a tablet"></div>
+          <h4>Data Paws</h4><span class="role">Analytics Cat</span>
+          <p>Turning numbers into know-how. Clear. Useful. Local.</p>
+        </div>
+        <div class="cm-mate">
+          <div class="ph"><img src="assets/img/crew-barrio-buddy.png" alt="Barrio Buddy, a cheerful young tabby cat waving with a phone in paw"></div>
+          <h4>Barrio Buddy</h4><span class="role">New Voices Liaison</span>
+          <p>Welcoming new folks and making sure everyone belongs.</p>
+        </div>
+      </div>
+      <a class="cm-crewbtn" href="about.html">See the whole cast →</a>
+    </section>
+
+    <section class="cm-closer wall wall--dusk" style="--wall:url('assets/img/wallpaper-dongato.jpg')">
+      <div class="cm-closer-inner">
+        <h2>THIS IS YOUR COMMUNITY.<br>YOUR QUESTIONS. <b>YOUR</b> NEW MEXICO.</h2>
+        <p>Stay curious. Stay informed. Stay connected. Let's build a stronger, smarter, kinder New Mexico — together.</p>
+        <div class="cm-cta">
+          <a class="cm-btn" href="#corner">Join the community</a>
+          <a class="cm-btn ghost" href="ask.html">Ask a question</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </main>
 
 <footer>
@@ -65,6 +245,7 @@
         <h5>Site</h5>
         <a href="ask.html">Ask PolitíCat</a>
         <a href="explore.html">Explore NM</a>
+        <a href="elections.html">Elections</a>
         <a href="learn.html">Learn</a>
         <a href="trail.html">The Trail</a>
         <a href="whitepaper.html">White Paper</a>
