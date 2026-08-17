@@ -160,9 +160,21 @@ header.nav{
 .page-hero .hero-title{font-size:clamp(2.25rem,5vw,4rem)}
 .page-hero .hero-sub{max-width:620px}
 .platform-section{
-  background:var(--cream-soft);
-  padding:72px 0 84px;
+  background:transparent; /* the paper ground shows through */
+  padding:64px 0 84px;
 }
+/* Shared Civic Pulse ticker (homepage + hubs) */
+.mo-ticker{background:var(--teal-deep);overflow:hidden;display:flex;align-items:center}
+.mo-ticker .brandtag{flex:none;display:flex;gap:8px;align-items:center;color:var(--cream);font-weight:900;font-size:.78rem;letter-spacing:1.5px;padding:0 18px;border-right:1px solid rgba(230,215,184,.25)}
+.mo-ticker .lane-wrap{overflow:hidden;flex:1}
+.mo-ticker .lane{display:flex;gap:44px;white-space:nowrap;padding:10px 0;animation:tickmove 50s linear infinite;width:max-content}
+.mo-ticker:hover .lane{animation-play-state:paused}
+@keyframes tickmove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mo-tick{color:var(--cream);font-size:.82rem;font-weight:700;display:flex;gap:9px;align-items:baseline;text-decoration:none}
+.mo-tick small{color:#9fc5bd;font-size:.68rem;font-weight:700}
+.mo-tick:hover{color:#fff}
+.mo-tick.charter{color:#ffd9a0}
+.mo-ticker .viewall{flex:none;color:#ffd9a0;font-size:.75rem;font-weight:900;padding:0 18px;text-decoration:none;border-left:1px solid rgba(230,215,184,.25)}
 .platform-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -171,20 +183,31 @@ header.nav{
 .platform-card{
   display:block;
   min-height:230px;
-  background:#fff;
-  border:1px solid var(--sand);
-  border-radius:8px;
+  /* aged parchment: light heart, burnt edges */
+  background:radial-gradient(ellipse at 50% 38%, #fdf8ec 0%, #f6ebcf 46%, #e9d2a2 78%, #d0b077 100%);
+  border:2px solid rgba(58,42,24,.55);
+  border-radius:10px;
   padding:24px;
   color:var(--ink);
   text-decoration:none;
-  box-shadow:0 8px 22px -18px var(--shadow);
-  transition:transform .18s,box-shadow .18s,border-color .18s;
+  box-shadow:0 6px 18px -8px rgba(58,42,24,.4), inset 0 0 36px rgba(90,58,27,.24);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
 }
 .platform-card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(240,138,36,.45);
-  box-shadow:0 18px 34px -24px rgba(15,61,62,.45);
+  transform:translateY(-5px);
+  border-color:var(--orange);
+  box-shadow:0 22px 40px -18px rgba(58,42,24,.55), inset 0 0 26px rgba(90,58,27,.16);
 }
+@media (prefers-reduced-motion: no-preference){
+  .platform-card{animation:cardIn .55s ease-out backwards}
+  .platform-card:nth-child(1){animation-delay:.05s}
+  .platform-card:nth-child(2){animation-delay:.13s}
+  .platform-card:nth-child(3){animation-delay:.21s}
+  .platform-card:nth-child(4){animation-delay:.29s}
+  .platform-card:nth-child(5){animation-delay:.37s}
+  .platform-card:nth-child(6){animation-delay:.45s}
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .platform-card span{
   display:block;
   color:var(--orange);
@@ -201,11 +224,12 @@ header.nav{
   line-height:1.12;
   margin-bottom:10px;
 }
-.platform-card p{color:#465650;font-size:.95rem}
+.platform-card p{color:#4a3f2c;font-size:.95rem}
 .platform-card--feature{
-  background:linear-gradient(150deg,var(--teal),var(--teal-deep));
+  background:radial-gradient(ellipse at 50% 30%, #1d7a7c 0%, var(--teal) 45%, var(--teal-deep) 100%);
   color:var(--cream);
-  border-color:transparent;
+  border-color:rgba(15,61,62,.85);
+  box-shadow:0 6px 18px -8px rgba(15,61,62,.55), inset 0 0 40px rgba(0,0,0,.28);
 }
 .platform-card--feature h3{color:var(--cream)}
 .platform-card--feature p{color:#d3e2dc}
