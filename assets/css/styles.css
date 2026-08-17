@@ -197,8 +197,19 @@ header.nav{
    NO background-attachment:fixed — it janks scrolling and hides the art. */
 .wall{position:relative;isolation:isolate}
 .wall::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--wall);background-size:cover;background-position:center}
-.wall::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(247,236,211,.78),rgba(247,236,211,.26) 15%,rgba(247,236,211,.26) 85%,rgba(247,236,211,.82))}
-.wall--dusk::after{background:linear-gradient(180deg,rgba(9,30,33,.72),rgba(9,30,33,.26) 18%,rgba(9,30,33,.3) 82%,rgba(9,30,33,.78))}
+.wall::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(247,236,211,.6),rgba(247,236,211,.14) 12%,rgba(247,236,211,.14) 88%,rgba(247,236,211,.66))}
+.wall--dusk::after{background:linear-gradient(180deg,rgba(9,30,33,.62),rgba(9,30,33,.2) 15%,rgba(9,30,33,.24) 85%,rgba(9,30,33,.7))}
+/* headers get a parchment plate so text stays readable over full-strength art */
+.wall .sec-head{background:rgba(251,246,234,.9);border:2px solid rgba(58,42,24,.45);border-radius:14px;padding:16px 20px;box-shadow:0 4px 12px -6px rgba(58,42,24,.4)}
+/* wallpaper assignments — defined HERE so relative URLs resolve against this stylesheet.
+   (url() inside a custom property in an inline style resolves against the stylesheet
+   that consumes it in Chrome — which 404'd. Never pass wallpaper paths inline.) */
+.wall--dongato{--wall:url('../img/wallpaper-dongato.jpg')}
+.wall--chispa{--wall:url('../img/wallpaper-chispa.jpg')}
+.wall--sos{--wall:url('../img/wallpaper-sos.jpg')}
+.wall--duo{--wall:url('../img/wallpaper-duo.jpg')}
+.wall--community{--wall:url('../img/wallpaper-community.jpg')}
+.wall .ready-boundary,.wall .disclaimer{background:rgba(251,246,234,.92);border:1.5px solid rgba(58,42,24,.4);border-radius:10px;padding:10px 16px;display:inline-block;color:#3f3320}
 .wall--dusk .comm-card{background:rgba(9,30,33,.55);border-color:rgba(230,215,184,.3);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .wall--dusk .comm-card:hover{background:rgba(9,30,33,.75)}
 .platform-grid{

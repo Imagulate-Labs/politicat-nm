@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260817-polish1">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-wallfix1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 .proto-banner{background:#8f2b37;color:#fff;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.5px;padding:7px 14px}
@@ -37,24 +37,26 @@
 .tick-item.warn{color:#ffb9a8}
 /* ---- terminal grid ---- */
 .pt-shell{width:100%;padding:18px clamp(16px,1.2vw,36px) 60px;display:grid;grid-template-columns:clamp(280px,16vw,380px) minmax(0,1fr) clamp(290px,17vw,390px);gap:18px;align-items:start}
-.pt-col-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.pt-col-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;background:rgba(251,246,234,.92);border:2px solid rgba(58,42,24,.45);border-radius:11px;padding:9px 14px;box-shadow:0 3px 10px -5px rgba(58,42,24,.35)}
 .pt-col-head h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.05rem}
 .pt-col-head select{padding:6px 9px;border-radius:8px;border:1px solid rgba(20,89,90,.3);font-family:inherit;font-size:.76rem;font-weight:700;color:var(--teal)}
 /* county strip */
 .pt-counties{display:flex;flex-direction:column;gap:8px;max-height:78vh;overflow-y:auto;padding-right:4px}
-.pt-county{background:var(--cream-soft);border:1.5px solid rgba(58,42,24,.45);border-radius:11px;padding:10px 13px;text-decoration:none;display:block}
-.pt-county:hover{border-color:var(--orange)}
+.pt-county{background:#fdf6e7;border:2px solid rgba(58,42,24,.6);border-radius:11px;padding:10px 13px;text-decoration:none;display:block;box-shadow:0 3px 10px -5px rgba(58,42,24,.4);transition:transform .15s,border-color .15s}
+.pt-county:hover{border-color:var(--orange);transform:translateY(-2px)}
 .pt-county b{display:block;color:var(--teal-deep);font-size:.9rem}
 .pt-county .stats{font-size:.72rem;color:#4a5a55;font-weight:600;margin-top:2px}
 .pt-county .cov{display:inline-block;margin-top:5px;font-size:.62rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:rgba(90,125,58,.14);color:#3f6d33}
 .pt-county .cov.partial{background:rgba(240,138,36,.15);color:var(--orange-deep)}
 /* feed */
 .pt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.pt-tab{border:1px solid rgba(20,89,90,.3);background:#fff;color:var(--teal);font-weight:800;font-size:.76rem;border-radius:999px;padding:7px 13px;cursor:pointer}
+.pt-tab{border:1.5px solid rgba(58,42,24,.45);background:#fffdf5;color:var(--teal);font-weight:800;font-size:.76rem;border-radius:999px;padding:7px 13px;cursor:pointer;transition:transform .15s}
+.pt-tab:hover{transform:translateY(-1px);border-color:var(--orange)}
 .pt-tab.on{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
 .pt-feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:12px;align-items:start}
 .pt-card.grouped{grid-column:1/-1}
-.pt-card{background:#fff;border:2px solid rgba(58,42,24,.45);border-radius:13px;padding:15px 17px;box-shadow:0 3px 10px -5px rgba(58,42,24,.3)}
+.pt-card{background:#fffdf5;border:2px solid rgba(58,42,24,.6);border-radius:13px;padding:15px 17px;box-shadow:0 5px 14px -6px rgba(58,42,24,.45);transition:transform .15s,border-color .15s}
+.pt-card:hover{transform:translateY(-2px);border-color:var(--orange)}
 .pt-card .top{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
 .badge{font-size:.62rem;font-weight:900;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px;border-radius:5px}
 .badge.official{background:var(--teal-deep);color:var(--cream)}
@@ -76,7 +78,7 @@
 .pt-card.unavailable{border-style:dashed;border-color:#b98a4a;background:#fdf9ef}
 /* right rail */
 .pt-right{position:sticky;top:14px;display:flex;flex-direction:column;gap:13px}
-.pt-panel{background:var(--cream-soft);border:2px solid rgba(58,42,24,.5);border-radius:13px;padding:15px 17px}
+.pt-panel{background:#fdf6e7;border:2px solid rgba(58,42,24,.6);border-radius:13px;padding:15px 17px;box-shadow:0 4px 12px -6px rgba(58,42,24,.4)}
 .pt-panel h4{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1rem;margin-bottom:9px}
 .pt-follow{display:flex;flex-wrap:wrap;gap:6px}
 .pt-follow button{border:1px solid rgba(20,89,90,.3);background:#fff;border-radius:999px;padding:6px 12px;font-size:.74rem;font-weight:800;color:var(--teal);cursor:pointer}
@@ -130,7 +132,7 @@
   </div>
 </div>
 
-<div class="pt-shell wall" style="--wall:url('assets/img/wallpaper-chispa.jpg')">
+<div class="pt-shell wall wall--chispa">
 
   <!-- 33-county strip -->
   <aside>
