@@ -565,6 +565,7 @@ function renderCountySnapshot(row, displayName) {
   const countyName = countyDisplayName(row);
   panel.innerHTML = '<span class="snapshot-kicker">County snapshot</span>'
     + '<h3>Welcome to ' + escapeHtml(countyName) + ' County</h3>'
+    + '<a class="snapshot-open" href="county.html?c=' + encodeURIComponent(countySlug(countyName)) + '">Open the ' + escapeHtml(countyName) + ' County page →</a>'
     + '<p class="snapshot-intro">This is the Level 2 dashboard: local context first, then voting, officials, meetings, history, and Ask Don Gato.</p>'
     + '<div class="county-actions" aria-label="' + escapeHtml(countyName) + ' County actions">'
     + '<a href="https://www.sos.nm.gov/voting-and-elections/voter-information-portal-nmvote-org/county-clerk-information/" target="_blank" rel="noopener noreferrer"><span>🏛️</span><b>Meet your county clerk</b><small>Official county clerk directory</small></a>'

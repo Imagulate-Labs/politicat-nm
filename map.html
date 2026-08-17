@@ -22,8 +22,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260817-wall2">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-map1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* map room (mr-*) */
+.mr-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:34px clamp(16px,1.5vw,44px) 14px}
+.mr-top h1{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:clamp(1.8rem,3.2vw,3rem);line-height:1.05;margin:6px 0 8px}
+.mr-top p{font-size:.95rem;color:#4a3f2c;font-weight:600;max-width:760px}
+.mr-top p a{color:var(--orange-deep);font-weight:800}
+.mr-pick{flex:0 1 360px}
+.mr-layers{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:4px clamp(16px,1.5vw,44px) 18px}
+.mr-lab{font-weight:900;font-size:.72rem;letter-spacing:1.5px;color:var(--teal-deep)}
+.mr-layer{display:inline-flex;align-items:center;gap:7px;border:2px solid rgba(58,42,24,.45);background:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-weight:800;font-size:.82rem;color:var(--teal-deep);cursor:pointer}
+.mr-layer.on{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
+.mr-layer i{font-style:normal;font-size:.56rem;font-weight:900;letter-spacing:.5px;padding:2.5px 7px;border-radius:4px;background:#3f6d33;color:#fff}
+.mr-layer:disabled{opacity:.7;cursor:default;background:var(--cream-soft);color:#6b5b40;border-style:dashed}
+.mr-layer:disabled i{background:#b9b2a4}
+.mr-note{font-size:.74rem;font-weight:700;color:#6b5b40}
+.mr-room{padding:clamp(18px,2vw,40px) clamp(14px,1.4vw,40px);border-top:2.5px solid rgba(58,42,24,.55);border-bottom:2.5px solid rgba(58,42,24,.55)}
+.mr-explorer{grid-template-columns:minmax(0,1fr) clamp(320px,26vw,470px);gap:clamp(14px,1.4vw,26px);margin:0;align-items:start}
+.mr-map .nm-map{display:block;width:auto;max-width:100%;height:min(78vh,1080px);margin:0 auto}
+.mr-snap{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}
+@media(max-width:1100px){.mr-explorer{grid-template-columns:1fr}.mr-map .nm-map{width:100%;height:auto}.mr-snap{position:static;max-height:none}}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -31,41 +52,43 @@
     <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
     <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <nav class="nav-links" id="navlinks">
-      <a href="explore.html">Explore NM</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a>
+      <a href="explore.html">Explore NM</a><a href="map.html">Map</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a>
       <a href="ask.html" class="nav-cta">Ask a Question</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="page-hero">
-    <div class="wrap page-hero-inner">
-      <div>
-        <span class="eyebrow"><span class="dot"></span>Explore NM · Map View</span>
-        <h1 class="hero-title">The Land of Enchantment, Mapped.</h1>
-        <p class="hero-sub">Every county is a doorway. Zoom, pan, drop pins, and open any county's snapshot — or jump back to the <a href="explore.html" style="color:var(--orange)">county strips</a>.</p>
-      </div>
+  <div class="mr-top">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Explore NM · The Map Room</span>
+      <h1>The Land of Enchantment, Mapped.</h1>
+      <p>Every county is a doorway: tap one for its snapshot, then step through to its full county page. Zoom, pan, drop pins — or jump back to the <a href="explore.html">county strips</a>.</p>
     </div>
-  </section>
-
-  <section class="block tools" id="tools">
-    <div class="wrap">
-      <div class="ready-panel">
-        <div class="ready-highlights" aria-label="Explorer highlights">
-          <div><span>🗺️</span>Explore NM by county</div>
-          <div><span>🏛️</span>Find local civic tools</div>
-          <div><span>🐱</span>Ask Don Gato in context</div>
-        </div>
-        <label class="county-picker" for="countySelect">
-          <span>Your county</span>
-          <small>We use county, not your home address.</small>
-          <select id="countySelect">
+    <label class="county-picker mr-pick" for="countySelect">
+      <span>Your county</span>
+      <small>We use county, not your home address.</small>
+      <select id="countySelect">
             <option value="">Select your New Mexico county...</option>
             <option>Bernalillo</option><option>Catron</option><option>Chaves</option><option>Cibola</option><option>Colfax</option><option>Curry</option><option>De Baca</option><option>Doña Ana</option><option>Eddy</option><option>Grant</option><option>Guadalupe</option><option>Harding</option><option>Hidalgo</option><option>Lea</option><option>Lincoln</option><option>Los Alamos</option><option>Luna</option><option>McKinley</option><option>Mora</option><option>Otero</option><option>Quay</option><option>Rio Arriba</option><option>Roosevelt</option><option>Sandoval</option><option>San Juan</option><option>San Miguel</option><option>Santa Fe</option><option>Sierra</option><option>Socorro</option><option>Taos</option><option>Torrance</option><option>Union</option><option>Valencia</option>
-          </select>
-        </label>
-        <div class="county-explorer" aria-label="New Mexico county map">
-          <div class="county-map-card">
+      </select>
+    </label>
+  </div>
+
+  <div class="mr-layers" role="group" aria-label="Map layers">
+    <span class="mr-lab">🗺️ LAYERS</span>
+    <button class="mr-layer on" type="button">🏛️ Counties <i>LIVE</i></button>
+    <button class="mr-layer" type="button" disabled title="Planned layer — follows the record">💧 Water <i>PLANNED</i></button>
+    <button class="mr-layer" type="button" disabled title="Planned layer — follows the record">🖥️ Data centers <i>PLANNED</i></button>
+    <button class="mr-layer" type="button" disabled title="Planned layer — follows the record">📷 Public cameras <i>PLANNED</i></button>
+    <button class="mr-layer" type="button" disabled title="Planned layer — follows the record">🛣️ Roads &amp; traffic <i>PLANNED</i></button>
+    <button class="mr-layer" type="button" disabled title="Planned layer — follows the record">🏨 Lodging &amp; tourism <i>PLANNED</i></button>
+    <span class="mr-note">The layer system is in build — counties are live today; each new layer arrives with its records.</span>
+  </div>
+
+  <div class="mr-room wall wall--dusk" style="--wall:url('assets/img/wallpaper-community.jpg')">
+    <div class="county-explorer mr-explorer" aria-label="New Mexico county map">
+      <div class="county-map-card mr-map">
             <div class="county-map-head">
               <div><span class="map-kicker">County Navigation</span><h3>New Mexico as the Front Door</h3></div>
               <span class="map-date" id="mapSourceDate">Loading data...</span>
@@ -312,12 +335,17 @@
             </div>
             <p class="map-hint">🐾 Tap any county for its civic snapshot · drag to pan, <b>+</b>/<b>−</b> to zoom · 📍 drops pins for planning or research (pins are saved only in your browser — nothing is uploaded).</p>
           </div>
-          <aside class="county-snapshot" id="countySnapshot" aria-live="polite">
+          <aside class="county-snapshot mr-snap" id="countySnapshot" aria-live="polite">
             <span class="snapshot-kicker">County dashboard</span>
             <h3>Choose your county.</h3>
             <p>Every county becomes its own civic starting point.</p>
           </aside>
-        </div>
+    </div>
+  </div>
+
+  <section class="block" id="tools">
+    <div class="wrap">
+      <div class="ready-panel">
         <div class="ready-columns">
           <div class="ready-col">
             <h3>Am I Registered?</h3>
@@ -367,6 +395,6 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=20260817-wall2"></script>
+<script src="assets/js/app.js?v=20260817-map1"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260817-wall2">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-map1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -30,7 +30,7 @@
   <div class="wrap nav-inner">
     <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
     <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
-    <nav class="nav-links" id="navlinks"><a href="explore.html">Explore NM</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a><a href="ask.html" class="nav-cta">Ask a Question</a></nav>
+    <nav class="nav-links" id="navlinks"><a href="explore.html">Explore NM</a><a href="map.html">Map</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a><a href="ask.html" class="nav-cta">Ask a Question</a></nav>
   </div>
 </header>
 
@@ -45,7 +45,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block wall" style="--wall:url('assets/img/wallpaper-duo.jpg')">
     <div class="wrap">
 
       <div class="wp-section">
@@ -67,7 +67,7 @@
         <h2>3. How the site stays organized (the anti-sprawl canon)</h2>
         <div class="wp-canon">
           <strong>The rule:</strong> new work joins an existing hub. A new top-level page requires updating this white paper first, with a reason. Geographic anything becomes a <em>layer on the map</em>, not a new page. One topic = one dossier page in The Trail, not a scatter of fragments. <strong>Edge-to-edge layout is canon: no pixel cap, ever.</strong> The layout fills 100% of every screen — phone, tablet, laptop, 65-inch — with gutters only; density scales by adding columns and panels, never by centering a boxed column in dead space.
-          <br><br><strong>Navigation canon (adopted Aug 15, updated Aug 16, 2026):</strong> the top nav is Explore NM · Elections · Pulse · Learn · The Trail · Community · About, plus the persistent "Ask a Question" button (the only Ask entry). This white paper lives under About and in the footer. Explore owns the county terminal, county pages, and the map; Elections owns election action and the practice ballot; Pulse owns the civic feed (preview until scheduled collection lands); Learn owns evergreen explainers.
+          <br><br><strong>Navigation canon (adopted Aug 15, updated Aug 17, 2026):</strong> the top nav is Explore NM · Map · Elections · Pulse · Learn · The Trail · Community · About, plus the persistent "Ask a Question" button (the only Ask entry). The Map got its own tab because the map is the future geographic home of the site — the layer system (counties live; water, data centers, public cameras, roads, lodging planned) must be findable in one click. This white paper lives under About and in the footer. Explore owns the county terminal, county pages, and the map; Elections owns election action and the practice ballot; Pulse owns the civic feed (preview until scheduled collection lands); Learn owns evergreen explainers.
         </div>
         <div class="wp-hubs">
           <div class="wp-hub"><h4>🏠 Home</h4><p>The front door. Points into the hubs; holds nothing itself.</p><span class="rule">No content lives here</span></div>
@@ -139,6 +139,8 @@
       <div class="wp-section">
         <h2>5. Changelog</h2>
         <ul class="checklist">
+          <li class="done"><span class="when">AUG 17 2026</span>The Map Room: map page rebuilt full-screen with the layers bar (counties LIVE; water, data centers, public cameras, roads, lodging PLANNED); county clicks now open a dashboard with a direct door to each county page; Map restored to the top nav on every page</li>
+          <li class="done"><span class="when">AUG 17 2026</span>Wallpaper visibility fixed site-wide (removed fixed-attachment backgrounds that hid the art and janked scrolling; lighter scrims), smooth anchor scrolling added, and every page now carries its wallpaper — Learn, Ask, About, Ballot, County, and the White Paper included</li>
           <li class="done"><span class="when">AUG 17 2026</span>Community rebuilt as "New Mexico Is Talking" from the user's mockup: full-bleed hero, Trending in New Mexico (real receipted stories only), verify bar, brand-colored Choose Your Corner, and Meet the Community Crew — three new cast members join (Río Ranger, Data Paws, Barrio Buddy) alongside Don Gato, Chispa, and Secretary Meow</li>
           <li class="done"><span class="when">AUG 17 2026</span>Wallpapers moved behind the content: commissioned art now backs the sections themselves (Home platform cards, Explore strips, Pulse feed, Elections tools, Community, The Trail) with readability scrims, so the boxes float on the scene instead of on flat color</li>
           <li class="done"><span class="when">AUG 17 2026</span>Storybook format adopted for step-by-step government processes: How Power Moves rebuilt as a four-chapter book (magazine spreads, footnoted citations, chapter rail, page-turn controls) — the template for telling every future Trail story</li>
@@ -187,6 +189,6 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=20260817-wall2"></script>
+<script src="assets/js/app.js?v=20260817-map1"></script>
 </body>
 </html>
