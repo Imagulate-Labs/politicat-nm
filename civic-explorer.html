@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civic Explorer — Follow One Dollar — PolitíCat NM</title>
+<meta name="description" content="Follow one New Mexico dollar from your pocket through the Legislature, agencies, contracts, and audits — eight public checkpoints, a record at every major stop.">
+<link rel="canonical" href="https://politicatnm.org/civic-explorer.html">
+<meta name="theme-color" content="#0e1513">
+<meta property="og:site_name" content="PolitíCat NM">
+<meta property="og:title" content="Civic Explorer — Follow One New Mexico Dollar">
+<meta property="og:description" content="One common path. Eight public checkpoints. A record at every major stop.">
+<meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<meta property="og:url" content="https://politicatnm.org/civic-explorer.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PolitiCatNM">
+<meta name="twitter:title" content="Civic Explorer — Follow One New Mexico Dollar">
+<meta name="twitter:description" content="The dollar moves. The receipts stay.">
+<meta name="twitter:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
+<link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,900;1,9..144,500&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-explorer1">
+<script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* Civic Explorer (ce-*) — night table scene, layered per the production layer map */
+body.ce-body{background:#0e1513}
+.ce-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px clamp(16px,1.5vw,40px);background:#0e1513;border-bottom:1px solid #24332e}
+.ce-top .brand2{font-weight:800;letter-spacing:.14em;color:#f0e8d6;font-size:.9rem}
+.ce-top .brand2 b{color:#3ec9b8;letter-spacing:.18em}
+.ce-pill{border:1px solid #2a3a35;background:#151f1c;color:#9db1a9;font-weight:800;font-size:.68rem;letter-spacing:.14em;border-radius:999px;padding:7px 14px}
+/* stepper rail */
+.ce-rail{display:flex;align-items:flex-start;gap:0;padding:16px clamp(16px,2vw,48px) 12px;background:#0e1513;overflow-x:auto}
+.ce-stop{flex:1;min-width:64px;background:none;border:none;cursor:pointer;font:inherit;color:#5f7169;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;padding:0 0 4px}
+.ce-stop::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:#2a3a35;z-index:0}
+.ce-stop:first-child::before{content:none}
+.ce-stop .dot2{width:20px;height:20px;border-radius:50%;background:#151f1c;border:2px solid #2a3a35;z-index:1;transition:all .3s}
+.ce-stop .lbl{font-weight:800;font-size:.66rem;letter-spacing:.12em}
+.ce-stop.done{color:#9db1a9}
+.ce-stop.done .dot2{border-color:#3ec9b8;background:#123530}
+.ce-stop.done::before{background:#3ec9b8}
+.ce-stop.here{color:#e2a84b}
+.ce-stop.here .dot2{border-color:#e2a84b;background:#e2a84b;box-shadow:0 0 12px rgba(226,168,75,.7)}
+.ce-stop.here::before{background:#3ec9b8}
+.ce-stop:focus-visible{outline:2px solid #3ec9b8;outline-offset:3px;border-radius:6px}
+/* the stage: scene column + rail column, night bg behind both */
+.ce-stage{position:relative;background:url('assets/img/explorer/explorer-bg.jpg') center/cover;padding:clamp(10px,1.4vw,30px) clamp(10px,1.4vw,30px) clamp(150px,12vw,200px);display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,23vw,380px);gap:clamp(12px,1.4vw,26px);align-items:start}
+.ce-scene{position:relative;aspect-ratio:1672/941;max-height:78vh;margin:0 auto;grid-column:1;width:100%}
+.ce-scene .layer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.ce-scene .route{pointer-events:none}
+/* checkpoints */
+.ce-cp{position:absolute;transform:translate(-50%,-50%);background:none;border:none;cursor:pointer;font:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;z-index:6;padding:0}
+.ce-cp .disc{width:clamp(38px,4.2vw,64px);height:clamp(38px,4.2vw,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:clamp(1.1rem,2vw,1.8rem);background:radial-gradient(circle at 35% 30%,#8a5a2e,#5d3b1a 65%,#3c2410);border:2.5px solid #2c1a0b;box-shadow:0 5px 12px rgba(0,0,0,.6),inset 0 2px 4px rgba(255,220,160,.25);transition:transform .2s,box-shadow .2s}
+.ce-cp .tag{background:rgba(10,20,17,.88);color:#e6dcc3;font-weight:900;font-size:clamp(.5rem,.72vw,.72rem);letter-spacing:.14em;border:1px solid rgba(62,201,184,.35);border-radius:6px;padding:3px 9px;white-space:nowrap}
+.ce-cp:hover .disc{transform:translateY(-3px)}
+.ce-cp.done .disc{box-shadow:0 0 0 3px rgba(62,201,184,.75),0 5px 12px rgba(0,0,0,.6)}
+.ce-cp.here .disc{box-shadow:0 0 0 4px #e2a84b,0 0 26px rgba(226,168,75,.8),0 5px 12px rgba(0,0,0,.6);animation:cePulse 1.6s ease-in-out infinite}
+.ce-cp.here .tag{border-color:#e2a84b;color:#ffd9a0}
+.ce-cp:focus-visible .disc{outline:3px solid #3ec9b8;outline-offset:3px}
+@keyframes cePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+/* traveling coin */
+.ce-coin{position:absolute;width:clamp(20px,2vw,30px);height:clamp(20px,2vw,30px);border-radius:50%;background:radial-gradient(circle at 34% 30%,#f4d489,#e2a84b 60%,#a5732a);border:2px solid #6e4d1c;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.8rem;color:#3d2c0c;box-shadow:0 2px 10px rgba(0,0,0,.6);transform:translate(-50%,-140%);transition:left .6s cubic-bezier(.6,0,.3,1),top .6s cubic-bezier(.6,0,.3,1);z-index:7;pointer-events:none}
+/* Don Gato + bubble: top-right, above the side panel, never intercepting clicks */
+.ce-gato{position:absolute;right:clamp(6px,1vw,26px);top:clamp(4px,.6vw,14px);width:clamp(240px,25vw,460px);pointer-events:none;z-index:6;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+.ce-bubble{position:absolute;right:clamp(240px,25vw,470px);top:3%;background:#f0e8d6;color:#22201a;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(.78rem,1.05vw,1.05rem);line-height:1.4;border-radius:14px 14px 4px 14px;padding:10px 16px;box-shadow:0 4px 14px rgba(0,0,0,.5);z-index:6;pointer-events:none}
+/* step card (parchment) */
+.ce-card{position:absolute;left:clamp(12px,2vw,40px);bottom:clamp(-130px,-9vw,-90px);width:min(500px,55%);background:radial-gradient(ellipse at 50% 30%,#fdf8ec,#f0e3c3 70%,#dfc9a0);border:2.5px solid rgba(58,42,24,.65);border-radius:14px;padding:clamp(16px,1.8vw,28px);box-shadow:0 14px 40px rgba(0,0,0,.55);z-index:8}
+.ce-kicker{color:#a3541e;font-weight:900;letter-spacing:.16em;font-size:.68rem;text-transform:uppercase}
+.ce-card h1{font-family:'Alfa Slab One',serif;color:#2c2214;font-size:clamp(1.25rem,2vw,2rem);line-height:1.06;margin:8px 0 10px}
+.ce-body{font-size:clamp(.85rem,1vw,1rem);line-height:1.6;color:#3a2f1e;font-weight:500}
+.ce-body b{color:#1c1610}
+.ce-stat{margin-top:10px;font-size:.85rem;color:#5a4a30;font-weight:700}
+.ce-stat .val{font-family:'IBM Plex Mono',monospace;color:#0e7f6f;font-weight:600}
+.ce-ctas{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ce-btn{font:inherit;font-weight:900;font-size:.85rem;border:none;border-radius:9px;padding:11px 18px;cursor:pointer}
+.ce-btn.go{background:#14595a;color:#fbf6ea}
+.ce-btn.alt{background:#fbf6ea;color:#14595a;border:2px solid rgba(58,42,24,.4)}
+/* receipt chips */
+.chip{display:inline-flex;align-items:center;gap:5px;vertical-align:baseline;border:1px solid rgba(58,42,24,.35);background:#fbf6ea;border-radius:20px;padding:1px 9px 1px 7px;margin:0 3px;font-size:.68rem;font-family:'IBM Plex Mono',monospace;color:#5a4a30;cursor:pointer;white-space:nowrap}
+.chip:hover,.chip:focus-visible{border-color:#0e7f6f;color:#1c1610;outline:none}
+.chip .dot{width:7px;height:7px;border-radius:50%}
+.dot.V{background:#0e7f6f}.dot.D{background:#e2a84b}.dot.U{background:#8a9a93}
+/* side panel: second grid column, pushed below Don Gato */
+.ce-side{position:relative;grid-column:2;margin-top:clamp(190px,19vw,330px);width:auto;background:rgba(14,26,23,.94);border:1.5px solid rgba(62,201,184,.3);border-radius:16px;padding:18px;z-index:8;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.ce-side h4{color:#3ec9b8;font-weight:800;letter-spacing:.16em;font-size:.68rem;text-transform:uppercase;margin-bottom:8px}
+.ce-side .who{color:#f0e8d6;font-weight:800;font-size:1.05rem;display:flex;gap:9px;align-items:center}
+.ce-side .who .ic{font-size:1.2rem}
+.ce-side .whob{color:#9db1a9;font-size:.83rem;line-height:1.55;margin:6px 0 14px}
+.receipts{background:#f4eddc;color:#22201a;border-radius:8px;padding:14px 14px 8px;font-family:'IBM Plex Mono',monospace;font-size:.74rem;position:relative;margin-bottom:14px}
+.receipts::after{content:'';position:absolute;left:0;right:0;bottom:-8px;height:8px;background:repeating-linear-gradient(-45deg,#f4eddc 0 6px,transparent 6px 12px)}
+.receipts h3{font-size:.66rem;letter-spacing:.22em;text-align:center;border-bottom:1px dashed #8d8672;padding-bottom:7px;margin-bottom:3px;font-weight:600}
+.rc{padding:8px 0;border-bottom:1px dashed #c9c0a8}
+.rc:last-child{border-bottom:none}
+.rc .claim{font-weight:600;line-height:1.45;margin-bottom:3px}
+.rc .meta{display:flex;justify-content:space-between;gap:8px;color:#6b6350;font-size:.66rem;line-height:1.5}
+.rc .st{font-weight:600;letter-spacing:.06em}
+.st.V{color:#0e7f6f}.st.D{color:#a06612}.st.U{color:#6b6350}
+.rc .note{font-size:.66rem;color:#6b6350;margin-top:3px;line-height:1.5}
+.receipts .empty{text-align:center;color:#8d8672;padding:10px 0;font-size:.7rem}
+.glance{border:1px solid #2a3a35;border-radius:10px;overflow:hidden;margin-top:6px}
+.glance h3{background:rgba(62,201,184,.08);color:#3ec9b8;font-size:.64rem;letter-spacing:.18em;font-weight:800;padding:9px 12px;text-transform:uppercase}
+.grow{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-size:.78rem;border-top:1px solid #24332e;color:#5f7169;transition:background .3s,color .3s}
+.grow b{font-weight:700;color:#9db1a9}
+.grow.live{background:rgba(226,168,75,.12)}
+.grow.live b{color:#e2a84b}
+/* bottom nav */
+.ce-nav{display:flex;align-items:center;gap:16px;padding:clamp(120px,9vw,150px) clamp(16px,2vw,44px) 26px;background:#0e1513;flex-wrap:wrap}
+.ce-nav .ce-btn.back2{background:#151f1c;color:#f0e8d6;border:1px solid #2a3a35;font-size:.95rem;padding:13px 24px;border-radius:11px}
+.ce-nav .ce-btn.next2{background:#f08a24;color:#fff;font-size:.95rem;padding:13px 26px;border-radius:11px;margin-left:auto}
+.ce-nav .keys{color:#5f7169;font-size:.82rem;font-weight:700;display:flex;gap:8px;align-items:center}
+.ce-nav .keys kbd{background:#151f1c;border:1px solid #2a3a35;border-radius:6px;padding:3px 8px;color:#9db1a9;font-family:'IBM Plex Mono',monospace;font-size:.72rem}
+.ce-nav .cnt{font-family:'IBM Plex Mono',monospace;color:#9db1a9;font-size:.88rem}
+/* responsive: card + side drop into flow */
+@media(max-width:1250px){
+  .ce-stage{padding-bottom:clamp(14px,2vw,30px);grid-template-columns:1fr}
+  .ce-scene{max-height:none}
+  .ce-gato{width:34%;top:auto;bottom:30%;right:-6%}
+  .ce-card{position:static;width:auto;margin:14px 0 0}
+  .ce-side{grid-column:1;margin-top:14px}
+  .ce-nav{padding-top:14px}
+}
+@media(max-width:700px){
+  .ce-bubble{display:none}
+  .ce-gato{right:-12%;width:52%}
+  .ce-cp .tag{font-size:.48rem;padding:2px 6px}
+  .ce-stop .lbl{display:none}
+  .ce-stop{min-width:34px}
+}
+@media (prefers-reduced-motion:reduce){.ce-cp.here .disc{animation:none}.ce-coin{transition:none}}
+</style>
+</head>
+<body class="ce-body">
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/img/politicat-logo.png" alt="PolitíCat NM logo"><span class="brand-name">PolitíCat<span class="nm">NM</span></span></a>
+    <button class="burger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="navlinks"><a href="explore.html">Explore NM</a><a href="map.html">Map</a><a href="elections.html">Elections</a><a href="pulse.html">Pulse</a><a href="learn.html">Learn</a><a href="trail.html">The Trail</a><a href="community.html">Community</a><a href="about.html">About</a><a href="ask.html" class="nav-cta">Ask a Question</a></nav>
+  </div>
+</header>
+
+<div class="ce-top">
+  <div class="brand2">POLITÍCAT NM • <b>CIVIC EXPLORER</b></div>
+  <span class="ce-pill">🛈 ILLUSTRATIVE WALKTHROUGH — EVERY CLAIM WEARS ITS EVIDENCE STATE</span>
+</div>
+
+<div class="ce-rail" id="rail" role="tablist" aria-label="Steps of the dollar's journey"></div>
+
+<div class="ce-stage">
+  <div class="ce-scene" id="scene">
+    <img class="layer" src="assets/img/explorer/explorer-map.webp" alt="" aria-hidden="true">
+    <img class="layer route" src="assets/img/explorer/explorer-route.webp" alt="" aria-hidden="true">
+    <div class="ce-coin" id="ceCoin" aria-hidden="true">$</div>
+    <!-- eight live checkpoints; coordinates are % of the 1672×941 canvas -->
+    <button class="ce-cp" style="left:11%;top:24%"  data-i="0"><span class="disc">🪙</span><span class="tag">START</span></button>
+    <button class="ce-cp" style="left:31%;top:29%"  data-i="1"><span class="disc">📄</span><span class="tag">REVENUE</span></button>
+    <button class="ce-cp" style="left:54%;top:25%"  data-i="2"><span class="disc">🏛️</span><span class="tag">LEGISLATURE</span></button>
+    <button class="ce-cp" style="left:76%;top:31%"  data-i="3"><span class="disc">📘</span><span class="tag">AGENCY</span></button>
+    <button class="ce-cp" style="left:89%;top:49%"  data-i="4"><span class="disc">📋</span><span class="tag">CONTRACT</span></button>
+    <button class="ce-cp" style="left:74%;top:70%"  data-i="5"><span class="disc">🚚</span><span class="tag">VENDOR</span></button>
+    <button class="ce-cp" style="left:50%;top:73%"  data-i="6"><span class="disc">🔍</span><span class="tag">OVERSIGHT</span></button>
+    <button class="ce-cp" style="left:24%;top:72%"  data-i="7"><span class="disc">🚩</span><span class="tag">END</span></button>
+  </div>
+
+  <div class="ce-bubble" aria-hidden="true">The dollar moves.<br><b>The receipts stay.</b></div>
+  <img class="ce-gato" src="assets/img/explorer/explorer-gato.webp" alt="" aria-hidden="true">
+
+  <div class="ce-card" aria-live="polite">
+    <div class="ce-kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="ce-body" id="body"></div>
+    <div class="ce-stat" id="stat"></div>
+    <div class="ce-ctas" id="ctas"></div>
+  </div>
+
+  <aside class="ce-side">
+    <h4>👁 Who checks this step?</h4>
+    <div class="who"><span class="ic">🥽</span><span id="cbTitle"></span></div>
+    <p class="whob" id="cbBody"></p>
+    <div class="receipts" id="receipts" aria-label="Receipts for this step"></div>
+    <div class="glance">
+      <h3>Sources for this lesson</h3>
+      <div class="grow" data-g="1"><span>Starts as</span><b>your taxes &amp; royalties</b></div>
+      <div class="grow" data-g="2"><span>Decided by</span><b>the Legislature</b></div>
+      <div class="grow" data-g="3"><span>Spent by</span><b>state agencies</b></div>
+      <div class="grow" data-g="4"><span>State purchases post</span><b>on the Sunshine Portal</b></div>
+      <div class="grow" data-g="6"><span>Watched by</span><b>LFC · State Auditor</b></div>
+    </div>
+  </aside>
+</div>
+
+<div class="ce-nav">
+  <button class="ce-btn back2" id="back">← Back</button>
+  <span class="keys">KEYBOARD CONTROLS <kbd>←</kbd><kbd>→</kbd> to navigate <kbd>Enter</kbd> to select</span>
+  <span class="cnt" id="count"></span>
+  <button class="ce-btn next2" id="next">Next step →</button>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-bottom" style="border-top:none">
+      <span>© 2026 PolitíCat NM · politicatnm.org · <a href="learn.html" style="color:var(--orange)">More in Learn →</a></span>
+      <span class="nonpartisan">Nonpartisan civic education · Illustrative walkthrough — sample framing, receipted claims.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---------- receipts: every factual claim carries its own evidence state ----------
+// V = VERIFIED (artifact captured, dated) · D = DEGRADED (secondary/partial) · U = UNKNOWN (not yet captured)
+const R = {
+  budget:  {s:'V', claim:'FY26 recurring general fund ≈ $10.8B, plus ~$2.1B one-time',
+            src:'LFC 2026 Post-Session Review · nmlegis.gov', asof:'checked 2026-08-17'},
+  oilgas:  {s:'U', claim:'Share of general fund revenue from oil & gas',
+            src:'CREG consensus revenue estimate — not yet captured', asof:'pending',
+            note:'Widely reported near one-third. We don’t print the number until the estimate itself is in Civic Substrate.'},
+  gaa:     {s:'V', claim:'One budget bill: the General Appropriation Act',
+            src:'LFC 2026 Post-Session Review · nmlegis.gov', asof:'checked 2026-08-17'},
+  veto:    {s:'D', claim:'Governor may line-item veto appropriations',
+            src:'N.M. Const. art. IV — text not yet captured', asof:'pending',
+            note:'Cited everywhere; the constitutional text still needs its own capture.'},
+  dfa:     {s:'V', claim:'DFA transfers money to agencies monthly, ~1/12 of appropriation',
+            src:'Sunshine Portal · Budget Details (ssp.nm.gov)', asof:'checked 2026-08-17'},
+  portal:  {s:'V', claim:'Budgets & expenditures publish from SHARE to the Sunshine Portal',
+            src:'ssp.nm.gov · About the Portal', asof:'checked 2026-08-17'},
+  potot:   {s:'U', claim:'Total dollars visible in portal POs & vendor payments',
+            src:'Sunshine Portal query — not yet captured', asof:'pending',
+            note:'A number was floating around (~$13.8B). It doesn’t appear here until the query is run and dated.'},
+  scope:   {s:'D', claim:'Portal covers state government; local purchases vary',
+            src:'ssp.nm.gov scope pages — partial capture', asof:'checked 2026-08-17',
+            note:'“Every purchase” was an overclaim. Counties, cities, and schools have separate systems.'},
+  procure: {s:'D', claim:'Purchases governed by the NM Procurement Code',
+            src:'NMSA 1978 §13-1 — text not yet captured', asof:'pending'},
+  lfc:     {s:'V', claim:'LFC reviews agency performance and budgets',
+            src:'LFC publications · nmlegis.gov', asof:'checked 2026-08-17'},
+  osa:     {s:'D', claim:'State Auditor audits every agency’s books annually',
+            src:'Audit Act, NMSA 1978 §12-6 — text not yet captured', asof:'pending'},
+  finding: {s:'U', claim:'Example audit findings count for one county',
+            src:'OSA audit report — not yet selected/captured', asof:'pending',
+            note:'The draft said “42 findings.” No county, no year, no report — so no number. This chip flips when a real audit is captured.'}
+};
+const chip = k => {
+  const r = R[k];
+  return `<button class="chip" data-r="${k}" aria-label="Receipt: ${r.claim}"><span class="dot ${r.s}"></span>${
+    r.s==='V'?'verified':r.s==='D'?'partial':'unverified'}</button>`;
+};
+
+const steps = [
+ {label:'START', kicker:'Step 0 · The whole path', title:'Follow one New Mexico dollar.',
+  body:`One common path. <b>Eight public checkpoints.</b> A record at every major stop. Every public dollar takes the same journey — from your pocket, through the Legislature, out to an agency, into a contract, and back into the economy. At each stop, someone is supposed to be watching.`,
+  stat:``, cbT:'You, the reader', cbB:`You don't need to be an investigator to follow this — that's the point. Use the evidence we surface: tap any small chip to see the receipt behind a claim.`,
+  receipts:[], g:0, ctas:true},
+ {label:'REVENUE', kicker:'Step 1 · It starts with you', title:'You pay it in.',
+  body:`It begins as <b>taxes and oil-and-gas revenue</b>. New Mexico is unusual — a large share of the state's money comes from energy on public land, not just income tax ${chip('oilgas')}.`,
+  stat:`State budget, FY26: <span class="val">≈ $10.8B recurring</span> ${chip('budget')}`,
+  cbT:'Public revenue reports', cbB:`Where the money comes from is published — so the starting pool isn't a mystery.`,
+  receipts:['budget','oilgas'], g:1},
+ {label:'LEGISLATURE', kicker:'Step 2 · The committee', title:'The Legislature decides.',
+  body:`Lawmakers write one big budget bill — the <b>General Appropriation Act</b> ${chip('gaa')}. Finance committees mark it up, both chambers vote, the Governor signs — and can strike single lines ${chip('veto')}.`,
+  stat:`Every line, every vote — <span class="val">on the record</span>`,
+  cbT:`Recorded votes + the Governor's veto`, cbB:`Two chambers plus the Governor have to agree. That's the first balance of power — and it's all public.`,
+  receipts:['gaa','veto'], g:2},
+ {label:'AGENCY', kicker:'Step 3 · It gets assigned', title:'An agency gets its budget.',
+  body:`The money is handed to agencies — schools, transportation, health, courts — each with <b>spending authority</b> for specific purposes, not a blank check. Finance releases it month by month ${chip('dfa')}.`,
+  stat:`Hundreds of budget lines, by purpose`,
+  cbT:'Dept. of Finance & Administration', cbB:`DFA releases funds against the budget the Legislature set — an agency can't quietly spend on something it wasn't given.`,
+  receipts:['dfa'], g:3},
+ {label:'CONTRACT', kicker:'Step 4 · It gets spent', title:'The agency buys something.',
+  body:`To do its job the agency signs <b>contracts and purchase orders</b> — a road, a software system, a service. State purchases post publicly ${chip('portal')}, with a real caveat about what's covered ${chip('scope')}.`,
+  stat:`Portal totals: <span class="val">pending capture</span> ${chip('potot')}`,
+  cbT:'The Sunshine Portal', cbB:`State vendors and payments are searchable by anyone. This is the step Civic Explorer reads most directly — and its edges are part of the lesson.`,
+  receipts:['portal','scope','potot'], g:4},
+ {label:'VENDOR', kicker:'Step 5 · It leaves', title:'The money goes out.',
+  body:`The vendor delivers and gets paid — and the dollar <b>leaves government</b> for the private economy: a contractor, a nonprofit, a company. That's the exit. The purchase itself follows written rules ${chip('procure')}.`,
+  stat:`Money out → a deliverable back`,
+  cbT:'The contract itself', cbB:`Did the public get what it paid for, on the terms in the contract? When the answer is no, that's the flag — and the paper trail is what proves it either way.`,
+  receipts:['procure'], g:0},
+ {label:'OVERSIGHT', kicker:`Step 6 · Who's watching`, title:'The checks catch what slips.',
+  body:`After the fact, independent eyes look back: the <b>Legislative Finance Committee</b> ${chip('lfc')} reviews performance, and the <b>State Auditor</b> ${chip('osa')} audits the books. Money out with no deliverable is exactly what an audit flags. Money <i>never spent</i> reverts.`,
+  stat:`Example audit: <span class="val">pending capture</span> ${chip('finding')}`,
+  cbT:'LFC + Office of the State Auditor', cbB:`Spending that doesn't produce what it promised is what this layer exists to catch. The findings are public records too.`,
+  receipts:['lfc','osa','finding'], g:6},
+ {label:'END', kicker:'The whole path', title:'Every step left a record.',
+  body:`Revenue → Legislature → agency → contract → vendor → audit. <b>Not one step is invisible</b> — each leaves a public record with someone assigned to check it. And you just watched this page grade its own claims: teal chips are captured, gold are partial, gray are honest gaps. <b>That's the product: the record, made walkable.</b>`,
+  stat:``, cbT:'You — again', cbB:`Now you can follow any dollar the same way. That's civic legibility.`,
+  receipts:[], g:0, ctas:'end'},
+];
+
+let i = 0;
+const $ = id => document.getElementById(id);
+const rail = $('rail');
+steps.forEach((s,idx)=>{
+  const b = document.createElement('button');
+  b.className='ce-stop'; b.setAttribute('role','tab');
+  b.innerHTML = `<span class="dot2"></span><span class="lbl">${s.label}</span>`;
+  b.onclick = ()=>go(idx,true);
+  rail.appendChild(b);
+});
+const cps = [...document.querySelectorAll('.ce-cp')];
+cps.forEach(cp => cp.addEventListener('click', ()=>go(+cp.dataset.i,true)));
+
+function receiptHTML(keys){
+  if(!keys.length) return `<h3>RECEIPTS · THIS STEP</h3><div class="empty">— no factual claims on this card —</div>`;
+  return `<h3>RECEIPTS · THIS STEP</h3>` + keys.map(k=>{
+    const r=R[k];
+    const st = r.s==='V'?'VERIFIED':r.s==='D'?'DEGRADED':'UNKNOWN';
+    return `<div class="rc" id="rc-${k}">
+      <div class="claim">${r.claim}</div>
+      <div class="meta"><span>${r.src}</span><span class="st ${r.s}">${st}</span></div>
+      <div class="meta"><span>${r.asof}</span></div>
+      ${r.note?`<div class="note">${r.note}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function go(n, fromUser){
+  i = Math.max(0, Math.min(steps.length-1, n));
+  const s = steps[i];
+  $('kicker').textContent = s.kicker;
+  $('title').textContent = s.title;
+  $('body').innerHTML = s.body;
+  $('stat').innerHTML = s.stat;
+  $('ctas').innerHTML = s.ctas===true
+    ? `<button class="ce-btn go" onclick="go(1,true)">▶ Begin at Revenue</button><button class="ce-btn alt" onclick="document.querySelector('.ce-side').scrollIntoView({behavior:'smooth',block:'center'})">🗎 View the sources</button>`
+    : s.ctas==='end'
+    ? `<button class="ce-btn go" onclick="go(0,true)">↻ Walk it again</button><a class="ce-btn alt" href="trail.html" style="text-decoration:none;display:inline-block">Follow a real record →</a>`
+    : '';
+  $('cbTitle').textContent = s.cbT;
+  $('cbBody').textContent = s.cbB;
+  $('receipts').innerHTML = receiptHTML(s.receipts);
+  $('count').textContent = `${i+1} / ${steps.length}`;
+  $('back').style.visibility = i===0?'hidden':'visible';
+  $('next').textContent = i===steps.length-1 ? 'Start over ↻' : 'Next step →';
+  rail.querySelectorAll('.ce-stop').forEach((el,idx)=>{
+    el.classList.toggle('done', idx<i);
+    el.classList.toggle('here', idx===i);
+    el.setAttribute('aria-selected', idx===i);
+  });
+  cps.forEach((cp,idx)=>{
+    cp.classList.toggle('done', idx<i);
+    cp.classList.toggle('here', idx===i);
+    if(idx===i) cp.setAttribute('aria-current','step'); else cp.removeAttribute('aria-current');
+  });
+  const here = cps[i];
+  $('ceCoin').style.left = here.style.left;
+  $('ceCoin').style.top = here.style.top;
+  document.querySelectorAll('.grow').forEach(el=>{
+    el.classList.toggle('live', +el.dataset.g === i && i!==0);
+  });
+  document.querySelectorAll('.chip').forEach(c=>{
+    c.onclick = () => {
+      const t = document.getElementById('rc-'+c.dataset.r);
+      if(t){ t.scrollIntoView({behavior:'smooth',block:'center'});
+        t.style.background='#fff8e0'; setTimeout(()=>t.style.background='',900); }
+    };
+  });
+  if(fromUser && window.goatcounter && goatcounter.count){
+    goatcounter.count({path:'civic-explorer-step-'+i, title:'Civic Explorer step '+i, event:true});
+  }
+}
+$('next').onclick = ()=> go(i===steps.length-1 ? 0 : i+1, true);
+$('back').onclick = ()=> go(i-1, true);
+addEventListener('keydown', e=>{
+  if(e.target.closest('input,textarea,select')) return;
+  if(e.key==='ArrowRight') go(i+1, true);
+  if(e.key==='ArrowLeft') go(i-1, true);
+});
+go(0);
+</script>
+<script src="assets/js/app.js?v=20260817-explorer1"></script>
+</body>
+</html>
