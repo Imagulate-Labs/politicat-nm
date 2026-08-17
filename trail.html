@@ -30,15 +30,6 @@
 .fr-sec h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:clamp(1.4rem,2.2vw,2rem)}
 .fr-sec .sub{font-size:.92rem;color:#4a3f2c;font-weight:600;margin:4px 0 16px}
 .fr-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,20vw,400px);gap:18px;align-items:start}
-/* power pipeline */
-.fr-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
-.fr-step{padding:20px 18px;border-right:1.5px dashed rgba(58,42,24,.3);position:relative}
-.fr-step:last-child{border-right:none}
-.fr-step .num{width:30px;height:30px;border-radius:50%;background:var(--teal-deep);color:var(--cream);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
-.fr-step .ico{font-size:1.7rem;margin-bottom:4px}
-.fr-step h4{font-size:.78rem;font-weight:900;letter-spacing:1.2px;color:var(--orange-deep);margin-bottom:8px}
-.fr-step b{display:block;font-size:.95rem;color:var(--ink);line-height:1.3}
-.fr-step small{display:block;font-size:.76rem;color:#4a5a55;font-weight:600;margin-top:3px;line-height:1.45}
 .fr-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
 .fr-chip{font-size:.6rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:5px}
 .fr-chip.type{background:rgba(20,89,90,.1);color:var(--teal)}
@@ -46,14 +37,6 @@
 .fr-chip.d{background:#b98a4a;color:#fff}
 .fr-chip.u{background:#8a8375;color:#fff}
 .fr-chip.contest{background:rgba(178,58,72,.12);color:#8f2b37;border:1px dashed #b23a48}
-/* receipt card */
-.fr-receipt{background:var(--cream-soft);border:2px solid rgba(58,42,24,.55);border-radius:14px;padding:18px;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
-.fr-receipt h3{font-size:.8rem;font-weight:900;letter-spacing:1.2px;color:var(--orange-deep);margin-bottom:12px}
-.fr-receipt .row{display:flex;gap:10px;font-size:.86rem;padding:6px 0;border-bottom:1px dashed rgba(90,58,27,.25)}
-.fr-receipt .row span{flex:0 0 84px;font-weight:800;color:#4a5a55}
-.fr-receipt .row b{color:var(--ink)}
-.fr-receipt .hash{font-family:monospace;font-size:.72rem;word-break:break-all;color:#4a5a55}
-.fr-receipt a{display:inline-block;margin-top:12px;font-weight:800;color:var(--orange-deep);text-decoration:none;font-size:.86rem}
 .fr-lesson{margin-top:12px;background:rgba(240,138,36,.09);border-left:4px solid var(--orange);border-radius:0 9px 9px 0;padding:10px 14px;font-size:.83rem;line-height:1.55}
 /* moving table */
 .fr-table{background:#fff;border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
@@ -89,7 +72,54 @@
 .fr-leg h4{font-size:.72rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--orange-deep);margin-bottom:9px}
 .fr-leg div{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#333;padding:3px 0}
 .fr-leg i{width:10px;height:10px;border-radius:50%;flex:none}
-@media(max-width:1100px){.fr-grid{grid-template-columns:1fr}.fr-steps{grid-template-columns:1fr 1fr}.fr-pipe{grid-template-columns:repeat(2,1fr)}.fr-thead{display:none}.fr-row{grid-template-columns:1fr 1fr}}
+/* story book */
+.sb-toc{display:flex;position:relative;margin-bottom:0}
+.sb-node{flex:1;display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 10px;background:#fff;border:2px solid rgba(58,42,24,.5);border-left-width:0;border-bottom:none;cursor:pointer;font:inherit;font-weight:800;font-size:clamp(.78rem,1vw,.95rem);color:var(--teal-deep)}
+.sb-node:first-child{border-left-width:2px;border-radius:14px 0 0 0}
+.sb-node:last-child{border-radius:0 14px 0 0}
+.sb-node .n{width:27px;height:27px;border-radius:50%;background:rgba(20,89,90,.12);display:inline-flex;align-items:center;justify-content:center;font-weight:900;flex:none}
+.sb-node .st{font-size:.56rem;letter-spacing:.5px;font-weight:900;padding:2.5px 7px;border-radius:4px;color:#fff;flex:none}
+.sb-node.on{background:var(--teal-deep);color:var(--cream)}
+.sb-node.on .n{background:rgba(251,246,234,.22);color:var(--cream)}
+.sb-node:not(.on):hover{background:var(--cream-soft)}
+.sb-book{background:#fdf9ee;border:2.5px solid rgba(58,42,24,.6);border-radius:0 0 16px 16px;overflow:hidden;box-shadow:0 6px 18px -8px rgba(58,42,24,.4),0 10px 0 -6px #e8dcc0,0 15px 0 -9px #d9c9a6}
+.sb-ch{display:grid;grid-template-columns:1.35fr 1fr;min-height:clamp(380px,28vw,560px)}
+.sb-ch.in{animation:pageIn .3s ease}
+@keyframes pageIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.sb-page--story{padding:clamp(24px,2.8vw,52px);background:linear-gradient(90deg,#fdf9ee 0 90%,rgba(58,42,24,.07))}
+.sb-page--record{background:var(--cream-soft);border-left:2px dashed rgba(58,42,24,.35);box-shadow:inset 16px 0 20px -16px rgba(58,42,24,.4);padding:clamp(20px,2.2vw,38px)}
+.sb-kicker{font-size:clamp(.68rem,.85vw,.8rem);letter-spacing:2.5px;font-weight:900;color:var(--orange-deep);text-transform:uppercase}
+.sb-page--story h3{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,2.9vw,2.8rem);color:var(--teal-deep);line-height:1.08;margin:10px 0 16px}
+.sb-lede{font-family:'Fraunces',serif;font-size:clamp(1rem,1.3vw,1.25rem);line-height:1.68;color:#3a2f1e}
+.sb-lede::first-letter{font-family:'Alfa Slab One',serif;font-size:3em;float:left;line-height:.88;padding:5px 10px 0 0;color:var(--orange-deep)}
+.sb-lede sup,.sb-plain sup{color:var(--orange-deep);font-weight:900}
+.sb-plain{margin-top:14px;font-size:clamp(.88rem,1vw,1rem);line-height:1.62;color:#4a3f2c;font-weight:600}
+.sb-quote{margin:18px 0 0;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.05rem,1.5vw,1.4rem);line-height:1.5;color:var(--teal);border-left:4px solid var(--orange);padding-left:16px}
+.sb-page--record h4{font-size:.74rem;letter-spacing:1.4px;font-weight:900;color:var(--orange-deep);margin-bottom:10px}
+.sb-rows .row{display:flex;gap:10px;font-size:clamp(.82rem,.95vw,.92rem);padding:7px 0;border-bottom:1px dashed rgba(90,58,27,.25)}
+.sb-rows .row span{flex:0 0 94px;font-weight:800;color:#4a5a55}
+.sb-rows .row b{color:var(--ink)}
+.sb-rows .hash{font-family:monospace;font-size:.74rem;word-break:break-all;color:#4a5a55}
+.sb-src{display:inline-block;margin-top:12px;font-weight:800;color:var(--orange-deep);text-decoration:none;font-size:.88rem}
+.sb-notes{margin-top:16px;border-top:1.5px solid rgba(58,42,24,.35);padding-top:10px;font-size:.76rem;line-height:1.65;color:#4a5a55;font-weight:600}
+.sb-notes b{color:var(--orange-deep);font-weight:900}
+.sb-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+.sb-turn{background:var(--teal-deep);color:var(--cream);border:none;border-radius:11px;padding:13px 24px;font:inherit;font-weight:900;font-size:.95rem;cursor:pointer}
+.sb-turn:disabled{background:#b9b2a4;cursor:default}
+.sb-count{font-weight:800;font-size:.86rem;color:#4a3f2c;text-align:center}
+.sb-count small{display:block;font-weight:600;font-size:.7rem;color:#8a8375;margin-top:2px}
+/* pipeline arrows */
+.fr-pipe .p{position:relative}
+.fr-pipe .p::after{content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-weight:900;font-size:1.25rem;color:var(--orange-deep);z-index:1}
+.fr-pipe .p:last-child::after{content:none}
+@media(max-width:1100px){.fr-grid{grid-template-columns:1fr}.fr-pipe{grid-template-columns:repeat(2,1fr)}.fr-pipe .p::after{content:none}.fr-thead{display:none}.fr-row{grid-template-columns:1fr 1fr}
+.sb-toc{flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.sb-node{flex:1 1 46%;border:2px solid rgba(58,42,24,.5)!important;border-radius:10px!important;padding:10px 8px}
+.sb-node .st{display:none}
+.sb-book{border-radius:16px}
+.sb-ch{grid-template-columns:1fr;min-height:0}
+.sb-page--record{border-left:none;border-top:2px dashed rgba(58,42,24,.35);box-shadow:inset 0 16px 20px -16px rgba(58,42,24,.4)}
+.sb-count small{display:none}}
 </style>
 </head>
 <body>
@@ -126,45 +156,105 @@
   <div class="fr-shell">
 
     <section class="fr-sec" id="power">
-      <h2>How Power Moves</h2>
-      <p class="sub">Follow one story as it moves from promise to outcome. This one is real — and its four steps carry three different honesty states, on purpose.</p>
-      <div class="fr-grid">
-        <div class="fr-steps">
-          <div class="fr-step">
-            <div class="num">1</div><div class="ico">💬</div><h4>PROMISE</h4>
-            <b>HB 9 — "Immigrant Safety Act"</b>
-            <small>The sponsors' stated purpose, as filed. A purpose is a position, not a result.</small>
-            <div class="fr-chips"><span class="fr-chip type">POSITION</span></div>
-          </div>
-          <div class="fr-step">
-            <div class="num">2</div><div class="ico">🏛️</div><h4>POWER</h4>
-            <b>Signed by the Governor</b>
-            <small>Feb 5, 2026 · Chapter 5 — straight from the Legislature's own bill record.</small>
-            <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip v">VERIFIED</span></div>
-          </div>
-          <div class="fr-step">
-            <div class="num">3</div><div class="ico">⚖️</div><h4>PROCESS</h4>
-            <b>Challenged in federal court</b>
-            <small>Case 1:26-cv-01471. The docket artifact isn't in our custody yet — so we say so.</small>
-            <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip d">DEGRADED</span><span class="fr-chip contest">CONTESTED</span></div>
-          </div>
-          <div class="fr-step">
-            <div class="num">4</div><div class="ico">✔️</div><h4>OUTCOME</h4>
-            <b>Reported in effect</b>
-            <small>Reported effective May 20, 2026 — not present in our captured page, so it stays DEGRADED until it is.</small>
-            <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip d">DEGRADED</span></div>
-          </div>
+      <h2>How Power Moves: The Story of HB 9</h2>
+      <p class="sub">One real bill, told like a book. Four chapters, three honesty states — click a chapter or turn the pages.</p>
+      <div id="hb9book">
+        <div class="sb-toc" role="tablist" aria-label="Chapters of the HB 9 story">
+          <button class="sb-node on" role="tab" id="sbt1" aria-controls="sbc1" aria-selected="true"><span class="n">1</span>💬 The Promise<span class="st" style="background:#14595a">POSITION</span></button>
+          <button class="sb-node" role="tab" id="sbt2" aria-controls="sbc2" aria-selected="false"><span class="n">2</span>🏛️ The Power<span class="st" style="background:#3f6d33">VERIFIED</span></button>
+          <button class="sb-node" role="tab" id="sbt3" aria-controls="sbc3" aria-selected="false"><span class="n">3</span>⚖️ The Pushback<span class="st" style="background:#b98a4a">DEGRADED</span></button>
+          <button class="sb-node" role="tab" id="sbt4" aria-controls="sbc4" aria-selected="false"><span class="n">4</span>✔️ The Outcome<span class="st" style="background:#b98a4a">DEGRADED</span></button>
         </div>
-        <aside class="fr-receipt">
-          <h3>🧾 RECEIPT PREVIEW</h3>
-          <div class="row"><span>Claim</span><b>HB 9 was signed Feb 5, 2026 (Chapter 5)</b></div>
-          <div class="row"><span>Type</span><b>RECORD</b></div>
-          <div class="row"><span>Evidence</span><b style="color:#3f6d33">VERIFIED</b></div>
-          <div class="row"><span>Captured</span><b>nmlegis.gov · Aug 17, 2026 · 102,807 bytes</b></div>
-          <div class="row"><span>SHA-256</span><b class="hash">dc1ef70214875dab…f3d1566d</b></div>
-          <a href="https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=9&year=26" target="_blank" rel="noopener noreferrer">Open the source ↗</a>
-          <div class="fr-lesson"><b>Why this matters:</b> a receipt proves we captured this exact page on this exact date — it verifies the <i>signing</i>, never the law's merits. That's the whole trick: separate what the record shows from what anyone says about it.</div>
-        </aside>
+        <div class="sb-book">
+
+          <div class="sb-ch" id="sbc1" role="tabpanel" aria-labelledby="sbt1">
+            <div class="sb-page sb-page--story">
+              <span class="sb-kicker">Chapter One · The Promise</span>
+              <h3>Every law begins as a promise.</h3>
+              <p class="sb-lede">House Bill 9 arrived at the Roundhouse in Santa Fe carrying a name — the "Immigrant Safety Act" — and a stated purpose from its sponsors.<sup>1</sup> A bill's name and purpose tell you what its authors <i>want</i> it to do. They do not tell you what it <i>will</i> do, or what it eventually did.</p>
+              <p class="sb-plain">PolitíCat files this as a <b>POSITION</b>: someone's stated stance, attributed to whoever holds it. Positions are never marked true or false — a promise isn't a fact yet. It's the opening line of a story, and everything after this page is what tested it.</p>
+            </div>
+            <div class="sb-page sb-page--record">
+              <h4>📎 What the record shows</h4>
+              <div class="fr-chips"><span class="fr-chip type">POSITION</span></div>
+              <div class="sb-rows" style="margin-top:12px">
+                <div class="row"><span>Claim</span><b>Sponsors filed HB 9 as the "Immigrant Safety Act"</b></div>
+                <div class="row"><span>Type</span><b>POSITION — attributed, not judged</b></div>
+                <div class="row"><span>Session</span><b>2026 Regular Session, NM Legislature</b></div>
+              </div>
+              <a class="sb-src" href="https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=9&year=26" target="_blank" rel="noopener noreferrer">Open the bill record ↗</a>
+              <p class="sb-notes"><b>1.</b> nmlegis.gov, official HB 9 bill page — captured Aug 17, 2026, receipt on file. The bill's title and sponsors come from the Legislature's own record, not from coverage of it.</p>
+            </div>
+          </div>
+
+          <div class="sb-ch" id="sbc2" role="tabpanel" aria-labelledby="sbt2" hidden>
+            <div class="sb-page sb-page--story">
+              <span class="sb-kicker">Chapter Two · The Power</span>
+              <h3>The promise becomes law.</h3>
+              <p class="sb-lede">On February 5, 2026, the Governor signed HB 9 into law as Chapter 5 of the 2026 session.<sup>2</sup> That sentence isn't PolitíCat's opinion — it is what the Legislature's own bill record shows, and we captured that page ourselves: every byte, fingerprinted, kept.</p>
+              <p class="sb-plain">This is a <b>RECORD</b> claim — what a document shows — marked <b>VERIFIED</b> because the receipt sits on file. Read the receipt on the right page: it proves we captured <i>this exact page</i> on <i>this exact date</i>. It verifies the signing — never the law's merits. That separation is the whole trick.</p>
+            </div>
+            <div class="sb-page sb-page--record">
+              <h4>🧾 The receipt</h4>
+              <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip v">VERIFIED</span></div>
+              <div class="sb-rows" style="margin-top:12px">
+                <div class="row"><span>Claim</span><b>HB 9 was signed Feb 5, 2026 (Chapter 5)</b></div>
+                <div class="row"><span>Evidence</span><b style="color:#3f6d33">VERIFIED</b></div>
+                <div class="row"><span>Captured</span><b>nmlegis.gov · Aug 17, 2026 · 102,807 bytes</b></div>
+                <div class="row"><span>SHA-256</span><b class="hash">dc1ef70214875dab…f3d1566d</b></div>
+              </div>
+              <a class="sb-src" href="https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=9&year=26" target="_blank" rel="noopener noreferrer">Open the source ↗</a>
+              <p class="sb-notes"><b>2.</b> The SHA-256 fingerprint means anyone can prove our stored copy is byte-for-byte what we captured. If even one character of the page changed, the fingerprint would change.</p>
+            </div>
+          </div>
+
+          <div class="sb-ch" id="sbc3" role="tabpanel" aria-labelledby="sbt3" hidden>
+            <div class="sb-page sb-page--story">
+              <span class="sb-kicker">Chapter Three · The Pushback</span>
+              <h3>A signed law can still be tested.</h3>
+              <p class="sb-lede">The story didn't end at the signing desk. HB 9 was challenged in federal court — case 1:26-cv-01471.<sup>3</sup> This is the chapter every civics book calls checks and balances, happening in real time: the legislative branch wrote it, the executive signed it, and now the judicial branch is asked to weigh it.</p>
+              <p class="sb-quote">Disagreement in the world never lowers what the record shows — so CONTESTED is its own label, never a downgrade.</p>
+              <p class="sb-plain">We haven't captured the court docket yet, so this claim runs <b>DEGRADED</b> — evidence exists, but the artifact isn't in our custody. It also wears the <b>CONTESTED</b> overlay, because parties genuinely disagree. A story can be both at once. That's not a bug in the labels — it's the point of them.</p>
+            </div>
+            <div class="sb-page sb-page--record">
+              <h4>⚖️ What the record shows — and what it's missing</h4>
+              <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip d">DEGRADED</span><span class="fr-chip contest">CONTESTED</span></div>
+              <div class="sb-rows" style="margin-top:12px">
+                <div class="row"><span>Claim</span><b>HB 9 was challenged in federal court</b></div>
+                <div class="row"><span>Case</span><b>1:26-cv-01471</b></div>
+                <div class="row"><span>Evidence</span><b style="color:#b98a4a">DEGRADED — docket not yet in custody</b></div>
+                <div class="row"><span>Upgrades when</span><b>we capture the docket and attach its receipt</b></div>
+              </div>
+              <p class="sb-notes"><b>3.</b> Federal court dockets aren't wired into our collection yet — see Source Health below. Until the docket artifact is in custody, we describe the challenge but refuse to dress it up as verified.</p>
+            </div>
+          </div>
+
+          <div class="sb-ch" id="sbc4" role="tabpanel" aria-labelledby="sbt4" hidden>
+            <div class="sb-page sb-page--story">
+              <span class="sb-kicker">Chapter Four · The Outcome — So Far</span>
+              <h3>Where the story stands, honestly.</h3>
+              <p class="sb-lede">HB 9 is reported to have taken effect on May 20, 2026.<sup>4</sup> The word "reported" is doing real work in that sentence: that date is not present in the page we captured, so we will not dress it up as verified — it stays <b>DEGRADED</b> until the record catches up.</p>
+              <p class="sb-plain">And here the book stays open. Stories on the Trail don't end — they update. When the docket and the effective date land in our custody, these pages change and say so. The same four chapters — <b>promise, power, pushback, outcome</b> — are how we'll tell every story here: agency rules, court cases, executive actions, county decisions. Learn the shape once, and you can read all of government.</p>
+            </div>
+            <div class="sb-page sb-page--record">
+              <h4>✔️ What the record shows — so far</h4>
+              <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip d">DEGRADED</span></div>
+              <div class="sb-rows" style="margin-top:12px">
+                <div class="row"><span>Claim</span><b>HB 9 reported in effect May 20, 2026</b></div>
+                <div class="row"><span>Evidence</span><b style="color:#b98a4a">DEGRADED — not present in our captured page</b></div>
+                <div class="row"><span>Upgrades when</span><b>an official record stating the effective date is captured</b></div>
+              </div>
+              <div class="fr-lesson" style="margin-top:14px"><b>Why this matters:</b> most sites would just print the date. We show you the seam between what's documented and what's merely reported — because that seam is where misinformation lives.</div>
+              <p class="sb-notes"><b>4.</b> Widely reported effective date; the captured nmlegis page does not state it. This label upgrades automatically once a qualifying record is captured.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="sb-controls">
+          <button class="sb-turn" data-dir="-1">← Previous chapter</button>
+          <span class="sb-count">Chapter 1 of 4<small>tip: your ← → arrow keys turn the pages</small></span>
+          <button class="sb-turn" data-dir="1">Next chapter →</button>
+        </div>
       </div>
     </section>
 
@@ -283,5 +373,34 @@
 </footer>
 
 <script src="assets/js/app.js?v=20260817-wall1"></script>
+<script>
+(function(){
+  var book=document.getElementById('hb9book'); if(!book) return;
+  var chs=[].slice.call(book.querySelectorAll('.sb-ch')),
+      nodes=[].slice.call(book.querySelectorAll('.sb-node')),
+      prev=book.querySelector('[data-dir="-1"]'),
+      next=book.querySelector('[data-dir="1"]'),
+      count=book.querySelector('.sb-count'),cur=0;
+  function go(i,fromUser){
+    var n=Math.max(0,Math.min(chs.length-1,i));
+    if(fromUser&&n===cur) return;
+    cur=n;
+    chs.forEach(function(c,j){c.hidden=j!==cur;c.classList.toggle('in',j===cur)});
+    nodes.forEach(function(b,j){b.classList.toggle('on',j===cur);b.setAttribute('aria-selected',j===cur?'true':'false')});
+    prev.disabled=cur===0;
+    next.disabled=cur===chs.length-1;
+    count.firstChild.textContent='Chapter '+(cur+1)+' of '+chs.length;
+    if(fromUser&&window.goatcounter&&goatcounter.count){goatcounter.count({path:'trail-hb9-chapter-'+(cur+1),title:'HB9 book chapter '+(cur+1),event:true})}
+  }
+  nodes.forEach(function(b,j){b.addEventListener('click',function(){go(j,true)})});
+  prev.addEventListener('click',function(){go(cur-1,true)});
+  next.addEventListener('click',function(){go(cur+1,true)});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest('input,textarea,select,button,a')) return;
+    if(e.key==='ArrowRight'){go(cur+1,true)}else if(e.key==='ArrowLeft'){go(cur-1,true)}
+  });
+  go(0);
+})();
+</script>
 </body>
 </html>
