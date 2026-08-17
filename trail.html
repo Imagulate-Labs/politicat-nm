@@ -3,27 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Show Me the Trail — PolitíCat NM</title>
-<meta name="description" content="PolitíCat NM's evidence model for facts, trends, investigations, accountability questions, and public records.">
+<title>Follow the Record — PolitíCat NM</title>
+<meta name="description" content="Follow the Record: see what was promised, who had the power, what happened next, and what the evidence supports now. Live record, not live rumor.">
 <link rel="canonical" href="https://politicatnm.org/trail.html">
 <meta name="theme-color" content="#0f3d3e">
 <meta property="og:site_name" content="PolitíCat NM">
-<meta property="og:title" content="Show Me the Trail — PolitíCat NM">
-<meta property="og:description" content="PolitíCat NM's evidence model for facts, trends, investigations, accountability questions, and public records.">
+<meta property="og:title" content="Follow the Record — PolitíCat NM">
+<meta property="og:description" content="See what was promised, who had the power, what happened next, and what the evidence supports now.">
 <meta property="og:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
 <meta property="og:url" content="https://politicatnm.org/trail.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@PolitiCatNM">
-<meta name="twitter:title" content="Show Me the Trail — PolitíCat NM">
-<meta name="twitter:description" content="PolitíCat NM's evidence model for facts, trends, investigations, accountability questions, and public records.">
+<meta name="twitter:title" content="Follow the Record — PolitíCat NM">
+<meta name="twitter:description" content="Live record, not live rumor.">
 <meta name="twitter:image" content="https://politicatnm.org/assets/img/politicat-banner.png">
 <link rel="icon" type="image/png" href="assets/img/politicat-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260817-vista10">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-record1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+.fr-shell{width:100%;padding:0 clamp(16px,1.3vw,40px) 60px}
+.fr-sec{margin-top:26px}
+.fr-sec h2{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:clamp(1.4rem,2.2vw,2rem)}
+.fr-sec .sub{font-size:.92rem;color:#4a3f2c;font-weight:600;margin:4px 0 16px}
+.fr-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,20vw,400px);gap:18px;align-items:start}
+/* power pipeline */
+.fr-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
+.fr-step{padding:20px 18px;border-right:1.5px dashed rgba(58,42,24,.3);position:relative}
+.fr-step:last-child{border-right:none}
+.fr-step .num{width:30px;height:30px;border-radius:50%;background:var(--teal-deep);color:var(--cream);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.fr-step .ico{font-size:1.7rem;margin-bottom:4px}
+.fr-step h4{font-size:.78rem;font-weight:900;letter-spacing:1.2px;color:var(--orange-deep);margin-bottom:8px}
+.fr-step b{display:block;font-size:.95rem;color:var(--ink);line-height:1.3}
+.fr-step small{display:block;font-size:.76rem;color:#4a5a55;font-weight:600;margin-top:3px;line-height:1.45}
+.fr-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
+.fr-chip{font-size:.6rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:5px}
+.fr-chip.type{background:rgba(20,89,90,.1);color:var(--teal)}
+.fr-chip.v{background:#3f6d33;color:#fff}
+.fr-chip.d{background:#b98a4a;color:#fff}
+.fr-chip.u{background:#8a8375;color:#fff}
+.fr-chip.contest{background:rgba(178,58,72,.12);color:#8f2b37;border:1px dashed #b23a48}
+/* receipt card */
+.fr-receipt{background:var(--cream-soft);border:2px solid rgba(58,42,24,.55);border-radius:14px;padding:18px;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
+.fr-receipt h3{font-size:.8rem;font-weight:900;letter-spacing:1.2px;color:var(--orange-deep);margin-bottom:12px}
+.fr-receipt .row{display:flex;gap:10px;font-size:.86rem;padding:6px 0;border-bottom:1px dashed rgba(90,58,27,.25)}
+.fr-receipt .row span{flex:0 0 84px;font-weight:800;color:#4a5a55}
+.fr-receipt .row b{color:var(--ink)}
+.fr-receipt .hash{font-family:monospace;font-size:.72rem;word-break:break-all;color:#4a5a55}
+.fr-receipt a{display:inline-block;margin-top:12px;font-weight:800;color:var(--orange-deep);text-decoration:none;font-size:.86rem}
+.fr-lesson{margin-top:12px;background:rgba(240,138,36,.09);border-left:4px solid var(--orange);border-radius:0 9px 9px 0;padding:10px 14px;font-size:.83rem;line-height:1.55}
+/* moving table */
+.fr-table{background:#fff;border:2px solid rgba(58,42,24,.55);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px -6px rgba(58,42,24,.35)}
+.fr-thead,.fr-row{display:grid;grid-template-columns:1.4fr .9fr 1fr .9fr .9fr 70px;gap:10px;align-items:center;padding:11px 16px}
+.fr-thead{background:var(--cream-soft);border-bottom:2px solid rgba(58,42,24,.5);font-size:.66rem;font-weight:900;letter-spacing:.7px;text-transform:uppercase;color:#3f3320}
+.fr-row{border-bottom:1.5px solid rgba(58,42,24,.25);font-size:.83rem}
+.fr-row:last-child{border-bottom:none}
+.fr-row .story{font-weight:800;color:var(--teal-deep)}
+.fr-badge{display:inline-block;font-size:.62rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:5px}
+.fr-badge.active{background:#3f6d33;color:#fff}
+.fr-badge.watching{background:var(--orange);color:#fff}
+.fr-badge.planned{background:#b9b2a4;color:#fff}
+.fr-badge.updated{background:var(--teal-bright);color:#fff}
+.fr-dash{color:#b9b2a4;font-weight:800}
+.fr-open{background:var(--teal-deep);color:var(--cream);border-radius:8px;padding:7px 10px;font-size:.7rem;font-weight:900;text-align:center;text-decoration:none}
+/* source health */
+.fr-health{background:var(--cream-soft);border:2px solid rgba(58,42,24,.5);border-radius:14px;padding:16px 18px}
+.fr-health h3{font-family:'Alfa Slab One',serif;color:var(--teal-deep);font-size:1.05rem;margin-bottom:10px}
+.fr-health .src{padding:9px 0;border-bottom:1px dashed rgba(90,58,27,.25)}
+.fr-health .src:last-of-type{border-bottom:none}
+.fr-health .src b{font-size:.86rem;color:var(--ink)}
+.fr-health .src small{display:block;font-size:.72rem;color:#4a5a55;font-weight:600;margin-top:2px}
+.fr-health .note{margin-top:10px;font-size:.74rem;font-weight:700;color:#8a6430;line-height:1.5}
+/* pipeline */
+.fr-pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.fr-pipe .p{background:#fff;border:2px solid rgba(58,42,24,.45);border-radius:12px;padding:16px 14px;text-align:center}
+.fr-pipe .p .ico{font-size:1.6rem}
+.fr-pipe .p b{display:block;font-size:.84rem;color:var(--teal-deep);margin-top:6px;line-height:1.25}
+.fr-pipe-note{text-align:center;font-size:.82rem;font-weight:700;color:#4a3f2c;margin-top:12px}
+/* legend */
+.fr-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.fr-leg{background:#fff;border:2px solid rgba(58,42,24,.45);border-radius:12px;padding:14px 16px}
+.fr-leg h4{font-size:.72rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--orange-deep);margin-bottom:9px}
+.fr-leg div{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#333;padding:3px 0}
+.fr-leg i{width:10px;height:10px;border-radius:50%;flex:none}
+@media(max-width:1100px){.fr-grid{grid-template-columns:1fr}.fr-steps{grid-template-columns:1fr 1fr}.fr-pipe{grid-template-columns:repeat(2,1fr)}.fr-thead{display:none}.fr-row{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -40,11 +107,15 @@
       <div class="vista-border top"></div>
       <div class="banner-art" style="background-image:url('assets/img/banner-trail.jpg');width:100%;background-position:center right;-webkit-mask-image:none;mask-image:none" role="img" aria-label="Don Gato Cívico following a trail of pawprints across documents by lantern light"></div>
       <div class="banner-copy">
-        <h1>SHOW ME<br>THE TRAIL</h1>
-        <p class="tagline">What the records say, what they don't, and what's still unknown.</p>
+        <h1>FOLLOW<br>THE RECORD.</h1>
+        <p class="tagline">See what was promised, who had the power, what happened next, and what the evidence supports now.</p>
+        <div class="banner-tabs">
+          <a class="mo-tab on" href="#moving" style="border:1px solid rgba(230,215,184,.4)">Explore live stories ↓</a>
+          <a class="mo-tab" href="#pipeline">See how receipts work ↓</a>
+        </div>
         <div class="banner-facts">
+          <span>🟢 Live record, not live rumor</span>
           <span>📄 Records first</span>
-          <span>⚖️ Interpretation disciplined</span>
           <span>🔍 Uncertainty visible</span>
         </div>
       </div>
@@ -52,34 +123,133 @@
     </div>
   </section>
 
-  <section class="block evidence" id="evidence">
-    <div class="wrap">
-      <div class="evidence-rule">
-        <p>Records first.</p>
-        <p>Interpretation disciplined.</p>
-        <p>Uncertainty visible.</p>
-      </div>
-      <div class="evidence-grid" aria-label="PolitíCat answer types">
-        <article class="evidence-card"><div class="evidence-type">Fact</div><h3>Answers from records.</h3><p>Direct civic questions get the answer, source, record date, and verification trail.</p></article>
-        <article class="evidence-card"><div class="evidence-type">Trend</div><h3>Shows what changed.</h3><p>Questions over time use dated data series and clear start/end points.</p></article>
-        <article class="evidence-card"><div class="evidence-type">Investigation</div><h3>Maps the trail so far.</h3><p>When the answer is not settled, PolitíCat shows records found, open questions, and next records to check.</p></article>
-        <article class="evidence-card"><div class="evidence-type">Accountability</div><h3>Separates facts from why.</h3><p>Accountability questions separate what records prove from explanations that need deeper review.</p></article>
-      </div>
-      <div class="trail-preview" aria-label="Show Me the Trail preview">
-        <div class="trail-copy">
-          <div class="trail-kicker">Preview · Future Capability</div>
-          <h3>Show Me the Trail</h3>
-          <p>Today PolitíCat answers from a small set of Civic Substrate voter-registration queries. Next, the same trust model can map grants, budgets, notices, contracts, and other public records.</p>
+  <div class="fr-shell">
+
+    <section class="fr-sec" id="power">
+      <h2>How Power Moves</h2>
+      <p class="sub">Follow one story as it moves from promise to outcome. This one is real — and its four steps carry three different honesty states, on purpose.</p>
+      <div class="fr-grid">
+        <div class="fr-steps">
+          <div class="fr-step">
+            <div class="num">1</div><div class="ico">💬</div><h4>PROMISE</h4>
+            <b>HB 9 — "Immigrant Safety Act"</b>
+            <small>The sponsors' stated purpose, as filed. A purpose is a position, not a result.</small>
+            <div class="fr-chips"><span class="fr-chip type">POSITION</span></div>
+          </div>
+          <div class="fr-step">
+            <div class="num">2</div><div class="ico">🏛️</div><h4>POWER</h4>
+            <b>Signed by the Governor</b>
+            <small>Feb 5, 2026 · Chapter 5 — straight from the Legislature's own bill record.</small>
+            <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip v">VERIFIED</span></div>
+          </div>
+          <div class="fr-step">
+            <div class="num">3</div><div class="ico">⚖️</div><h4>PROCESS</h4>
+            <b>Challenged in federal court</b>
+            <small>Case 1:26-cv-01471. The docket artifact isn't in our custody yet — so we say so.</small>
+            <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip d">DEGRADED</span><span class="fr-chip contest">CONTESTED</span></div>
+          </div>
+          <div class="fr-step">
+            <div class="num">4</div><div class="ico">✔️</div><h4>OUTCOME</h4>
+            <b>Reported in effect</b>
+            <small>Reported effective May 20, 2026 — not present in our captured page, so it stays DEGRADED until it is.</small>
+            <div class="fr-chips"><span class="fr-chip type">RECORD</span><span class="fr-chip d">DEGRADED</span></div>
+          </div>
         </div>
-        <dl class="trail-metrics">
-          <div><dt>Records Reviewed</dt><dd>3</dd></div>
-          <div><dt>Official Sources</dt><dd>3</dd></div>
-          <div><dt>Contradicting Records Found</dt><dd>0</dd></div>
-          <div><dt>Open Questions</dt><dd>2</dd></div>
-        </dl>
+        <aside class="fr-receipt">
+          <h3>🧾 RECEIPT PREVIEW</h3>
+          <div class="row"><span>Claim</span><b>HB 9 was signed Feb 5, 2026 (Chapter 5)</b></div>
+          <div class="row"><span>Type</span><b>RECORD</b></div>
+          <div class="row"><span>Evidence</span><b style="color:#3f6d33">VERIFIED</b></div>
+          <div class="row"><span>Captured</span><b>nmlegis.gov · Aug 17, 2026 · 102,807 bytes</b></div>
+          <div class="row"><span>SHA-256</span><b class="hash">dc1ef70214875dab…f3d1566d</b></div>
+          <a href="https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=9&year=26" target="_blank" rel="noopener noreferrer">Open the source ↗</a>
+          <div class="fr-lesson"><b>Why this matters:</b> a receipt proves we captured this exact page on this exact date — it verifies the <i>signing</i>, never the law's merits. That's the whole trick: separate what the record shows from what anyone says about it.</div>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="fr-sec" id="moving">
+      <h2>What's Moving Now</h2>
+      <p class="sub">One Trail. Many stories. Updated as the public record changes — and honest about what isn't wired up yet.</p>
+      <div class="fr-grid">
+        <div class="fr-table">
+          <div class="fr-thead"><span>Story</span><span>Lifecycle</span><span>Latest activity</span><span>Coverage</span><span>Last checked</span><span></span></div>
+          <div class="fr-row"><span class="story">🏛️ State legislation</span><span><span class="fr-badge active">ACTIVE</span></span><span><span class="fr-badge updated">STORY UPDATED</span></span><span><span class="fr-badge watching">WATCHING</span></span><span>Aug 17, 2026</span><a class="fr-open" href="#power">→</a></div>
+          <div class="fr-row"><span class="story">📋 Agency rules</span><span><span class="fr-badge planned">PLANNED</span></span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span></div>
+          <div class="fr-row"><span class="story">⚖️ Court cases</span><span><span class="fr-badge planned">PLANNED</span></span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span></div>
+          <div class="fr-row"><span class="story">✒️ Executive actions</span><span><span class="fr-badge planned">PLANNED</span></span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span></div>
+          <div class="fr-row"><span class="story">🏘️ County &amp; city</span><span><span class="fr-badge planned">PLANNED</span></span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span></div>
+          <div class="fr-row"><span class="story">🇺🇸 Federal → New Mexico</span><span><span class="fr-badge planned">PLANNED</span></span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span><span class="fr-dash">—</span></div>
+        </div>
+        <aside class="fr-health">
+          <h3>Source Health</h3>
+          <div class="src"><b>🐱 State Legislation</b> <span class="fr-badge watching">WATCHING</span><small>nmlegis.gov · captured Aug 17, 2026 · receipt on file</small></div>
+          <div class="src"><b>State Courts</b> <span class="fr-badge planned">PLANNED</span><small>Court dockets · collection not yet wired</small></div>
+          <div class="src"><b>Agency Portals</b> <span class="fr-badge planned">PLANNED</span><small>Rulemaking notices · collection not yet wired</small></div>
+          <div class="src"><b>County &amp; City Records</b> <span class="fr-badge planned">PLANNED</span><small>Local portals · collection not yet wired</small></div>
+          <p class="note">Coverage follows published records. Gaps are expected — and shown, never hidden.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="fr-sec" id="pipeline">
+      <h2>The Pipeline: How Stories Stay Current</h2>
+      <p class="sub">Every update leaves an evidence trail you can inspect.</p>
+      <div class="fr-pipe">
+        <div class="p"><span class="ico">🔭</span><b>Watch official sources</b></div>
+        <div class="p"><span class="ico">📄</span><b>Detect a new document</b></div>
+        <div class="p"><span class="ico">🧾</span><b>Attach the receipt</b></div>
+        <div class="p"><span class="ico">🛡️</span><b>Verify the claim</b></div>
+        <div class="p"><span class="ico">✏️</span><b>Update the story</b></div>
+      </div>
+      <p class="fr-pipe-note">A receipt says: "this is the document we captured, from this source, on this date." It never says "this claim is true." Verifying that somebody said something is not verification that it's true.</p>
+    </section>
+
+    <section class="fr-sec" id="legend">
+      <h2>The Honest Vocabulary</h2>
+      <p class="sub">Every claim on this site wears these labels. Learn them once, read everything.</p>
+      <div class="fr-legend">
+        <div class="fr-leg"><h4>Claim type</h4>
+          <div><i style="background:#14595a"></i>RECORD — what a document shows</div>
+          <div><i style="background:#1d7a7c"></i>READING — our interpretation, cited</div>
+          <div><i style="background:#6a4c93"></i>PROJECTION — forward-looking</div>
+          <div><i style="background:#b98a4a"></i>POSITION — someone's stance, attributed</div>
+        </div>
+        <div class="fr-leg"><h4>Evidence</h4>
+          <div><i style="background:#3f6d33"></i>VERIFIED — checks passed, receipt on file</div>
+          <div><i style="background:#b98a4a"></i>DEGRADED — evidence exists, something's missing</div>
+          <div><i style="background:#8a8375"></i>UNKNOWN — the record doesn't establish it</div>
+          <div><i style="background:#b23a48"></i>REFUSED — we decline the verdict, and say why</div>
+        </div>
+        <div class="fr-leg"><h4>Story lifecycle</h4>
+          <div><i style="background:#e6d7b8;border:1px solid #b98a4a"></i>UPCOMING</div>
+          <div><i style="background:#3f6d33"></i>ACTIVE</div>
+          <div><i style="background:#14595a"></i>COMPLETED</div>
+          <div><i style="background:#8a8375"></i>UNRESOLVED</div>
+        </div>
+        <div class="fr-leg"><h4>Contest (separate overlay)</h4>
+          <div><i style="background:#8aa39b"></i>NONE FOUND</div>
+          <div><i style="background:#b23a48"></i>CONTESTED — parties disagree</div>
+          <div><i style="background:#14595a"></i>RESOLVED — a controlling outcome exists</div>
+          <div><i style="background:#8a8375"></i>UNKNOWN — not yet researched</div>
+        </div>
+        <div class="fr-leg"><h4>Coverage</h4>
+          <div><i style="background:#3f6d33"></i>LIVE</div>
+          <div><i style="background:#f08a24"></i>WATCHING</div>
+          <div><i style="background:#b9b2a4"></i>PLANNED</div>
+          <div><i style="background:#8a8375"></i>PAUSED</div>
+          <div><i style="background:#b23a48"></i>GAP</div>
+        </div>
+        <div class="fr-leg"><h4>Activity</h4>
+          <div><i style="background:#1d7a7c"></i>NEW DOCUMENT</div>
+          <div><i style="background:#3f6d33"></i>STORY UPDATED</div>
+          <div><i style="background:#b23a48"></i>SOURCE ALERT</div>
+        </div>
+      </div>
+      <div class="fr-lesson" style="margin-top:16px"><b>One rule above all:</b> a story can be fully evidenced <i>and</i> hotly contested at the same time — that's why CONTESTED is its own overlay, never a lifecycle stage. Disagreement in the world never lowers what the record shows.</div>
+    </section>
+
+  </div>
 </main>
 
 <footer>
@@ -93,6 +263,7 @@
         <h5>Site</h5>
         <a href="ask.html">Ask PolitíCat</a>
         <a href="explore.html">Explore NM</a>
+        <a href="elections.html">Elections</a>
         <a href="learn.html">Learn</a>
         <a href="trail.html">The Trail</a>
         <a href="whitepaper.html">White Paper</a>
@@ -111,6 +282,6 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=20260817-vista10"></script>
+<script src="assets/js/app.js?v=20260817-record1"></script>
 </body>
 </html>

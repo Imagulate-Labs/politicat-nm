@@ -175,6 +175,8 @@ header.nav{
 .mo-tick:hover{color:#fff}
 .mo-tick.charter{color:#ffd9a0}
 .mo-ticker .viewall{flex:none;color:#ffd9a0;font-size:.75rem;font-weight:900;padding:0 18px;text-decoration:none;border-left:1px solid rgba(230,215,184,.25)}
+.mo-tab{border:1px solid rgba(20,89,90,.3);background:#fff;border-radius:11px;padding:10px 18px;font-weight:800;font-size:.88rem;color:var(--teal);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.mo-tab.on{background:var(--teal);color:var(--cream);border-color:var(--teal)}
 .platform-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
