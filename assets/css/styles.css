@@ -151,6 +151,12 @@ header.nav{
   color:var(--cream);
   padding:86px 0;
 }
+/* art-backed heroes: tall enough to show the scene, art weighted right, text plated left */
+.page-hero.wall{min-height:clamp(300px,24vw,640px);display:flex;align-items:center;border-bottom:3px solid rgba(58,42,24,.6)}
+.page-hero.wall .wrap{width:100%}
+.page-hero.wall::before{background-position:center right}
+.page-hero.wall .hero-title,.page-hero.wall .eyebrow{text-shadow:0 3px 12px rgba(0,0,0,.6)}
+.page-hero.wall .hero-sub{color:#f0e6cf;text-shadow:0 2px 8px rgba(0,0,0,.65)}
 .page-hero-inner{
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(320px,460px);
@@ -748,6 +754,9 @@ footer::before{
   grid-template-columns:1fr 1fr;
   gap:18px;
 }
+/* density scales by adding columns on big screens — never by stretching two */
+@media(min-width:1500px){.ready-columns{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:2400px){.ready-columns{grid-template-columns:repeat(6,1fr)}}
 .ready-col{
   padding:18px;
   border-radius:14px;
@@ -762,7 +771,7 @@ footer::before{
 .ready-action:hover b{color:var(--orange-deep)}
 .ready-col h3{
   color:var(--teal-deep);
-  font-size:1.05rem;
+  font-size:clamp(1.05rem,.85vw,1.5rem);
   margin-bottom:12px;
 }
 .ready-action{
@@ -779,10 +788,12 @@ footer::before{
 .ready-action span{
   color:var(--teal-deep);
   font-weight:900;
+  font-size:clamp(.95rem,.75vw,1.3rem);
 }
 .ready-action small{
   color:#5e6b66;
   font-weight:600;
+  font-size:clamp(.8rem,.58vw,1rem);
 }
 .ready-action b{
   grid-row:1 / span 2;
