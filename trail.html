@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260817-map1">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-polish1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 .fr-shell{width:100%;padding:0 clamp(16px,1.3vw,40px) 60px}
@@ -62,13 +62,15 @@
 .fr-health .note{margin-top:10px;font-size:.74rem;font-weight:700;color:#8a6430;line-height:1.5}
 /* pipeline */
 .fr-pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.fr-pipe .p{background:#fff;border:2px solid rgba(58,42,24,.45);border-radius:12px;padding:16px 14px;text-align:center}
+.fr-pipe .p{background:radial-gradient(ellipse at 50% 38%,#fdf8ec 0%,#f6ebcf 50%,#ecd7a9 88%,#d9bb84 100%);border:2px solid rgba(58,42,24,.5);border-radius:12px;padding:16px 14px;text-align:center;box-shadow:0 5px 16px -8px rgba(58,42,24,.4);transition:transform .2s,border-color .2s,box-shadow .2s}
+.fr-pipe .p:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 16px 30px -14px rgba(58,42,24,.55)}
 .fr-pipe .p .ico{font-size:1.6rem}
 .fr-pipe .p b{display:block;font-size:.84rem;color:var(--teal-deep);margin-top:6px;line-height:1.25}
 .fr-pipe-note{text-align:center;font-size:.82rem;font-weight:700;color:#4a3f2c;margin-top:12px}
 /* legend */
 .fr-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.fr-leg{background:#fff;border:2px solid rgba(58,42,24,.45);border-radius:12px;padding:14px 16px}
+.fr-leg{background:radial-gradient(ellipse at 50% 38%,#fdf8ec 0%,#f6ebcf 50%,#ecd7a9 88%,#d9bb84 100%);border:2px solid rgba(58,42,24,.5);border-radius:12px;padding:14px 16px;box-shadow:0 5px 16px -8px rgba(58,42,24,.4);transition:transform .2s,border-color .2s}
+.fr-leg:hover{transform:translateY(-4px);border-color:var(--orange)}
 .fr-leg h4{font-size:.72rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--orange-deep);margin-bottom:9px}
 .fr-leg div{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#333;padding:3px 0}
 .fr-leg i{width:10px;height:10px;border-radius:50%;flex:none}
@@ -372,7 +374,7 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=20260817-map1"></script>
+<script src="assets/js/app.js?v=20260817-polish1"></script>
 <script>
 (function(){
   var book=document.getElementById('hb9book'); if(!book) return;

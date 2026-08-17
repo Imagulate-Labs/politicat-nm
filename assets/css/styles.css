@@ -197,8 +197,8 @@ header.nav{
    NO background-attachment:fixed — it janks scrolling and hides the art. */
 .wall{position:relative;isolation:isolate}
 .wall::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--wall);background-size:cover;background-position:center}
-.wall::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(247,236,211,.85),rgba(247,236,211,.38) 16%,rgba(247,236,211,.38) 84%,rgba(247,236,211,.88))}
-.wall--dusk::after{background:linear-gradient(180deg,rgba(9,30,33,.8),rgba(9,30,33,.35) 20%,rgba(9,30,33,.4) 80%,rgba(9,30,33,.85))}
+.wall::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(247,236,211,.78),rgba(247,236,211,.26) 15%,rgba(247,236,211,.26) 85%,rgba(247,236,211,.82))}
+.wall--dusk::after{background:linear-gradient(180deg,rgba(9,30,33,.72),rgba(9,30,33,.26) 18%,rgba(9,30,33,.3) 82%,rgba(9,30,33,.78))}
 .wall--dusk .comm-card{background:rgba(9,30,33,.55);border-color:rgba(230,215,184,.3);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .wall--dusk .comm-card:hover{background:rgba(9,30,33,.75)}
 .platform-grid{
@@ -629,7 +629,8 @@ footer::before{
 .checklist li.done::before{content:"✅";font-size:.95rem}
 .checklist li .when{float:right;font-size:.74rem;font-weight:800;color:var(--teal-bright);letter-spacing:.5px}
 .wp-hubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
-.wp-hub{background:#fff;border:1px solid rgba(20,89,90,.14);border-radius:12px;padding:14px 16px}
+.wp-hub{background:radial-gradient(ellipse at 50% 38%, #fdf8ec 0%, #f6ebcf 46%, #e9d2a2 82%, #d6b77e 100%);border:2px solid rgba(58,42,24,.5);border-radius:12px;padding:14px 16px;box-shadow:0 5px 16px -8px rgba(58,42,24,.4), inset 0 0 24px rgba(90,58,27,.14);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.wp-hub:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 18px 32px -16px rgba(58,42,24,.55)}
 .wp-hub h4{color:var(--teal-deep);margin-bottom:6px}
 .wp-hub p{font-size:.88rem;color:#4a5a55}
 .wp-hub .rule{display:block;margin-top:8px;font-size:.74rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--orange-deep)}
@@ -738,10 +739,16 @@ footer::before{
 }
 .ready-col{
   padding:18px;
-  border-radius:16px;
-  background:linear-gradient(180deg,var(--cream-soft),#fff);
-  border:1px solid var(--sand);
+  border-radius:14px;
+  background:radial-gradient(ellipse at 50% 38%, #fdf8ec 0%, #f6ebcf 46%, #e9d2a2 82%, #d6b77e 100%);
+  border:2px solid rgba(58,42,24,.55);
+  box-shadow:0 6px 18px -8px rgba(58,42,24,.4), inset 0 0 28px rgba(90,58,27,.16);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
 }
+.ready-col:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 20px 36px -18px rgba(58,42,24,.55), inset 0 0 22px rgba(90,58,27,.12)}
+.ready-action{transition:transform .18s ease}
+.ready-action:hover{transform:translateX(5px)}
+.ready-action:hover b{color:var(--orange-deep)}
 .ready-col h3{
   color:var(--teal-deep);
   font-size:1.05rem;
@@ -1221,9 +1228,9 @@ footer::before{
 
 /* ---------- POPULAR QUESTIONS ---------- */
 .q-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.q-card{background:#fff;border-radius:16px;padding:26px 22px;border:1px solid var(--sand);box-shadow:0 4px 16px var(--shadow);
-  cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;text-align:left;font:inherit;color:inherit}
-.q-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px -8px var(--shadow)}
+.q-card{background:radial-gradient(ellipse at 50% 38%, #fdf8ec 0%, #f6ebcf 50%, #ecd7a9 84%, #d9bb84 100%);border-radius:14px;padding:26px 22px;border:2px solid rgba(58,42,24,.5);box-shadow:0 6px 18px -8px rgba(58,42,24,.4), inset 0 0 26px rgba(90,58,27,.14);
+  cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;text-align:left;font:inherit;color:inherit}
+.q-card:hover{transform:translateY(-5px);border-color:var(--orange);box-shadow:0 20px 36px -16px rgba(58,42,24,.55)}
 .q-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:var(--cat,var(--teal))}
 .q-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;background:color-mix(in srgb,var(--cat,var(--teal)) 14%,#fff)}
 .q-cat{font-size:.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--cat,var(--teal));margin-bottom:6px}
