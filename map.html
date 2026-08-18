@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260818-dense2">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260818-strip1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 /* map room (mr-*) */
@@ -39,14 +39,18 @@
   .mr-hero{aspect-ratio:auto;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;min-height:52vw}
   .mr-shield{display:none}
 }
-.mr-layers{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:4px clamp(16px,1.5vw,44px) 18px}
-.mr-lab{font-weight:900;font-size:.72rem;letter-spacing:1.5px;color:var(--teal-deep)}
-.mr-layer{display:inline-flex;align-items:center;gap:7px;border:2px solid rgba(58,42,24,.45);background:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-weight:800;font-size:.82rem;color:var(--teal-deep);cursor:pointer}
-.mr-layer.on{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
+/* dark control bar bridging header art into the night stage — no bare parchment */
+.mr-layers{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:16px clamp(16px,1.5vw,44px);background:linear-gradient(180deg,#0c1815,#132821);border-bottom:2px solid rgba(62,201,184,.25)}
+.mr-layers .county-picker span{color:#f0e8d6}
+.mr-layers .county-picker small{color:#9db1a9}
+.mr-lab{font-weight:900;font-size:.72rem;letter-spacing:1.5px;color:#3ec9b8}
+.mr-layer{display:inline-flex;align-items:center;gap:7px;border:2px solid rgba(58,42,24,.5);background:#fdf6e7;border-radius:999px;padding:9px 16px;font:inherit;font-weight:800;font-size:.82rem;color:var(--teal-deep);cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35)}
+.mr-layer.on{background:var(--orange);color:#fff;border-color:var(--orange-deep)}
 .mr-layer i{font-style:normal;font-size:.56rem;font-weight:900;letter-spacing:.5px;padding:2.5px 7px;border-radius:4px;background:#3f6d33;color:#fff}
-.mr-layer:disabled{opacity:.7;cursor:default;background:var(--cream-soft);color:#6b5b40;border-style:dashed}
-.mr-layer:disabled i{background:#b9b2a4}
-.mr-note{font-size:.74rem;font-weight:700;color:#6b5b40}
+.mr-layer.on i{background:#8f4a06}
+.mr-layer:disabled{cursor:default;background:rgba(251,246,234,.1);color:#9db1a9;border-style:dashed;border-color:rgba(230,215,184,.35);box-shadow:none}
+.mr-layer:disabled i{background:#5f7169}
+.mr-note{font-size:.74rem;font-weight:700;color:#9db1a9}
 .mr-room{padding:clamp(18px,2vw,40px) clamp(14px,1.4vw,40px);border-top:2.5px solid rgba(58,42,24,.55);border-bottom:2.5px solid rgba(58,42,24,.55);background:url('assets/img/map-stage.jpg') center/cover}
 .mr-footband{aspect-ratio:1983/793;background:url('assets/img/map-footer.jpg') center/cover;border-top:3px solid rgba(58,42,24,.65)}
 .mr-explorer{grid-template-columns:minmax(0,1fr) clamp(320px,26vw,470px);gap:clamp(14px,1.4vw,26px);margin:0;align-items:start}
@@ -494,7 +498,7 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=20260818-dense2"></script>
+<script src="assets/js/app.js?v=20260818-strip1"></script>
 <script>
 (function(){
   var box = document.getElementById('mrQuickJump');
