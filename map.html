@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260817-maproom1">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260817-dense1">
 <script data-goatcounter="https://metalex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 /* map room (mr-*) */
@@ -51,6 +51,32 @@
 .mr-footband{aspect-ratio:1983/793;background:url('assets/img/map-footer.jpg') center/cover;border-top:3px solid rgba(58,42,24,.65)}
 .mr-explorer{grid-template-columns:minmax(0,1fr) clamp(320px,26vw,470px);gap:clamp(14px,1.4vw,26px);margin:0;align-items:start}
 .mr-map .nm-map{display:block;width:auto;max-width:100%;height:min(78vh,1080px);margin:0 auto}
+/* no empty wings: the map card is a 3-column spread — key | map | treasures */
+.mr-map{background:radial-gradient(ellipse at 50% 38%,#fdf8ec,#f6ebcf 55%,#ecd7a9 92%,#dfc9a0)}
+.mr-key,.mr-treasures{background:rgba(251,246,234,.8);border:2px solid rgba(58,42,24,.5);border-radius:12px;padding:16px 18px;box-shadow:0 4px 12px -6px rgba(58,42,24,.35)}
+.mr-key h4,.mr-treasures h4{font-size:.74rem;font-weight:900;letter-spacing:1.3px;color:var(--orange-deep);text-transform:uppercase;margin-bottom:10px}
+.mr-key .k{display:flex;gap:10px;align-items:flex-start;font-size:clamp(.8rem,.85vw,.95rem);font-weight:700;color:#3f3320;padding:6px 0;border-bottom:1px dashed rgba(90,58,27,.25);line-height:1.45}
+.mr-key .k:last-of-type{border-bottom:none}
+.mr-key .k i{flex:none;width:26px;text-align:center;font-style:normal;font-size:1.05rem}
+.mr-key-cta{margin-top:12px}
+.mr-key-cta a{display:block;background:var(--teal-deep);color:var(--cream);font-weight:800;font-size:.84rem;border-radius:10px;padding:11px 14px;text-decoration:none;text-align:center}
+.mr-treasures .tnote{font-size:.78rem;font-weight:600;color:#5a4a30;line-height:1.5;margin-bottom:10px}
+.mr-treasures .tnote a{color:var(--orange-deep);font-weight:800}
+.mr-treasures .t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mr-treasures .t{display:flex;gap:7px;align-items:center;background:#fffdf5;border:1.5px solid rgba(58,42,24,.4);border-radius:9px;padding:8px 10px;font-size:clamp(.72rem,.78vw,.88rem);font-weight:700;color:#3f3320;transition:transform .15s,border-color .15s}
+.mr-treasures .t:hover{transform:translateY(-2px);border-color:var(--orange)}
+@media(min-width:1150px){
+  .mr-map{display:grid;grid-template-columns:minmax(230px,1fr) auto minmax(230px,1fr);gap:clamp(14px,1.2vw,24px);align-items:start}
+  .mr-map .county-map-head{grid-column:1/-1}
+  .mr-key{grid-column:1}
+  .mr-center{grid-column:2;min-width:0}
+  .mr-treasures{grid-column:3}
+}
+@media(max-width:1149px){.mr-key,.mr-treasures{margin-top:14px}}
+.qj{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px}
+.qj button{font:inherit;font-size:clamp(.66rem,.7vw,.8rem);font-weight:800;color:var(--teal-deep);background:#fffdf5;border:1.5px solid rgba(58,42,24,.4);border-radius:8px;padding:7px 6px;cursor:pointer;transition:transform .12s,border-color .12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qj button:hover{transform:translateY(-2px);border-color:var(--orange)}
+.qj button.on{background:var(--teal-deep);color:var(--cream);border-color:var(--teal-deep)}
 .mr-snap{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}
 @media(max-width:1100px){.mr-explorer{grid-template-columns:1fr}.mr-map .nm-map{width:100%;height:auto}.mr-snap{position:static;max-height:none}}
 </style>
@@ -77,7 +103,7 @@
     <span class="mr-shield" aria-hidden="true">THE<br>MAP<br>ROOM</span>
   </div>
 
-  <div class="mr-layers" role="group" aria-label="County picker" style="padding-top:18px">
+  <div class="mr-layers" role="group" aria-label="County picker and map layers">
     <label class="county-picker mr-pick" for="countySelect">
       <span>Your county</span>
       <small>We use county, not your home address.</small>
@@ -86,9 +112,6 @@
             <option>Bernalillo</option><option>Catron</option><option>Chaves</option><option>Cibola</option><option>Colfax</option><option>Curry</option><option>De Baca</option><option>Doña Ana</option><option>Eddy</option><option>Grant</option><option>Guadalupe</option><option>Harding</option><option>Hidalgo</option><option>Lea</option><option>Lincoln</option><option>Los Alamos</option><option>Luna</option><option>McKinley</option><option>Mora</option><option>Otero</option><option>Quay</option><option>Rio Arriba</option><option>Roosevelt</option><option>Sandoval</option><option>San Juan</option><option>San Miguel</option><option>Santa Fe</option><option>Sierra</option><option>Socorro</option><option>Taos</option><option>Torrance</option><option>Union</option><option>Valencia</option>
       </select>
     </label>
-  </div>
-
-  <div class="mr-layers" role="group" aria-label="Map layers">
     <span class="mr-lab">🗺️ LAYERS</span>
     <button class="mr-layer on" type="button">🏛️ Counties <i>LIVE</i></button>
     <button class="mr-layer" type="button" disabled title="Planned layer — follows the record">💧 Water <i>PLANNED</i></button>
@@ -106,6 +129,23 @@
               <div><span class="map-kicker">County Navigation</span><h3>New Mexico as the Front Door</h3></div>
               <span class="map-date" id="mapSourceDate">Loading data...</span>
             </div>
+
+            <aside class="mr-key">
+              <h4>🧭 Map Key</h4>
+              <div class="k"><i>🏛️</i>Every county is a button — tap one to open its dashboard</div>
+              <div class="k"><i>🎨</i>The patchwork colors are neighbors, not parties — no county wears a party color, ever</div>
+              <div class="k"><i>⛰️</i>Hand-drawn ranges: Sangre de Cristos, Sandias, the Gila</div>
+              <div class="k"><i>〰️</i>Rivers: Rio Grande, Pecos, San Juan, Canadian, Gila</div>
+              <div class="k"><i>🛣️</i>The dashed red line is Route 66 — the Mother Road</div>
+              <div class="k"><i>🪶</i>Tribal Nations are named on their lands</div>
+              <div class="k"><i>📍</i>Pin mode drops markers saved only in your browser — nothing uploads</div>
+              <div class="k"><i>➕</i>Zoom and drag to travel; ⌂ brings you home</div>
+              <div class="mr-key-cta"><a href="civic-explorer.html">🪙 New: follow one NM dollar in the Civic Explorer →</a></div>
+              <h4 style="margin-top:16px">⚡ Quick Jump — All 33</h4>
+              <div class="qj" id="mrQuickJump"></div>
+            </aside>
+
+            <div class="mr-center">
             <div class="nm-map-wrap" id="countyMap">
             <div class="map-toolbar" role="group" aria-label="Map navigation">
               <button type="button" id="mapZoomIn" aria-label="Zoom in" title="Zoom in">+</button>
@@ -347,6 +387,33 @@
 </svg>
             </div>
             <p class="map-hint">🐾 Tap any county for its civic snapshot · drag to pan, <b>+</b>/<b>−</b> to zoom · 📍 drops pins for planning or research (pins are saved only in your browser — nothing is uploaded).</p>
+            </div>
+
+            <aside class="mr-treasures">
+              <h4>🏜️ Hidden Treasures</h4>
+              <p class="tnote">Every one of these is really drawn on the map. Zoom in and find them all:</p>
+              <div class="t-grid">
+                <span class="t">🪨 Shiprock</span>
+                <span class="t">🌋 Capulin Volcano</span>
+                <span class="t">🏔️ Taos Ski Valley</span>
+                <span class="t">🏜️ Chaco Canyon</span>
+                <span class="t">📡 Very Large Array</span>
+                <span class="t">🥧 Pie Town</span>
+                <span class="t">💥 Trinity Site · 1945</span>
+                <span class="t">🐻 Smokey Bear's home</span>
+                <span class="t">🛸 UFO Country · 1947</span>
+                <span class="t">🤠 Billy the Kid's grave</span>
+                <span class="t">🌊 The Blue Hole</span>
+                <span class="t">🏳️ White Sands</span>
+                <span class="t">🚀 Spaceport America</span>
+                <span class="t">🌶️ Hatch chile country</span>
+                <span class="t">🦇 Carlsbad Caverns</span>
+                <span class="t">🦅 Bosque del Apache</span>
+                <span class="t">🐘 Elephant Butte</span>
+                <span class="t">🏯 Acoma Sky City</span>
+              </div>
+              <p class="tnote" style="margin-top:10px">Found them all? Ask Don Gato the story behind any of them on the <a href="ask.html">Ask page</a>.</p>
+            </aside>
           </div>
           <aside class="county-snapshot mr-snap" id="countySnapshot" aria-live="polite">
             <span class="snapshot-kicker">County dashboard</span>
@@ -410,6 +477,25 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=20260817-maproom1"></script>
+<script src="assets/js/app.js?v=20260817-dense1"></script>
+<script>
+(function(){
+  var box = document.getElementById('mrQuickJump');
+  var sel = document.getElementById('countySelect');
+  if(!box || !sel) return;
+  [].slice.call(sel.options).forEach(function(opt){
+    if(!opt.textContent || opt.textContent.indexOf('Select') === 0) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = opt.textContent;
+    b.addEventListener('click', function(){
+      if (window.selectCounty) { selectCounty(opt.textContent, 'quickjump'); }
+      else { sel.value = opt.textContent; sel.dispatchEvent(new Event('change')); }
+      box.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); });
+    });
+    box.appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>
