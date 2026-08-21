@@ -134,8 +134,8 @@ const ANSWERS = [
     s: "Get involved — NMVote.org"
   },
   {
-    k: ["zia", "curiosity", "why a cat", "what is politicat", "who is don gato"],
-    a: "PolitíCat is built on one idea: Curiosity > Politics. Don Gato Cívico is a curious New Mexico cat — a little skeptical, allergic to spin — who explains how government actually works in plain language, then points you to the official source so you can decide for yourself. The Zia sun in the logo is New Mexico's state symbol of unity and belonging.",
+    k: ["zia", "logo", "curiosity", "why a cat", "what is politicat", "who is don gato"],
+    a: "PolitíCat is built on one idea: Curiosity > Politics. Don Gato Cívico is a curious New Mexico cat — a little skeptical, allergic to spin — who explains how government actually works in plain language, then points you to the official source so you can decide for yourself. Our mark is the C-glyph: a coral C wrapping a turquoise pawprint, with three paw-pad dots above — New Mexico's colors, our own symbol. We retired the Zia sun from our branding out of respect: it is a sacred symbol of Zia Pueblo, and it belongs to them.",
     s: "About PolitíCat — politicatnm.org"
   },
 
